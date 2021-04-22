@@ -1,2 +1,2 @@
 # East-Asian-Authoritarianism
-A sentiment analysis exploring cultural attitudes towards freedom in Sinic countries.
+A Twitter based sentiment analysis examining attitudes to freedom between Sino verses Anglosphere users. 
