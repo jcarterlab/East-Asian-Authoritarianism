@@ -1,2 +1,6 @@
 # East-Asian-Authoritarianism
-A sentiment analysis exploring different cultural attitudes towards freedom and chaos in the so-called Sinic and Anglophone countries.
+A sentiment analysis examining attitudes to freedom between Sino verses Anglosphere Twitter users.
+
+The report can be found [here.](East-Asian-Authoritarianism.md)
+
+The code can be found [here.](East-Asian-Authoritarianism.Rmd)   
