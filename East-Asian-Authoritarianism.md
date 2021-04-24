@@ -5,12 +5,19 @@ Jack Carter
 
 ## **Summary**
 
-This report examines the possibility of a cultural disposition towards
-authoritarianism in Sinic verses Anglophone countries. It finds that
-there is indeed less positive sentiment in Sinc country Tweets
-containing the words freedom and a selection of anti-authority words.
-This may however be the result of situational context rather than
-culture.
+This report compares Authoritarianism between Sinc and Anglophone
+countries. It finds that Sinic country Twitter users demonstrate less
+positive sentiment when using freedom and a collection of anti-authority
+related words. This may be due to the differing influence of Confucian
+and European enlightenment values in shaping attitudes towards
+individual liberty.
+
+It could also however be the result of a difference in situational
+context. Many people in Hong Kong and Taiwan for instance likely tweet
+negatively about their own freedoms given China’s growing regional
+assertiveness. South East Asian countries may also be more likely to
+tweet negatively about the tragic loss of freedom Myanmar following a
+recent military coup.
 
 The rest of the report is organized into the following sections:
 
@@ -21,18 +28,18 @@ The rest of the report is organized into the following sections:
 
 ## **1. The Current Situation**
 
-1.1: Overall democracy according to The Economist Intelligence Unit
-*(EIU, 2020)*.
+1.1: Overall democracy scores according to The Economist Intelligence
+Unit *(EIU, 2020)*.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
-1.2: Aspects of democracy according to The Economist Intelligence Unit
-*(EIU, 2020)*.
+1.2: Aspects of democracy scores according to The Economist Intelligence
+Unit *(EIU, 2020)*.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
-1.3: Power distance, the extent to which people accept unequal power in
-society *(Hofestede, 2010)*.
+1.3: Power distance scores, the extent to which people accept unequal
+power in society *(Hofestede, 2010)*.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
@@ -40,35 +47,31 @@ society *(Hofestede, 2010)*.
 
 ## **2. Twitter: Sentiment Analysis**
 
-The analysis examines tweets within a 50 mile range of the capital
-cities of China, Vietnam, South Korea, Taiwan, Hong Kong, Singapore, the
-UK, the US, Canada, Australia, New Zealand and South Africa.
-
-A sentiment analysis is then conducted using the nrc lexicon library.
-This is done by breaking the Tweets down into individual words before
-counting how many times words associated with certain sentiments occur.
-The data are then plotted as bar charts with each set of bars
-representing a different week beginning on 10th April 2021.
+The analysis collects tweets from within a 50 mile range of the
+respective country capitals each week beginning on 10/04/2021. A
+sentiment analysis is then conducted using the NRC lexicon library. This
+is done by calculating how often words associated with certain
+sentiments occur compared to their respective regional totals.
 
  
 
-2.1 Summary statistics.
+**Summary statistics:**
 
 |   Region   | Tweets (000s) | Tweets (%) | Words (000s) | Words (%) |
 | :--------: | :-----------: | :--------: | :----------: | :-------: |
-| Anglophone |     72.0      |    51.3    |     1363     |   45.6    |
-|   Sinic    |     68.5      |    48.7    |     1624     |   54.4    |
+| Anglophone |      113      |    52.8    |     2094     |   47.4    |
+|   Sinic    |      101      |    47.2    |     2322     |   52.6    |
 
  
 
 ### Freedom:
 
-2.2 The net sentiment for freedom. Net sentiment is calculated as
+2.1 The net sentiment for freedom. Net sentiment is calculated as
 positive minus negative words.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
-2.3 Positive emotions for freedom.
+2.2 Positive emotions for freedom.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
@@ -97,16 +100,4 @@ and riot).
 
  
 
-## **4. Conclusion**
-
-Anglophone Twitter users appear to demonstrate a more positive overall
-sentiment when using the word freedom and a selection of anti-authority
-words. This may be the result of a great cultural disposition towards
-European enlightenment ideals in the Anglophone countries verses values
-of Confucian hierarchy in the Sinic countries.
-
-It could also however be the result of a difference in context. Many
-people in Hong Kong and Taiwan likely view their freedom as being
-threatened by China and subsequently use these words in a negative way.
-Countries such as Singapore are also very close geographically to
-Myanmar where a military coup is currently destroying local freedoms.
+## **Sources**
