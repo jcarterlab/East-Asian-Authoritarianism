@@ -124,7 +124,7 @@ power_distance_scores <- tibble(country = c("China", "Hong Kong","Singapore",
                                                      58, 22, 49, 
                                                      36))
 
-# 1.4 power distance
+# 1.5 power distance
 power_distance_scores %>%
   ggplot(aes(x = country, y = power_distance, col = region)) +
   geom_point(alpha = 0.9) +
@@ -136,6 +136,25 @@ power_distance_scores %>%
   ylab("Score") +
   scale_color_manual(values = c("#0072B2", "#D55E00")) +
   theme_economist_white(gray_bg = FALSE) +
+  my_theme +
+  theme(axis.text.x=element_blank())
+
+# 1.6 re-election rate scores
+reelection_rate_scores <- tibble(region = c("Anglophone", "Sinic"),
+                                 Leaders = c(0.593406593, 1),
+                                 Parties = c(0.598039216, 0.793103448)) %>%
+  gather(type, value, -1) %>%
+  mutate(value = value * 100)
+
+# 1.7 re-election rates
+reelection_rate_scores %>%
+  ggplot(aes(x = region, y = value, fill = region)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~ type) +
+  ggtitle("Re-election Rates") +
+  ylab("%") +
+  xlab("") +
+  scale_fill_manual(values = c("#0072B2", "#D55E00")) +
   my_theme +
   theme(axis.text.x=element_blank())
 
@@ -151,8 +170,8 @@ tweets %>%
          search == "Freedom") %>%
   ggplot(aes(x = date_collected, y = value, fill = region)) +
   geom_bar(stat = "identity", position = "dodge") +
-  ggtitle("2.2: Freedom (Net)") +
-  ylab("%") +
+  ggtitle("Freedom") +
+  ylab("Sentiment (%)") +
   xlab("") +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +
   my_theme +
@@ -167,8 +186,8 @@ tweets %>%
   ggplot(aes(x = date_collected, y = value, fill = region)) +
   geom_bar(stat = "identity", position = "dodge") +
   facet_wrap(~sentiment) +
-  ggtitle("2.3: Freedom - Positive Breakdown") +
-  ylab("Words (%)") +
+  ggtitle("Freedom") +
+  ylab("Sentiment (%)") +
   xlab("") +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +
   my_theme +
@@ -183,8 +202,8 @@ tweets %>%
   ggplot(aes(x = date_collected, y = value, fill = region)) +
   geom_bar(stat = "identity", position = "dodge") +
   facet_wrap(~sentiment) +
-  ggtitle("2.4: Freedom - Negative Breakdown") +
-  ylab("Words (%)") +
+  ggtitle("Freedom") +
+  ylab("Sentiment (%)") +
   xlab("") +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +
   my_theme +
@@ -199,8 +218,8 @@ anti_authority_data %>%
   filter(sentiment == "net") %>%
   ggplot(aes(x = date_collected, y = avg, fill = region)) +
   geom_bar(stat = "identity", position = "dodge") +
-  ggtitle("2.5: Anti-Authority - Net Sentiment") +
-  ylab("%") +
+  ggtitle("Anti-Authority") +
+  ylab("Sentiment (%)") +
   xlab("") +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +
   my_theme +
@@ -214,8 +233,8 @@ anti_authority_data %>%
   ggplot(aes(x = date_collected, y = avg, fill = region)) +
   geom_bar(stat = "identity", position = "dodge") +
   facet_wrap(~sentiment) +
-  ggtitle("2.6: Anti-Authority - Positive Breakdown") +
-  ylab("Words (%)") +
+  ggtitle("Anti-Authority") +
+  ylab("Sentiment (%)") +
   xlab("") +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +
   my_theme +
@@ -229,8 +248,8 @@ anti_authority_data %>%
   ggplot(aes(x = date_collected, y = avg, fill = region)) +
   geom_bar(stat = "identity", position = "dodge") +
   facet_wrap(~sentiment) +
-  ggtitle("2.7: Anti-Authority - Negative Breakdown") +
-  ylab("Words (%)") +
+  ggtitle("Anti-Authority") +
+  ylab("Sentiment (%)") +
   xlab("") +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +
   my_theme +
