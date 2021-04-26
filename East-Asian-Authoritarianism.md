@@ -9,7 +9,7 @@ This report analyzes Authoritarianism between Sinic and Anglophone
 countries. It finds that Sinic country Twitter users demonstrate less
 positive sentiment when using freedom and a collection of anti-authority
 words. This may be due to the differing influence of Confucian verses
-European enlightenment values in defining attitudes to individual
+European enlightenment values in defining attitudes towards individual
 liberty.
 
 It could also however be the result of a difference in situational
@@ -17,7 +17,7 @@ context. Many people in Hong Kong and Taiwan for instance likely tweet
 negatively about their own freedoms given China’s growing regional
 assertiveness. South East Asian countries such as Singapore may also be
 more likely to tweet negatively about the tragic loss of freedom in
-Myanmar following a recent military coup.
+neighbouring Myanmar following a recent military coup.
 
 The rest of the report is organized into the following sections:
 
@@ -43,14 +43,13 @@ Unit *(EIU, 2020)*.
 ### Authority:
 
 1.3: Power distance scores, the extent to which people accept unequal
-power in society *(Hofestede, 2010)*.
+power in society *(Hofstede, 1980)*.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
-1.4: Re-election rates, the extent to which democratic societies (not
-including China and Vietnam) accept those in positions of power and
-authority.
-
+1.4: Re-election rates for leaders. Note that China and Vietnam are not
+democratic while South Korea’s constitution does not allow for
+re-election ([see here for details](Re-election_rates.xls)).
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
  
@@ -66,7 +65,7 @@ of bars representing a new week beginning on 10th April 2021.
 
  
 
-### Summary statistics:
+### Summary Statistics:
 
 |   Region   | Tweets (000s) | Tweets (%) | Words (000s) | Words (%) |
 | :--------: | :-----------: | :--------: | :----------: | :-------: |
@@ -112,3 +111,13 @@ and riot).
  
 
 ## **Sources**
+
+  - EIU (2020) <https://www.eiu.com/n/campaigns/democracy-index-2020/>
+
+  - Hofstede (1980)
+    <https://www.tandfonline.com/doi/abs/10.1080/00208825.1980.11656300?journalCode=mimo20>
+
+  - Mohammad (2021)
+    <https://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm>
+
+  - Twitter (2021) <https://developer.twitter.com/en/apply-for-access>

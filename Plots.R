@@ -140,21 +140,29 @@ power_distance_scores %>%
   theme(axis.text.x=element_blank())
 
 # 1.6 re-election rate scores
-reelection_rate_scores <- tibble(region = c("Anglophone", "Sinic"),
-                                 Leaders = c(0.593406593, 1),
-                                 Parties = c(0.598039216, 0.793103448)) %>%
-  gather(type, value, -1) %>%
-  mutate(value = value * 100)
+reelection_rate_scores <- tibble(country = c("Taiwan", "Singapore", "Hong Kong", 
+                                             "US", "UK", "Canada", 
+                                             "Australia", "New Zealand", "South Africa"),
+                                 region = c("Sinic", "Sinic", "Sinic",
+                                            "Anglophone", "Anglophone", "Anglophone", 
+                                            "Anglophone", "Anglophone", "Anglophone"),
+                                 rate = c(1, 1, 1, 
+                                             0.6, 0.647058824, 0.666666667, 
+                                             0.545454545, 0.523809524, 0.666666667)) %>%
+  mutate(rate = rate * 100)
 
 # 1.7 re-election rates
 reelection_rate_scores %>%
-  ggplot(aes(x = region, y = value, fill = region)) +
-  geom_bar(stat = "identity", position = "dodge") +
-  facet_wrap(~ type) +
+  ggplot(aes(x = country, y = rate, color = region)) +
+  geom_point(alpha = 0.9) +
+  geom_text_repel(aes(label=country), size = 2.25,
+                  show.legend = FALSE,
+                  max.overlaps = 5) +
   ggtitle("Re-election Rates") +
   ylab("%") +
   xlab("") +
-  scale_fill_manual(values = c("#0072B2", "#D55E00")) +
+  ylim(45, 100) +
+  scale_color_manual(values = c("#0072B2", "#D55E00")) +
   my_theme +
   theme(axis.text.x=element_blank())
 
