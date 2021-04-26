@@ -49,7 +49,9 @@ power in society *(Hofstede, 1980)*.
 
 1.4: Re-election rates for leaders. Note that China and Vietnam are not
 democratic while South Korea’s constitution does not allow for
-re-election ([see here for details](https://github.com/jcarterlab/East-Asian-Authoritarianism/blob/main/Data/Re-election_rates.xls)).
+re-election ([see here for
+details](https://github.com/jcarterlab/East-Asian-Authoritarianism/blob/main/Data/Re-election_rates.xls)).
+
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
  

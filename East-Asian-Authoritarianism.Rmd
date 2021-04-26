@@ -287,7 +287,8 @@ power_distance_scores %>%
 
 ```
 
-1.4: Re-election rates for leaders. Note that China and Vietnam are not democratic while South Korea's constitution does not allow for re-election ([see here for details](Re-election_rates.xls)). 
+1.4: Re-election rates for leaders. Note that China and Vietnam are not democratic while South Korea's constitution does not allow for re-election ([see here for details](https://github.com/jcarterlab/East-Asian-Authoritarianism/blob/main/Data/Re-election_rates.xls)). 
+
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
 # 1.4 re-election rates
