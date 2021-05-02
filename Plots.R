@@ -176,42 +176,26 @@ tweets %>%
   gather(sentiment, value, -c(1:5)) %>%
   filter(sentiment == "net",
          search == "Freedom") %>%
-  ggplot(aes(x = date_collected, y = value, fill = region)) +
+  ggplot(aes(x = region, y = value, fill = region)) +
   geom_bar(stat = "identity", position = "dodge") +
   ggtitle("Freedom") +
-  ylab("Sentiment (%)") +
+  ylab("% of Total Words (Net)") +
   xlab("") +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +
   my_theme +
   theme(axis.text.x=element_blank())
 
-# positive
+# selected emotions
 tweets %>%
   filter(search == "Freedom",
-         sentiment %in% c("Anticipation", "Joy", "Trust")) %>%
-  mutate(sentiment = factor(sentiment, levels = c("Anticipation", "Joy", "Trust",
-                                                  "Anger", "Disgust","Fear"))) %>%
-  ggplot(aes(x = date_collected, y = value, fill = region)) +
+         sentiment %in% c("Joy", "Trust", "Anger", "Fear")) %>%
+  mutate(sentiment = factor(sentiment, levels = c("Joy", "Trust",
+                                                  "Anger", "Fear"))) %>%
+  ggplot(aes(x = region, y = value, fill = region)) +
   geom_bar(stat = "identity", position = "dodge") +
-  facet_wrap(~sentiment) +
+  facet_wrap(~sentiment, ncol = 2) +
   ggtitle("Freedom") +
-  ylab("Sentiment (%)") +
-  xlab("") +
-  scale_fill_manual(values = c("#0072B2", "#D55E00")) +
-  my_theme +
-  theme(axis.text.x=element_blank())
-
-# negative
-tweets %>%
-  filter(search == "Freedom",
-         sentiment %in% c("Anger", "Disgust","Fear")) %>%
-  mutate(sentiment = factor(sentiment, levels = c("Anticipation", "Joy", "Trust",
-                                                  "Anger", "Disgust","Fear"))) %>%
-  ggplot(aes(x = date_collected, y = value, fill = region)) +
-  geom_bar(stat = "identity", position = "dodge") +
-  facet_wrap(~sentiment) +
-  ggtitle("Freedom") +
-  ylab("Sentiment (%)") +
+  ylab("% of Total Words") +
   xlab("") +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +
   my_theme +
@@ -224,40 +208,25 @@ anti_authority_data %>%
   mutate(net = positive - negative) %>%
   gather(sentiment, avg, -c(1:2)) %>%
   filter(sentiment == "net") %>%
-  ggplot(aes(x = date_collected, y = avg, fill = region)) +
+  ggplot(aes(x = region, y = avg, fill = region)) +
   geom_bar(stat = "identity", position = "dodge") +
   ggtitle("Anti-Authority") +
-  ylab("Sentiment (%)") +
+  ylab("% of Total Words (Net)") +
   xlab("") +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +
   my_theme +
   theme(axis.text.x=element_blank())
 
-# positive
+# selected emotions
 anti_authority_data %>%
-  filter(sentiment %in% c("Anticipation", "Joy", "Trust")) %>%
-  mutate(sentiment = factor(sentiment, levels = c("Anticipation", "Joy", "Trust",
-                                                  "Anger", "Disgust","Fear"))) %>%
-  ggplot(aes(x = date_collected, y = avg, fill = region)) +
+  filter(sentiment %in% c("Joy", "Trust", "Anger", "Fear")) %>%
+  mutate(sentiment = factor(sentiment, levels = c("Joy", "Trust",
+                                                  "Anger", "Fear"))) %>%
+  ggplot(aes(x = region, y = avg, fill = region)) +
   geom_bar(stat = "identity", position = "dodge") +
-  facet_wrap(~sentiment) +
+  facet_wrap(~sentiment, ncol = 2) +
   ggtitle("Anti-Authority") +
-  ylab("Sentiment (%)") +
-  xlab("") +
-  scale_fill_manual(values = c("#0072B2", "#D55E00")) +
-  my_theme +
-  theme(axis.text.x=element_blank())
-
-# negative
-anti_authority_data %>%
-  filter(sentiment %in% c("Anger", "Disgust","Fear")) %>%
-  mutate(sentiment = factor(sentiment, levels = c("Anticipation", "Joy", "Trust",
-                                                  "Anger", "Disgust","Fear"))) %>%
-  ggplot(aes(x = date_collected, y = avg, fill = region)) +
-  geom_bar(stat = "identity", position = "dodge") +
-  facet_wrap(~sentiment) +
-  ggtitle("Anti-Authority") +
-  ylab("Sentiment (%)") +
+  ylab("% of Total Words") +
   xlab("") +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +
   my_theme +

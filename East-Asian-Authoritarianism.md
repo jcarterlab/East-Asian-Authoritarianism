@@ -25,7 +25,7 @@ The rest of the report is organized into the following sections:
 
  
 
-## **1. The Current Situation**
+## **1: The Current Situation**
 
 1.1: Overall democracy scores according to The Economist Intelligence
 Unit *(EIU, 2020)*.
@@ -44,12 +44,13 @@ power in society *(Hofstede, 1980)*.
 
  
 
-## **2. Sentiment Analysis**
+## **2: Sentiment Analysis**
 
 The analysis collects tweets from within a 50 mile range of respective
 country capitals. A sentiment analysis is then conducted using the NRC
 library. This is done by calculating how often words associated with
-certain sentiments occur relative to their regional total.
+certain sentiments occur relative to their regional total. The data are
+collected weekly from the 10th of April until present.
 
  
 
@@ -62,15 +63,23 @@ certain sentiments occur relative to their regional total.
 
  
 
-2.1 The net sentiment for freedom. Net sentiment is calculated as
-positive minus negative words.
+2.1: The net sentiment for freedom, calculated as positive minus
+negative words.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
-2.4 The net sentiment for anti-authority words, including those related
-to protest, rebel, revolt and riot.
+2.2: Selected emotions for freedom.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+2.3: The net sentiment for anti-authority words, including variations of
+protest, rebel, revolt and riot.
+
+![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+2.4: Selected emotions for anti-authority words.
+
+![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
  
 

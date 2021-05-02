@@ -198,7 +198,7 @@ The rest of the report is organized into the following sections:
 
 &nbsp;
 
-## **1. The Current Situation**
+## **1: The Current Situation**
 
 1.1: Overall democracy scores according to The Economist Intelligence Unit *(EIU, 2020)*.
 
@@ -275,9 +275,9 @@ power_distance_scores %>%
 
 &nbsp;
 
-## **2. Sentiment Analysis**
+## **2: Sentiment Analysis**
 
-The analysis collects tweets from within a 50 mile range of respective country capitals. A sentiment analysis is then conducted using the NRC library. This is done by calculating how often words associated with certain sentiments occur relative to their regional total.
+The analysis collects tweets from within a 50 mile range of respective country capitals. A sentiment analysis is then conducted using the NRC library. This is done by calculating how often words associated with certain sentiments occur relative to their regional total. The data are collected weekly from the 10th of April until present. 
 
 &nbsp;
 
@@ -313,7 +313,7 @@ kable(macro_stats, align = 'c')
 
 &nbsp;
 
-2.1 The net sentiment for freedom. Net sentiment is calculated as positive minus negative words. 
+2.1: The net sentiment for freedom, calculated as positive minus negative words. 
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
@@ -326,7 +326,7 @@ tweets %>%
   ggplot(aes(x = region, y = value, fill = region)) +
   geom_bar(stat = "identity", position = "dodge") +
   ggtitle("Freedom") +
-  ylab("Sentiment (%)") +
+  ylab("% of Total Words (Net)") +
   xlab("") +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +
   my_theme +
@@ -334,7 +334,28 @@ tweets %>%
 
 ```
 
-2.4 The net sentiment for anti-authority words, including those related to protest, rebel, revolt and riot. 
+2.2: Selected emotions for freedom.
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
+
+tweets %>%
+  filter(search == "Freedom",
+         sentiment %in% c("Joy", "Trust", "Anger", "Fear")) %>%
+  mutate(sentiment = factor(sentiment, levels = c("Joy", "Trust",
+                                                  "Anger", "Fear"))) %>%
+  ggplot(aes(x = region, y = value, fill = region)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~sentiment, ncol = 2) +
+  ggtitle("Freedom") +
+  ylab("% of Total Words") +
+  xlab("") +
+  scale_fill_manual(values = c("#0072B2", "#D55E00")) +
+  my_theme +
+  theme(axis.text.x=element_blank())
+
+```
+
+2.3: The net sentiment for anti-authority words, including variations of protest, rebel, revolt and riot. 
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
@@ -346,7 +367,27 @@ anti_authority_data %>%
   ggplot(aes(x = region, y = avg, fill = region)) +
   geom_bar(stat = "identity", position = "dodge") +
   ggtitle("Anti-Authority") +
-  ylab("Sentiment (%)") +
+  ylab("% of Total Words (Net)") +
+  xlab("") +
+  scale_fill_manual(values = c("#0072B2", "#D55E00")) +
+  my_theme +
+  theme(axis.text.x=element_blank())
+
+```
+
+2.4: Selected emotions for anti-authority words. 
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
+
+anti_authority_data %>%
+  filter(sentiment %in% c("Joy", "Trust", "Anger", "Fear")) %>%
+  mutate(sentiment = factor(sentiment, levels = c("Joy", "Trust",
+                                                  "Anger", "Fear"))) %>%
+  ggplot(aes(x = region, y = avg, fill = region)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~sentiment, ncol = 2) +
+  ggtitle("Anti-Authority") +
+  ylab("% of Total Words") +
   xlab("") +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +
   my_theme +
