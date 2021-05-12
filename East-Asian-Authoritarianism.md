@@ -1,7 +1,7 @@
 East Asian Authoritarianism
 ================
 Jack Carter
-4/10/2021
+5/11/2021
 
 ## **Summary**
 
@@ -43,13 +43,14 @@ Democracy Index *(EIU, 2020)*.
 The analysis collects tweets containing anti-authority words within a 50
 mile range of Anglophone and Sinic country capitals. The search terms
 include defy, disobey, dissent, oppose, protest, rebel, resist, revolt
-and riot. Data are collected from 11-05-2021 until present.
+and riot and the data are collected from 11-05-2021 until present.
 
 A sentiment analysis is conducted using the NRC sentiment library. This
 is done by calculating how often words associated with certain
 sentiments occur relative to their respective regional totals. Figures
 2.1 to 2.3 show net sentiment (positive minus negative) while figures
-2.4 and 2.5 show total sentiment.
+2.4 and 2.5 show the total sentiment of selected emotions for the
+anti-authority tweets.
 
  
 
@@ -62,6 +63,8 @@ sentiments occur relative to their respective regional totals. Figures
 | Total  |     61.1      |     1210     |   100.0    |   100.0   |
 
  
+
+### Net Sentiment:
 
 2.1: The net sentiment for each region. Net sentiment is calculated as
 positive minus negative words and expressed as a percentage of all
@@ -81,15 +84,17 @@ words.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
-2.4: The total sentiment for selected positive emotions. Total sentiment
-is calculated as the number of words for each emotion and expressed as a
-percentage of all words.
+### Total Sentiment:
+
+2.4: The total sentiment of selected emotions for the anti-authority
+tweets. Total sentiment is calculated as the number of words for each
+emotion and expressed as a percentage of all words.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
-2.5: The total sentiment for selected negative emotions. Total sentiment
-is calculated as the number of words for each emotion and expressed as a
-percentage of all words.
+2.5: The total sentiment of selected emotions for the anti-authority
+tweets. Total sentiment is calculated as the number of words for each
+emotion and expressed as a percentage of all words.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 

@@ -1,7 +1,7 @@
 ---
 title: "East Asian Authoritarianism"
 author: "Jack Carter"
-date: "4/10/2021"
+date: "5/11/2021"
 output: github_document
 ---
 
@@ -123,9 +123,9 @@ democracy_scores <- tibble(country = c("China", "Vietnam", "Hong Kong",
                                        "UK", "Taiwan", "Canada",
                                        "New Zealand", "South Africa", "Australia"),
                            region = c("Sinic", "Sinic", "Sinic",
-                                      "Sinic", "Anglophone", "Sinic",
-                                      "Anglophone", "Sinic", "Anglophone",
-                                      "Anglophone", "Anglophone", "Anglophone"),
+                                      "Sinic", "Anglo", "Sinic",
+                                      "Anglo", "Sinic", "Anglo",
+                                      "Anglo", "Anglo", "Anglo"),
                            "Overall" = c(2.27, 2.94, 5.57,
                                        6.03, 7.72, 8.01,
                                        8.54, 8.94, 9.24,
@@ -159,9 +159,9 @@ power_distance_scores <- tibble(country = c("China", "Hong Kong","Singapore",
                                               "Taiwan", "New Zealand", "South Africa", 
                                               "Australia"),
                                 region = c("Sinic", "Sinic", "Sinic", 
-                                           "Anglophone", "Sinic", "Anglophone", 
-                                           "Sinic", "Anglophone", "Anglophone", 
-                                           "Anglophone"),
+                                           "Anglo", "Sinic", "Anglo", 
+                                           "Sinic", "Anglo", "Anglo", 
+                                           "Anglo"),
                                 power_distance = c(80, 68, 74, 
                                                      40, 60, 35,
                                                      58, 22, 49, 
@@ -295,9 +295,9 @@ democracy_scores %>%
 
 ## **2: Twitter Sentiment Analysis**
 
-The analysis collects tweets containing anti-authority words within a 50 mile range of Anglophone and Sinic country capitals. The search terms include defy, disobey, dissent, oppose, protest, rebel, resist, revolt and riot. Data are collected from 11-05-2021 until present. 
+The analysis collects tweets containing anti-authority words within a 50 mile range of Anglophone and Sinic country capitals. The search terms include defy, disobey, dissent, oppose, protest, rebel, resist, revolt and riot and the data are collected from 11-05-2021 until present. 
 
-A sentiment analysis is conducted using the NRC sentiment library. This is done by calculating how often words associated with certain sentiments occur relative to their respective regional totals. Figures 2.1 to 2.3 show net sentiment (positive minus negative) while figures 2.4 and 2.5 show total sentiment. 
+A sentiment analysis is conducted using the NRC sentiment library. This is done by calculating how often words associated with certain sentiments occur relative to their respective regional totals. Figures 2.1 to 2.3 show net sentiment (positive minus negative) while figures 2.4 and 2.5 show the total sentiment of selected emotions for the anti-authority tweets.   
 
 &nbsp;
 
@@ -343,6 +343,8 @@ kable(final_regional_table, align = 'c')
 
 &nbsp;
 
+### Net Sentiment:
+
 2.1: The net sentiment for each region. Net sentiment is calculated as positive minus negative words and expressed as a percentage of all words.  
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
@@ -385,7 +387,7 @@ country_percentages %>%
   filter(sentiment == "net") %>%
   ggplot(aes(x = country, y = percent, fill = region)) +
   geom_bar(stat = "identity", position = "dodge") +
-  geom_label(aes(label=country_labels),
+  geom_text(aes(label=country_labels),
              position=position_stack(vjust=0.5), 
              colour="white",
              size = 2.25,
@@ -423,7 +425,9 @@ search__term_percentages %>%
 
 ```
 
-2.4: The total sentiment for selected positive emotions. Total sentiment is calculated as the number of words for each emotion and expressed as a percentage of all words. 
+### Total Sentiment:
+
+2.4: The total sentiment of selected emotions for the anti-authority tweets. Total sentiment is calculated as the number of words for each emotion and expressed as a percentage of all words. 
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
@@ -443,7 +447,7 @@ regional_percentages %>%
 
 ```
 
-2.5: The total sentiment for selected negative emotions. Total sentiment is calculated as the number of words for each emotion and expressed as a percentage of all words. 
+2.5: The total sentiment of selected emotions for the anti-authority tweets. Total sentiment is calculated as the number of words for each emotion and expressed as a percentage of all words. 
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 

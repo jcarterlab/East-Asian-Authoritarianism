@@ -198,10 +198,10 @@ country_percentages %>%
   filter(sentiment == "net") %>%
   ggplot(aes(x = country, y = percent, fill = region)) +
   geom_bar(stat = "identity", position = "dodge") +
-  geom_label(aes(label=country_labels),
+  geom_text(aes(label=country_labels),
              position=position_stack(vjust=0.5), 
              colour="white",
-             size = 2.5,
+             size = 2.25,
              show.legend = FALSE) +
   facet_wrap(~region, scales = "free") +
   ggtitle("Countries") +
