@@ -1,5 +1,5 @@
 ---
-title: "East-Asian-Authoritarianism"
+title: "East Asian Authoritarianism"
 author: "Jack Carter"
 date: "4/10/2021"
 output: github_document
@@ -25,9 +25,10 @@ library(patchwork)
 library(here)
 library(rtweet)
 library(knitr)
+library(tibble)
 
-### 1. functions ###
-# 1.1 read in spreadsheet data without including the same tweets twice
+# read in spreadsheet data without including duplicate 
+# tweets  from the previous week's search results.  
 read_data <- function(file_name, previous_file=NULL) {
   file <- read_twitter_csv(here("data", file_name)) %>%
     mutate(status_id = as.numeric(status_id))
@@ -36,72 +37,87 @@ read_data <- function(file_name, previous_file=NULL) {
   return(file)
 }
 
-# 1.2 break the text down and inner joins with the nrc sentiment library
+# breaks the text down into single words, 
+# inner joins them with the NRC library 
+# and counts the frequency of each sentiment. 
 join_words_with_sentiment <- function(raw_tweets) {
-  nrc_sentiment <- get_sentiments("nrc") %>% 
-    select(word, sentiment)
+  nrc_sentiment <- get_sentiments("nrc") %>% select(word, sentiment)
   words <- raw_tweets %>%
     unnest_tokens(word, text) %>%
     left_join(nrc_sentiment, by = "word") %>%
     mutate(sentiment = replace_na(sentiment, replace = "none")) %>%
     filter(!word %in% stop_words$word) %>%
-    select(word, sentiment, country, region, 
-           date_collected, tweets, search) %>%
-    group_by(sentiment, country, region, date_collected, tweets, search) %>%
+    group_by(search, region, country, sentiment) %>%
     count(sentiment) %>%
     rename(words = "n")
     return(words)
 }
 
-# 1.3 calculate the sentiments for each region as a %
-calculate_final_value <- function(words) {
+# calculates the sentiment for each region
+# as a percentage of total words. 
+calculate_regional_percentages <- function(words) {
   final_value <- words %>%
-    group_by(search, region, date_collected) %>%
-    mutate(total_words = sum(words)) %>%
-    group_by(search, region, sentiment, date_collected, total_words) %>%
-    mutate(percent = words / total_words) %>%
-    summarize(value = sum(percent) * 100)
+    group_by(region) %>%
+    mutate(total_words = sum(words),
+           percent = (words / total_words)*100) %>%
+    select(region, sentiment, percent) %>%
+    group_by(region, sentiment) %>%
+    summarise(percent = sum(percent))
 }
 
+# calculates the sentiment for each search term
+# as a percentage of total words. 
+calculate_search_term_percentages <- function(words) {
+  final_value <- words %>%
+    group_by(search, region) %>%
+    mutate(total_words = sum(words),
+           percent = (words / total_words)*100) %>%
+    select(search, region, sentiment, percent) %>%
+    group_by(search, region, sentiment) %>%
+    summarise(percent = sum(percent))
+}
 
-### 2. read in the data ###
-# 2.1 read in csv files
-april_10_21 <- read_data("10-04-2021.csv")
-april_17_21 <- read_data("17-04-2021.csv", april_10_21)
-april_24_21 <- read_data("24-04-2021.csv", april_17_21)
-may_01_21 <- read_data("01-05-2021.csv", april_24_21)
+# calculates the sentiment for each country
+# as a percentage of total words. 
+calculate_country_percentages <- function(words) {
+  final_value <- words %>%
+    group_by(country, region) %>%
+    mutate(total_words = sum(words),
+           percent = (words / total_words)*100) %>%
+    select(country, region, sentiment, percent) %>%
+    group_by(country, region, sentiment) %>%
+    summarise(percent = sum(percent))
+}
 
-# 2.2 bind the data sets together as a single object
-combined_raw_data <- april_10_21 %>% 
-  rbind(april_17_21) %>%
-  rbind(april_24_21) %>%
-  rbind(may_01_21)
+# reads in the data from csv files. 
+week_11_05_2021 <- read_data("11-05-2021.csv")
+
+# binds the data together as a single object. 
+combined_raw_data <- week_11_05_2021
+
+# counts the frequency of different NRC sentiments.  
+words <- join_words_with_sentiment(combined_raw_data) %>%
+  spread(sentiment, words) %>%
+  rename("Anticipation" = "anticipation", "Joy" = "joy", "Trust" = "trust",
+         "Anger" = "anger", "Disgust" = "disgust", "Fear" = "fear") %>%
+  gather(sentiment, words, -c(1:3)) %>%
+  mutate(words = replace_na(words, replace = 0)) 
+
+# Calculates each sentiment as a percentage of 
+# total words based on region. 
+regional_percentages <- calculate_regional_percentages(words)
+
+# calculates each sentiment as a percentage of 
+# total words based on search term.  
+search__term_percentages <- calculate_search_term_percentages(words) 
+
+# calculates each sentiment as a percentage of 
+# total words based on country.  
+country_percentages <- calculate_country_percentages(words) 
 
 
-### 3. process the data
-# 3.1 break the data down into individual words
-words <- join_words_with_sentiment(combined_raw_data)
-
-# 3.2 calculate the final values
-tweets <- calculate_final_value(words) %>%
-  spread(sentiment, value) %>%
-  rename("Anticipation" = "anticipation",
-         "Joy" = "joy",
-         "Trust" = "trust",
-         "Anger" = "anger",
-         "Disgust" = "disgust",
-         "Fear" = "fear") %>%
-  gather(sentiment, value, -c(1:4)) 
-
-# 3.3 processes the average values for anti-authority words
-anti_authority_data <- tweets %>%
-  filter(search %in% c("Protest", "Rebel", 
-                       "Revolt", "Riot")) %>%
-  group_by(region, date_collected, sentiment) %>%
-  summarise(avg = sum(value) / length(value))
-
-
-# democracy scores
+# democracy scores based on The Economist Intelligence 
+# Unit's (EIU) democracy index, 
 democracy_scores <- tibble(country = c("China", "Vietnam", "Hong Kong",
                                        "Singapore", "US", "South Korea",
                                        "UK", "Taiwan", "Canada",
@@ -136,7 +152,8 @@ democracy_scores <- tibble(country = c("China", "Vietnam", "Hong Kong",
                                                9.71, 7.35, 9.71)) %>%
   gather(type, value, -c(1:2))
 
-# power distance scores
+# power distance scores based Hofstede's cultural
+# dimension's index. 
 power_distance_scores <- tibble(country = c("China", "Hong Kong","Singapore", 
                                               "US", "South Korea","UK", 
                                               "Taiwan", "New Zealand", "South Africa", 
@@ -150,9 +167,7 @@ power_distance_scores <- tibble(country = c("China", "Hong Kong","Singapore",
                                                      58, 22, 49, 
                                                      36))
 
-
-### 4. plot theme
-# 4.1 creates my personal plot theme
+# my personal plot theme for data vizualizations. 
 my_theme <- theme_economist_white(gray_bg = FALSE) +
   theme(plot.title = element_text(hjust = 0.5, 
                                   vjust = 12, 
@@ -183,29 +198,55 @@ my_theme <- theme_economist_white(gray_bg = FALSE) +
                                   color = "#474747"),
         panel.spacing = unit(2, "lines"))
 
+# total tweets
+total_tweets <- sum(nrow(combined_raw_data))
+
+# total words
+total_words <- sum(words$words)
+
 ```
 
 ## **Summary**
 
-This report analyzes attitudes towards individual liberty  between Sinic and Anglophone countries. It finds that Sinic country Twitter users demonstrate less positive sentiment when using freedom and a collection of anti-authority words. This may be due to the differing influence of Confucian verses European enlightenment values. 
-
-It could also however be the result of a difference in context. Many people in Hong Kong and Taiwan for instance likely tweet negatively about their own freedoms given China's growing regional assertiveness. South East Asian countries such as Singapore may also be more likely to tweet negatively about the tragic loss of freedom in neighboring Myanmar following a recent military coup. 
+This report analyzes anti-authority sentiment between Anglophone and Sinic countries. It finds that Sinic country Twitter users demonstrate less positive sentiment when using a collection of anti-authority words. This may be due to the differing influence of Confucian verses European enlightenment values.    
 
 The rest of the report is organized into the following sections:
 
-1. The Current Situation
-2. Sentiment Analysis
+1. Authoritarian Tendencies
+2. Twitter Sentiment Analysis
 
 &nbsp;
 
-## **1: The Current Situation**
+## **1: Authoritarian Tendencies**
 
-1.1: Overall democracy scores according to The Economist Intelligence Unit *(EIU, 2020)*.
+1.1: Power distance scores according to Hofstede's seminal cultural dimension's study. Power distance is the extent to which people accept unequal power in society *(Hofstede, 1980)*.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
-### 1. democracy ####
-# 1.1 overall democracy
+# power distance
+power_distance_scores %>%
+  ggplot(aes(x = country, y = power_distance, col = region)) +
+  geom_point(alpha = 0.9) +
+  geom_text_repel(aes(label=country), size = 2.25,
+                  show.legend = FALSE,
+                  max.overlaps = 5) +
+  ggtitle("Power Distance") +
+  xlab("") +
+  ylab("Power Distance Score") +
+  ylim(18, 82) +
+  scale_color_manual(values = c("#0072B2", "#D55E00")) +
+  theme_economist_white(gray_bg = FALSE) +
+  my_theme +
+  theme(axis.text.x=element_blank(),
+        plot.margin = unit(c(1.5, 1.5, 1.5, 1.5), "cm"))
+
+```
+
+1.2: Overall democracy according to The Economist Intelligence Unit's Democracy Index *(EIU, 2020)*.
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
+
+# overall democracy plot
 democracy_scores %>%
   filter(type == "Overall") %>%
   ggplot(aes(x = country, y = value, col = region)) +
@@ -225,11 +266,11 @@ democracy_scores %>%
 
 ```
 
-1.2: Aspects of democracy scores according to The Economist Intelligence Unit *(EIU, 2020)*.
+1.3: Aspects of democracy according to The Economist Intelligence Unit's Democracy Index *(EIU, 2020)*.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
-# 1.2 aspects of democracy
+# aspects of democracy
 democracy_scores %>%
   filter(!type == "Overall" & !type == "Functioning Government") %>%
   ggplot(aes(x = country, y = value, col = region)) +
@@ -250,34 +291,13 @@ democracy_scores %>%
 
 ```
 
-1.3: Power distance scores, the extent to which people accept unequal power in society *(Hofstede, 1980)*.
-
-```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
-
-# 1.3 power distance
-power_distance_scores %>%
-  ggplot(aes(x = country, y = power_distance, col = region)) +
-  geom_point(alpha = 0.9) +
-  geom_text_repel(aes(label=country), size = 2.25,
-                  show.legend = FALSE,
-                  max.overlaps = 5) +
-  ggtitle("Power Distance") +
-  xlab("") +
-  ylab("Power Distance Score") +
-  ylim(18, 82) +
-  scale_color_manual(values = c("#0072B2", "#D55E00")) +
-  theme_economist_white(gray_bg = FALSE) +
-  my_theme +
-  theme(axis.text.x=element_blank(),
-        plot.margin = unit(c(1.5, 1.5, 1.5, 1.5), "cm"))
-
-```
-
 &nbsp;
 
-## **2: Sentiment Analysis**
+## **2: Twitter Sentiment Analysis**
 
-The analysis collects tweets from within a 50 mile range of respective country capitals. A sentiment analysis is then conducted using the NRC library. This is done by calculating how often words associated with certain sentiments occur relative to their regional total. The data are collected weekly from the 10th of April until present. 
+The analysis collects tweets containing anti-authority words within a 50 mile range of Anglophone and Sinic country capitals. The search terms include defy, disobey, dissent, oppose, protest, rebel, resist, revolt and riot. Data are collected from 11-05-2021 until present. 
+
+A sentiment analysis is conducted using the NRC sentiment library. This is done by calculating how often words associated with certain sentiments occur relative to their respective regional totals. Figures 2.1 to 2.3 show net sentiment (positive minus negative) while figures 2.4 and 2.5 show total sentiment. 
 
 &nbsp;
 
@@ -287,66 +307,55 @@ The analysis collects tweets from within a 50 mile range of respective country c
 
 options(digits=3)
 
-# macro stats
-total_words <- sum(words$words)
-total_tweets <- sum(combined_raw_data$tweets)
-
-macro_words_table <- words %>%
-  mutate(Region = region) %>%
-  group_by(Region) %>%
-  summarise(Words = sum(words) / 10^3)
-
-macro_stats <- combined_raw_data %>%
+# regional tweets
+regional_tweets <- combined_raw_data %>%
   mutate(Region = region) %>%
   group_by(Region) %>%
   summarise(Tweets = sum(tweets) / 10^3) %>%
-  left_join(macro_words_table) %>%
-  mutate("Tweets (%)" = Tweets / (total_tweets) * 10^5,
-         "Words (%)" = Words / (total_words) * 10^5) %>%
-  rename("Tweets (000s)" = Tweets,
-         "Words (000s)" = Words) %>%
-  tibble()
+  rename("Tweets (000s)" = Tweets)
 
-kable(macro_stats, align = 'c')
+# regional words
+regional_words <- words %>%
+  mutate(Region = region) %>%
+  group_by(Region) %>%
+  summarise(Words = sum(words) / 10^3) %>%
+  rename("Words (000s)" = Words)
+
+# Combined table
+combined_table <- regional_tweets %>%
+  left_join(regional_words) %>%
+  group_by(Region) %>%
+  mutate("Tweets (%)" = (`Tweets (000s)` / total_tweets) * 10^5,
+         "Words (%)" = (`Words (000s)` / total_words) * 10^5) %>%
+  ungroup()
+
+# final regional summary table
+final_regional_table <- combined_table %>%
+  add_row("Region" = "Total",
+          "Tweets (000s)" = sum(combined_table$`Tweets (000s)`),
+          "Words (000s)" = sum(combined_table$`Words (000s)`),
+          "Tweets (%)" = 100,
+          "Words (%)" = 100)
+
+kable(final_regional_table, align = 'c')
 
 ```
 
 &nbsp;
 
-2.1: The net sentiment for freedom, calculated as positive minus negative words. 
+2.1: The net sentiment for each region. Net sentiment is calculated as positive minus negative words and expressed as a percentage of all words.  
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
-tweets %>%
-  spread(sentiment, value) %>%
+# net sentiment 
+regional_percentages %>%
+  spread(sentiment, percent) %>%
   mutate(net = positive - negative) %>%
-  gather(sentiment, value, -c(1:5)) %>%
-  filter(sentiment == "net",
-         search == "Freedom") %>%
-  ggplot(aes(x = region, y = value, fill = region)) +
+  gather(sentiment, percent, -1) %>%
+  filter(sentiment == "net") %>%
+  ggplot(aes(x = region, y = percent, fill = region)) +
   geom_bar(stat = "identity", position = "dodge") +
-  ggtitle("Freedom") +
-  ylab("% of Total Words (Net)") +
-  xlab("") +
-  scale_fill_manual(values = c("#0072B2", "#D55E00")) +
-  my_theme +
-  theme(axis.text.x=element_blank())
-
-```
-
-2.2: Selected emotions for freedom.
-
-```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
-
-tweets %>%
-  filter(search == "Freedom",
-         sentiment %in% c("Joy", "Trust", "Anger", "Fear")) %>%
-  mutate(sentiment = factor(sentiment, levels = c("Joy", "Trust",
-                                                  "Anger", "Fear"))) %>%
-  ggplot(aes(x = region, y = value, fill = region)) +
-  geom_bar(stat = "identity", position = "dodge") +
-  facet_wrap(~sentiment, ncol = 2) +
-  ggtitle("Freedom") +
+  ggtitle("Region") +
   ylab("% of Total Words") +
   xlab("") +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +
@@ -355,19 +364,58 @@ tweets %>%
 
 ```
 
-2.3: The net sentiment for anti-authority words, including variations of protest, rebel, revolt and riot. 
+2.2: The net sentiment for each country. Net sentiment is calculated as positive minus negative words and expressed as a percentage of all words.  
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
-anti_authority_data %>%
-  spread(sentiment, avg) %>%
-  mutate(net = positive - negative) %>%
-  gather(sentiment, avg, -c(1:2)) %>%
+# labels for the countries plot
+country_labels <- c("AU", "CA", "CH", "HG", "NZ", "SG", 
+                    "SA", "KR", "TW", "UK", "US", "VT")
+
+# selected countries 
+country_percentages %>%
+  spread(sentiment, percent) %>%
+  mutate(net = positive - negative,
+         country = factor(country, 
+                          levels=c("Australia", "Canada", "New Zealand", 
+                                   "South Africa", "UK", "US", 
+                                   "China",  "Hong Kong", "Singapore", 
+                                   "South Korea", "Taiwan", "Vietnam"))) %>%
+  gather(sentiment, percent, -c(1:2)) %>%
   filter(sentiment == "net") %>%
-  ggplot(aes(x = region, y = avg, fill = region)) +
+  ggplot(aes(x = country, y = percent, fill = region)) +
   geom_bar(stat = "identity", position = "dodge") +
-  ggtitle("Anti-Authority") +
-  ylab("% of Total Words (Net)") +
+  geom_label(aes(label=country_labels),
+             position=position_stack(vjust=0.5), 
+             colour="white",
+             size = 2.25,
+             show.legend = FALSE) +
+  facet_wrap(~region, scales = "free") +
+  ggtitle("Country") +
+  ylab("% of Total Words") +
+  xlab("") +
+  ylim(-8, 0) +
+  scale_fill_manual(values = c("#0072B2", "#D55E00")) +
+  my_theme +
+  theme(axis.text.x=element_blank())
+
+```
+
+2.3: The net sentiment for each search term. Net sentiment is calculated as positive minus negative words and expressed as a percentage of all words.  
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
+
+# selected search terms
+search__term_percentages %>%
+  spread(sentiment, percent) %>%
+  mutate(net = positive - negative) %>%
+  gather(sentiment, percent, -c(1:2)) %>%
+  filter(sentiment == "net") %>%
+  ggplot(aes(x = region, y = percent, fill = region)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~search) +
+  ggtitle("Search Term") +
+  ylab("% of Total Words") +
   xlab("") +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +
   my_theme +
@@ -375,18 +423,38 @@ anti_authority_data %>%
 
 ```
 
-2.4: Selected emotions for anti-authority words. 
+2.4: The total sentiment for selected positive emotions. Total sentiment is calculated as the number of words for each emotion and expressed as a percentage of all words. 
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
-anti_authority_data %>%
-  filter(sentiment %in% c("Joy", "Trust", "Anger", "Fear")) %>%
-  mutate(sentiment = factor(sentiment, levels = c("Joy", "Trust",
-                                                  "Anger", "Fear"))) %>%
-  ggplot(aes(x = region, y = avg, fill = region)) +
+# positive emotions
+regional_percentages %>%
+  filter(sentiment %in% c("Joy", "Trust")) %>%
+  mutate(sentiment = factor(sentiment, levels = c("Joy", "Trust"))) %>%
+  ggplot(aes(x = region, y = percent, fill = region)) +
   geom_bar(stat = "identity", position = "dodge") +
   facet_wrap(~sentiment, ncol = 2) +
-  ggtitle("Anti-Authority") +
+  ggtitle("Positive Emotions") +
+  ylab("% of Total Words") +
+  xlab("") +
+  scale_fill_manual(values = c("#0072B2", "#D55E00")) +
+  my_theme +
+  theme(axis.text.x=element_blank())
+
+```
+
+2.5: The total sentiment for selected negative emotions. Total sentiment is calculated as the number of words for each emotion and expressed as a percentage of all words. 
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
+
+# negative emotions
+regional_percentages %>%
+  filter(sentiment %in% c("Anger", "Fear")) %>%
+  mutate(sentiment = factor(sentiment, levels = c("Anger", "Fear"))) %>%
+  ggplot(aes(x = region, y = percent, fill = region)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~sentiment, ncol = 2) +
+  ggtitle("Negative Emotions") +
   ylab("% of Total Words") +
   xlab("") +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +

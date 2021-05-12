@@ -1,85 +1,97 @@
-East-Asian-Authoritarianism
+East Asian Authoritarianism
 ================
 Jack Carter
 4/10/2021
 
 ## **Summary**
 
-This report analyzes attitudes towards individual liberty between Sinic
-and Anglophone countries. It finds that Sinic country Twitter users
-demonstrate less positive sentiment when using freedom and a collection
-of anti-authority words. This may be due to the differing influence of
-Confucian verses European enlightenment values.
-
-It could also however be the result of a difference in context. Many
-people in Hong Kong and Taiwan for instance likely tweet negatively
-about their own freedoms given China’s growing regional assertiveness.
-South East Asian countries such as Singapore may also be more likely to
-tweet negatively about the tragic loss of freedom in neighboring Myanmar
-following a recent military coup.
+This report analyzes anti-authority sentiment between Anglophone and
+Sinic countries. It finds that Sinic country Twitter users demonstrate
+less positive sentiment when using a collection of anti-authority words.
+This may be due to the differing influence of Confucian verses European
+enlightenment values.
 
 The rest of the report is organized into the following sections:
 
-1.  The Current Situation
-2.  Sentiment Analysis
+1.  Authoritarian Tendencies
+2.  Twitter Sentiment Analysis
 
  
 
-## **1: The Current Situation**
+## **1: Authoritarian Tendencies**
 
-1.1: Overall democracy scores according to The Economist Intelligence
-Unit *(EIU, 2020)*.
+1.1: Power distance scores according to Hofstede’s seminal cultural
+dimension’s study. Power distance is the extent to which people accept
+unequal power in society *(Hofstede, 1980)*.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
-1.2: Aspects of democracy scores according to The Economist Intelligence
-Unit *(EIU, 2020)*.
+1.2: Overall democracy according to The Economist Intelligence Unit’s
+Democracy Index *(EIU, 2020)*.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
-1.3: Power distance scores, the extent to which people accept unequal
-power in society *(Hofstede, 1980)*.
+1.3: Aspects of democracy according to The Economist Intelligence Unit’s
+Democracy Index *(EIU, 2020)*.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
  
 
-## **2: Sentiment Analysis**
+## **2: Twitter Sentiment Analysis**
 
-The analysis collects tweets from within a 50 mile range of respective
-country capitals. A sentiment analysis is then conducted using the NRC
-library. This is done by calculating how often words associated with
-certain sentiments occur relative to their regional total. The data are
-collected weekly from the 10th of April until present.
+The analysis collects tweets containing anti-authority words within a 50
+mile range of Anglophone and Sinic country capitals. The search terms
+include defy, disobey, dissent, oppose, protest, rebel, resist, revolt
+and riot. Data are collected from 11-05-2021 until present.
+
+A sentiment analysis is conducted using the NRC sentiment library. This
+is done by calculating how often words associated with certain
+sentiments occur relative to their respective regional totals. Figures
+2.1 to 2.3 show net sentiment (positive minus negative) while figures
+2.4 and 2.5 show total sentiment.
 
  
 
 ### Summary Statistics:
 
-|   Region   | Tweets (000s) | Words (000s) | Tweets (%) | Words (%) |
-| :--------: | :-----------: | :----------: | :--------: | :-------: |
-| Anglophone |      152      |     2811     |    51.3    |   46.7    |
-|   Sinic    |      144      |     3208     |    48.7    |   53.3    |
+| Region | Tweets (000s) | Words (000s) | Tweets (%) | Words (%) |
+| :----: | :-----------: | :----------: | :--------: | :-------: |
+| Anglo  |     19.5      |     380      |    31.9    |   31.4    |
+| Sinic  |     41.6      |     829      |    68.1    |   68.6    |
+| Total  |     61.1      |     1210     |   100.0    |   100.0   |
 
  
 
-2.1: The net sentiment for freedom, calculated as positive minus
-negative words.
+2.1: The net sentiment for each region. Net sentiment is calculated as
+positive minus negative words and expressed as a percentage of all
+words.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
-2.2: Selected emotions for freedom.
+2.2: The net sentiment for each country. Net sentiment is calculated as
+positive minus negative words and expressed as a percentage of all
+words.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
-2.3: The net sentiment for anti-authority words, including variations of
-protest, rebel, revolt and riot.
+2.3: The net sentiment for each search term. Net sentiment is calculated
+as positive minus negative words and expressed as a percentage of all
+words.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
-2.4: Selected emotions for anti-authority words.
+2.4: The total sentiment for selected positive emotions. Total sentiment
+is calculated as the number of words for each emotion and expressed as a
+percentage of all words.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+
+2.5: The total sentiment for selected negative emotions. Total sentiment
+is calculated as the number of words for each emotion and expressed as a
+percentage of all words.
+
+![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
  
 
