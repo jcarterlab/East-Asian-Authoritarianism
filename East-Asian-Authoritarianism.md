@@ -14,7 +14,7 @@ enlightenment values.
 The rest of the report is organized into the following sections:
 
 1.  Authoritarian Tendencies
-2.  Twitter: Sentiment Analysis
+2.  Sentiment Analysis
 
  
 
@@ -26,42 +26,25 @@ unequal power in society *(Hofstede, 1980)*.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
-1.2: Overall democracy according to The Economist Intelligence Unit’s
+1.2: Aspects of democracy according to The Economist Intelligence Unit’s
 Democracy Index *(EIU, 2020)*.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
-1.3: Aspects of democracy according to The Economist Intelligence Unit’s
-Democracy Index *(EIU, 2020)*.
-
-![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
-
  
 
-## **2: Twitter: Sentiment Analysis**
+## **2: Sentiment Analysis**
 
 The analysis collects tweets containing anti-authority words within a 50
-mile range of Anglophone and Sinic country capitals from 11-05-2021
-until present. A sentiment analysis is conducted using the NRC sentiment
+mile range of Anglophone and Sinic country capitals from 11-05-2021 to
+present. A sentiment analysis is conducted using the NRC sentiment
 library. This is done by calculating how often words associated with
-certain sentiments occur relative to their respective regional totals.
+certain sentiments occur relative to their regional total. Figures 2.1
+and 2.2 show selected emotions while figures 2.3 to 2.5 show net
+sentiment (positive minus negative).
 
-Figures 2.1 and 2.2 show selected emotions while figures 2.3 to 2.5 show
-the net sentiment (positive minus negative words).
-
-<br>
-
-| Search Terms |
-| :----------: |
-|     Defy     |
-|   Disobey    |
-|   Dissent    |
-|    Oppose    |
-|   Protest    |
-|    Rebel     |
-|    Resist    |
-|    Revolt    |
-|     Riot     |
+The collection of anti-authority words includes defy, disobey, oppose,
+protest, rebel, resist, revolt and riot.
 
 <br>
 
@@ -69,45 +52,49 @@ the net sentiment (positive minus negative words).
 
 | Region | Tweets (000s) | Words (000s) | Tweets (%) | Words (%) |
 | :----: | :-----------: | :----------: | :--------: | :-------: |
-| Anglo  |     19.5      |     380      |    31.9    |   31.4    |
-| Sinic  |     41.6      |     829      |    68.1    |   68.6    |
-| Total  |     61.1      |     1210     |   100.0    |   100.0   |
+| Anglo  |     39.5      |     746      |    35.1    |   34.6    |
+| Sinic  |     72.9      |     1407     |    64.9    |   65.4    |
+| Total  |     112.4     |     2153     |   100.0    |   100.0   |
 
  
 
-### Selected Emotions:
+### Emotions:
 
 2.1: Selected positive emotions for tweets containing the anti-authority
-words. This figure is calculated as the number of words matching each
-emotion and expressed as a percentage of total words.
+words. It is calculated as the number of words for each emotion
+expressed as a percentage of total words.
 
-![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 2.2: Selected negative emotions for tweets containing the anti-authority
-words. This figure is calculated as the number of words matching each
-emotion and expressed as a percentage of total words.
+words. It is calculated as the number of words for each emotion
+expressed as a percentage of total words.
 
-![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 ### Net Sentiment:
 
 2.3: The net sentiment for each region. Net sentiment is calculated as
-positive minus negative words and expressed as a percentage of total
-words.
+positive minus negative words expressed as a percentage of total words.
+
+![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+2.4: The net sentiment for each week the data was collected. Net
+sentiment is calculated as positive minus negative words expressed as a
+percentage of total words.
+
+![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+2.5: The net sentiment for each country. Net sentiment is calculated as
+positive minus negative words expressed as a percentage of total words.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
-2.4: The net sentiment for each country. Net sentiment is calculated as
-positive minus negative words and expressed as a percentage of total
+2.6: The net sentiment for each search term. Net sentiment is calculated
+as positive minus negative words expressed as a percentage of total
 words.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
-
-2.5: The net sentiment for each search term. Net sentiment is calculated
-as positive minus negative words and expressed as a percentage of total
-words.
-
-![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
  
 

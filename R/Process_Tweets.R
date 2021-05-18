@@ -29,7 +29,7 @@ join_words_with_sentiment <- function(raw_tweets) {
     left_join(nrc_sentiment, by = "word") %>%
     mutate(sentiment = replace_na(sentiment, replace = "none")) %>%
     filter(!word %in% stop_words$word) %>%
-    group_by(search, region, country, sentiment) %>%
+    group_by(search, region, country, sentiment, week) %>%
     count(sentiment) %>%
     rename(words = "n")
     return(words)
@@ -47,15 +47,15 @@ calculate_regional_percentages <- function(words) {
     summarise(percent = sum(percent))
 }
 
-# calculates the sentiment for each search term
+# calculates the sentiment for each week
 # as a percentage of total words. 
-calculate_search_term_percentages <- function(words) {
+calculate_week_percentages <- function(words) {
   final_value <- words %>%
-    group_by(search, region) %>%
+    group_by(region, week) %>%
     mutate(total_words = sum(words),
            percent = (words / total_words)*100) %>%
-    select(search, region, sentiment, percent) %>%
-    group_by(search, region, sentiment) %>%
+    select(region, week, sentiment, percent) %>%
+    group_by(region, week, sentiment) %>%
     summarise(percent = sum(percent))
 }
 
@@ -66,32 +66,51 @@ calculate_country_percentages <- function(words) {
     group_by(country, region) %>%
     mutate(total_words = sum(words),
            percent = (words / total_words)*100) %>%
-    select(country, region, sentiment, percent) %>%
-    group_by(country, region, sentiment) %>%
+    select(region, country, sentiment, percent) %>%
+    group_by(region, country, sentiment) %>%
+    summarise(percent = sum(percent))
+}
+
+# calculates the sentiment for each search term
+# as a percentage of total words. 
+calculate_search_term_percentages <- function(words) {
+  final_value <- words %>%
+    group_by(region, search) %>%
+    mutate(total_words = sum(words),
+           percent = (words / total_words)*100) %>%
+    select(region, search, sentiment, percent) %>%
+    group_by(region, search, sentiment) %>%
     summarise(percent = sum(percent))
 }
 
 # reads in the data from csv files. 
-week_11_05_2021 <- read_data("11-05-2021.csv")
+week_11_05_2021 <- read_data(file_name="11-05-2021.csv")
+week_18_05_2021 <- read_data(file_name="18-05-2021.csv", 
+                             previous_file=week_11_05_2021)
 
 # binds the data together as a single object. 
-combined_raw_data <- week_11_05_2021
+combined_raw_data <- week_11_05_2021 %>%
+  rbind(week_18_05_2021)
 
 # counts the frequency of different NRC sentiments.  
 words <- join_words_with_sentiment(combined_raw_data) %>%
   spread(sentiment, words) %>%
   rename("Anticipation" = "anticipation", "Joy" = "joy", "Trust" = "trust",
          "Anger" = "anger", "Disgust" = "disgust", "Fear" = "fear") %>%
-  gather(sentiment, words, -c(1:3)) %>%
+  gather(sentiment, words, -c(1:4)) %>%
   mutate(words = replace_na(words, replace = 0)) 
 
 # Calculates each sentiment as a percentage of 
 # total words based on region. 
 regional_percentages <- calculate_regional_percentages(words)
 
+# Calculates each sentiment as a percentage of 
+# total words based on week 
+week_percentages <- calculate_week_percentages(words)
+
 # calculates each sentiment as a percentage of 
 # total words based on search term.  
-search__term_percentages <- calculate_search_term_percentages(words) 
+search_term_percentages <- calculate_search_term_percentages(words) 
 
 # calculates each sentiment as a percentage of 
 # total words based on country.  

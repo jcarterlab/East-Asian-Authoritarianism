@@ -38,6 +38,35 @@ my_theme <- theme_economist_white(gray_bg = FALSE) +
         panel.spacing = unit(2, "lines"))
 
 
+# power distance scores
+power_distance_scores <- tibble(country = c("China", "Hong Kong","Singapore", 
+                                            "US", "South Korea","UK", 
+                                            "Taiwan", "New Zealand", "South Africa", 
+                                            "Australia"),
+                                region = c("Sinic", "Sinic", "Sinic", 
+                                           "Anglophone", "Sinic", "Anglophone", 
+                                           "Sinic", "Anglophone", "Anglophone", 
+                                           "Anglophone"),
+                                power_distance = c(80, 68, 74, 
+                                                   40, 60, 35,
+                                                   58, 22, 49, 
+                                                   36))
+
+# power distance
+power_distance_scores %>%
+  ggplot(aes(x = country, y = power_distance, col = region)) +
+  geom_point(alpha = 0.9) +
+  geom_text_repel(aes(label=country), size = 2.25,
+                  show.legend = FALSE,
+                  max.overlaps = 5) +
+  ggtitle("Power Distance") +
+  xlab("") +
+  ylab("Score") +
+  scale_color_manual(values = c("#0072B2", "#D55E00")) +
+  theme_economist_white(gray_bg = FALSE) +
+  my_theme +
+  theme(axis.text.x=element_blank())
+
 # democracy scores
 democracy_scores <- tibble(country = c("China", "Vietnam", "Hong Kong",
                                        "Singapore", "US", "South Korea",
@@ -109,49 +138,7 @@ democracy_scores %>%
   my_theme +
   theme(axis.text.x=element_blank())
 
-# power distance scores
-power_distance_scores <- tibble(country = c("China", "Hong Kong","Singapore", 
-                                              "US", "South Korea","UK", 
-                                              "Taiwan", "New Zealand", "South Africa", 
-                                              "Australia"),
-                                region = c("Sinic", "Sinic", "Sinic", 
-                                           "Anglophone", "Sinic", "Anglophone", 
-                                           "Sinic", "Anglophone", "Anglophone", 
-                                           "Anglophone"),
-                                power_distance = c(80, 68, 74, 
-                                                     40, 60, 35,
-                                                     58, 22, 49, 
-                                                     36))
 
-# power distance
-power_distance_scores %>%
-  ggplot(aes(x = country, y = power_distance, col = region)) +
-  geom_point(alpha = 0.9) +
-  geom_text_repel(aes(label=country), size = 2.25,
-                  show.legend = FALSE,
-                  max.overlaps = 5) +
-  ggtitle("Power Distance") +
-  xlab("") +
-  ylab("Score") +
-  scale_color_manual(values = c("#0072B2", "#D55E00")) +
-  theme_economist_white(gray_bg = FALSE) +
-  my_theme +
-  theme(axis.text.x=element_blank())
-
-# net sentiment 
-regional_percentages %>%
-  spread(sentiment, percent) %>%
-  mutate(net = positive - negative) %>%
-  gather(sentiment, percent, -1) %>%
-  filter(sentiment == "net") %>%
-  ggplot(aes(x = region, y = percent, fill = region)) +
-  geom_bar(stat = "identity", position = "dodge") +
-  ggtitle("Net Sentiment") +
-  ylab("% of Total Words") +
-  xlab("") +
-  scale_fill_manual(values = c("#0072B2", "#D55E00")) +
-  my_theme +
-  theme(axis.text.x=element_blank())
 
 # positive emotions
 regional_percentages %>%
@@ -159,7 +146,7 @@ regional_percentages %>%
   mutate(sentiment = factor(sentiment, levels = c("Joy", "Trust"))) %>%
   ggplot(aes(x = region, y = percent, fill = region)) +
   geom_bar(stat = "identity", position = "dodge") +
-  facet_wrap(~sentiment, ncol = 2, scales = "free") +
+  facet_wrap(~sentiment, ncol = 2) +
   ggtitle("Positive Emotions") +
   ylab("% of Total Words") +
   xlab("") +
@@ -173,8 +160,38 @@ regional_percentages %>%
   mutate(sentiment = factor(sentiment, levels = c("Anger", "Fear"))) %>%
   ggplot(aes(x = region, y = percent, fill = region)) +
   geom_bar(stat = "identity", position = "dodge") +
-  facet_wrap(~sentiment, ncol = 2, scales = "free") +
+  facet_wrap(~sentiment, ncol = 2) +
   ggtitle("Negative Emotions") +
+  ylab("% of Total Words") +
+  xlab("") +
+  scale_fill_manual(values = c("#0072B2", "#D55E00")) +
+  my_theme +
+  theme(axis.text.x=element_blank())
+
+# region
+regional_percentages %>%
+  spread(sentiment, percent) %>%
+  mutate(net = positive - negative) %>%
+  gather(sentiment, percent, -1) %>%
+  filter(sentiment == "net") %>%
+  ggplot(aes(x = region, y = percent, fill = region)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  ggtitle("Region") +
+  ylab("% of Total Words") +
+  xlab("") +
+  scale_fill_manual(values = c("#0072B2", "#D55E00")) +
+  my_theme +
+  theme(axis.text.x=element_blank())
+
+# week
+week_percentages %>%
+  spread(sentiment, percent) %>%
+  mutate(net = positive - negative) %>%
+  gather(sentiment, percent, -c(1:2)) %>%
+  filter(sentiment == "net") %>%
+  ggplot(aes(x = week, y = percent, fill = region)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  ggtitle("Week") +
   ylab("% of Total Words") +
   xlab("") +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +
@@ -204,7 +221,7 @@ country_percentages %>%
              size = 2.25,
              show.legend = FALSE) +
   facet_wrap(~region, scales = "free") +
-  ggtitle("Countries") +
+  ggtitle("Country") +
   ylab("% of Total Words") +
   xlab("") +
   ylim(-8, 0) +
@@ -212,16 +229,16 @@ country_percentages %>%
   my_theme +
   theme(axis.text.x=element_blank())
 
-# selected search terms
-search__term_percentages %>%
+# search terms
+search_term_percentages %>%
   spread(sentiment, percent) %>%
   mutate(net = positive - negative) %>%
   gather(sentiment, percent, -c(1:2)) %>%
   filter(sentiment == "net") %>%
   ggplot(aes(x = region, y = percent, fill = region)) +
   geom_bar(stat = "identity", position = "dodge") +
-  facet_wrap(~search, scales = "free") +
-  ggtitle("Search Terms") +
+  facet_wrap(~search) +
+  ggtitle("Search Term") +
   ylab("% of Total Words") +
   xlab("") +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +

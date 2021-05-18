@@ -8,19 +8,20 @@ library(stringr)
 library(rtweet)
 library(jsonlite)
 
-# defines the collection date which is used as a column later on.
-date_collected <- "11-05-2021"
+# query information.
+date_collected <- "25-05-2021"
 
-# defines the region which is used as a column later on.
+week <- 3
+
 region <- c("Sinic", "Anglo")
 
-# defines the search term which is used as a column later on.
-search_term <- c("defy", "disobey", "dissent", "oppose", "protest",
-                 "rebel", "resist", "revolt", "riot")
+search_term <- c("defy", "disobey", "dissent", 
+                 "oppose", "protest", "rebel", 
+                 "resist", "revolt", "riot")
 
-# defines the label which is used as a column later on. 
-label <- c("Defy", "Disobey", "Dissent", "Oppose", "Protest",
-           "Rebel", "Resist", "Revolt", "Riot")
+label <- c("Defy", "Disobey", "Dissent", 
+           "Oppose", "Protest", "Rebel", 
+           "Resist", "Revolt", "Riot")
 
 # searches for tweets with a given search term in a given 
 # location using the rtweet search_tweets function. 
@@ -58,7 +59,8 @@ process_data <- function(search_term, coordinates, country_name, region, date_co
              region = region,
              date_collected = date_collected,
              search = label,
-             tweets = 1)
+             tweets = 1,
+             week = week)
   }
   if(!is.null(result$country)) return(result)
 }
@@ -108,8 +110,7 @@ tidy_table <- china %>%
   rbind(australia) %>%
   rbind(new_zealand) %>%
   rbind(south_africa) %>%
-  distinct() %>%
-  mutate(tweets = 1)
+  distinct() 
 
 # saves the results to a csv file in the current
 # working directory named "change_this_name.csv". 
@@ -118,5 +119,4 @@ write_as_csv(
   prepend_ids = TRUE, na = "", 
   fileEncoding = "UTF-8"
 )
-
 
