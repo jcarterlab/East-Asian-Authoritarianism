@@ -52,22 +52,22 @@ protest, rebel, resist, revolt and riot.
 
 | Region | Tweets (000s) | Words (000s) | Tweets (%) | Words (%) |
 | :----: | :-----------: | :----------: | :--------: | :-------: |
-| Anglo  |     39.5      |     746      |    35.1    |   34.6    |
-| Sinic  |     72.9      |     1407     |    64.9    |   65.4    |
-| Total  |     112.4     |     2153     |   100.0    |   100.0   |
+| Anglo  |     56.5      |     1068     |    35.3    |   35.1    |
+| Sinic  |     103.8     |     1978     |    64.7    |   64.9    |
+| Total  |     160.3     |     3046     |   100.0    |   100.0   |
 
  
 
 ### Emotions:
 
 2.1: Selected positive emotions for tweets containing the anti-authority
-words. It is calculated as the number of words for each emotion
+words. This is calculated as the number of words for each emotion
 expressed as a percentage of total words.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 2.2: Selected negative emotions for tweets containing the anti-authority
-words. It is calculated as the number of words for each emotion
+words. This is calculated as the number of words for each emotion
 expressed as a percentage of total words.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
@@ -79,9 +79,9 @@ positive minus negative words expressed as a percentage of total words.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
-2.4: The net sentiment for each week the data was collected. Net
-sentiment is calculated as positive minus negative words expressed as a
-percentage of total words.
+2.4: The net sentiment for each week during the data collection process.
+Net sentiment is calculated as positive minus negative words expressed
+as a percentage of total words.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
