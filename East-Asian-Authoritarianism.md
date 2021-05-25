@@ -50,11 +50,11 @@ protest, rebel, resist, revolt and riot.
 
 ### Summary Statistics:
 
-| Region | Tweets (000s) | Words (000s) | Tweets (%) | Words (%) |
-| :----: | :-----------: | :----------: | :--------: | :-------: |
-| Anglo  |     56.5      |     1068     |    35.3    |   35.1    |
-| Sinic  |     103.8     |     1978     |    64.7    |   64.9    |
-| Total  |     160.3     |     3046     |   100.0    |   100.0   |
+| Region | Tweets (000s) | Tweets (%) |
+| :----: | :-----------: | :--------: |
+| Anglo  |     56.5      |    35.3    |
+| Sinic  |     103.8     |    64.7    |
+| Total  |     160.3     |   100.0    |
 
  
 

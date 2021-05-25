@@ -299,11 +299,8 @@ The collection of anti-authority words includes defy, disobey, oppose, protest, 
 
 options(digits=3)
 
-# total tweets for summary data
+# total tweets
 total_tweets <- sum(nrow(combined_raw_data))
-
-# total words for summary data
-total_words <- sum(words$words)
 
 # regional tweets
 regional_tweets <- combined_raw_data %>%
@@ -312,28 +309,17 @@ regional_tweets <- combined_raw_data %>%
   summarise(Tweets = sum(tweets) / 10^3) %>%
   rename("Tweets (000s)" = Tweets)
 
-# regional words
-regional_words <- words %>%
-  mutate(Region = region) %>%
-  group_by(Region) %>%
-  summarise(Words = sum(words) / 10^3) %>%
-  rename("Words (000s)" = Words)
-
 # Combined table
 combined_table <- regional_tweets %>%
-  left_join(regional_words) %>%
   group_by(Region) %>%
-  mutate("Tweets (%)" = (`Tweets (000s)` / total_tweets) * 10^5,
-         "Words (%)" = (`Words (000s)` / total_words) * 10^5) %>%
+  mutate("Tweets (%)" = (`Tweets (000s)` / total_tweets) * 10^5) %>%
   ungroup()
 
 # final regional summary table
 final_regional_table <- combined_table %>%
   add_row("Region" = "Total",
           "Tweets (000s)" = sum(combined_table$`Tweets (000s)`),
-          "Words (000s)" = sum(combined_table$`Words (000s)`),
-          "Tweets (%)" = 100,
-          "Words (%)" = 100)
+          "Tweets (%)" = 100)
 
 kable(final_regional_table, align = 'c')
 
@@ -389,7 +375,7 @@ regional_percentages %>%
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
-# region
+# Total
 regional_percentages %>%
   spread(sentiment, percent) %>%
   mutate(net = positive - negative) %>%
@@ -397,7 +383,7 @@ regional_percentages %>%
   filter(sentiment == "net") %>%
   ggplot(aes(x = region, y = percent, fill = region)) +
   geom_bar(stat = "identity", position = "dodge") +
-  ggtitle("Region") +
+  ggtitle("Total") +
   ylab("% of Total Words") +
   xlab("") +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +
