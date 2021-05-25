@@ -1,5 +1,5 @@
 # East-Asian-Authoritarianism
-A sentiment analysis examining the emotions behind Tweets containing anti-authority words between Anglosphere and Sinosphere Twitter users. 
+A sentiment analysis examining Tweets containing anti-authority words between Anglosphere and Sinosphere Twitter users. 
 
 The report can be found [here.](East-Asian-Authoritarianism.md)
 
