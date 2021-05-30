@@ -35,16 +35,15 @@ Democracy Index *(EIU, 2020)*.
 
 ## **2: Sentiment Analysis**
 
-The analysis collects tweets containing anti-authority words within a 50
+The tweets are collected within a 50
 mile range of Anglophone and Sinic country capitals from 11-05-2021 to
-present. A sentiment analysis is conducted using the NRC sentiment
-library. This is done by calculating how often words associated with
-certain sentiments occur relative to their regional total. Figures 2.1
-and 2.2 show selected emotions while figures 2.3 to 2.5 show net
-sentiment (positive minus negative).
+present. A sentiment analysis is then conducted using the NRC sentiment
+library. Figures 2.1
+and 2.2 show specific emotions while figures 2.3 to 2.5 show net
+sentiment (positive minus negative words).
 
-The collection of anti-authority words includes defy, disobey, oppose,
-protest, rebel, resist, revolt and riot.
+The anti-authority words includes 1) defy, 2) disobey, 3) dissent, 4) oppose,
+5) protest, 6) rebel, 7) resist, 8) revolt and 9) riot.
 
 <br>
 
