@@ -7,7 +7,7 @@ Jack Carter
 
 This report analyzes anti-authority sentiment between Anglophone and
 Sinic countries. It finds that Sinic country Twitter users demonstrate
-less positive sentiment in a collection of tweets containing nine anti-authority words.
+less positive sentiment in a collection of tweets containing one of nine anti-authority words.
 This may be in part due to the differing influence of Confucian verses European
 enlightenment values in defining attitudes towards personal liberty. 
 
