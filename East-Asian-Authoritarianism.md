@@ -38,12 +38,17 @@ Democracy Index *(EIU, 2020)*.
 The tweets are collected within a 50
 mile range of Anglophone and Sinic country capitals from 11-05-2021 to
 present. A sentiment analysis is then conducted using the NRC sentiment
-library. Figures 2.1
-and 2.2 show specific emotions while figures 2.3 to 2.5 show net
-sentiment (positive minus negative words).
+library.
+
+The Anglophone countries consist of the US, the UK, Cananda, Australia, New Zealand and South Africa. 
+The Sinic countries consist of China, Vietnam, Taiwan, South Korea, Hong Kong and Singapore. 
 
 The anti-authority words include 1) defy, 2) disobey, 3) dissent, 4) oppose,
 5) protest, 6) rebel, 7) resist, 8) revolt and 9) riot.
+
+Figures 2.1 to 2.3 show net
+sentiment (positive minus negative words), while figures 2.4 to 2.5 
+show specific emotions. 
 
 <br>
 
