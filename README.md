@@ -1,5 +1,5 @@
 # East-Asian-Authoritarianism?
-A sentiment analysis of tweets containing a collection of nine anti-authority words between Anglosphere and Sinosphere Twitter users. 
+A sentiment analysis of tweets containing nine anti-authority words between Anglosphere and Sinosphere Twitter users.
 
 The report can be found [here.](East-Asian-Authoritarianism.md)
 
