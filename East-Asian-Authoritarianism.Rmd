@@ -145,7 +145,7 @@ country_percentages <- calculate_country_percentages(words)
 my_theme <- theme_economist_white(gray_bg = FALSE) +
   theme(plot.title = element_text(hjust = 0.5, 
                                   vjust = 12, 
-                                  size = 10, 
+                                  size = 9, 
                                   color = "#474747"),
         plot.margin = unit(c(1.5, 1, 1.5, 1), "cm"),
         axis.text = element_text(size = 9, 
