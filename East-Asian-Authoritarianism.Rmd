@@ -102,16 +102,20 @@ calculate_search_term_percentages <- function(words) {
 }
 
 # reads in the data from csv files. 
-week_11_05_2021 <- read_data(file_name="11-05-2021.csv")
-week_18_05_2021 <- read_data(file_name="18-05-2021.csv", 
-                             previous_file=week_11_05_2021)
+week_11_05_2021 <- read_data(file_name = "11-05-2021.csv",
+                             previous_file = NULL)
+week_18_05_2021 <- read_data(file_name = "18-05-2021.csv", 
+                             previous_file = week_11_05_2021)
 week_25_05_2021 <- read_data(file_name = "25-05-2021.csv",
                              previous_file = week_18_05_2021)
+week_01_06_2021 <- read_data(file_name = "01-06-2021.csv",
+                             previous_file = week_25_05_2021)
 
 # binds the data together as a single object. 
 combined_raw_data <- week_11_05_2021 %>%
   rbind(week_18_05_2021) %>%
-  rbind(week_25_05_2021)
+  rbind(week_25_05_2021) %>%
+  rbind(week_01_06_2021)
 
 # counts the frequency of different NRC sentiments.  
 words <- join_words_with_sentiment(combined_raw_data) %>%
@@ -224,18 +228,20 @@ democracy_scores <- tibble(country = c("China", "Vietnam", "Hong Kong",
 
 ## **Summary**
 
-This report analyzes anti-authority sentiment between Anglophone and Sinic countries. In a collection of tweets containing at least one of nine anti-authority words, it finds consistently less positive sentiment for Sinic country Twitter users. This may be due in part to the differing influence of Confucian verses European enlightenment values in defining attitudes towards individual liberty.
+This report analyzes anti-authority sentiment between Anglophone and Sinic countries. It finds that Sinic country Twitter users demonstrate significantly less positive sentiment in tweets containing a collection of nine anti-authority words. This may be due to the differing influence of Confucian verses European enlightenment values in defining attitudes towards individual liberty. 
+
+Yet given how many Sinic country Twitter users heavily criticize the recent military coup in neighboring Myanmar, these findings could also represent an increasingly contentious chasm between older and younger, more pro-democracy orientated generations in East Asia. 
 
 The rest of the report is organized into the following sections:
 
-1) Authoritarian Tendencies
+1) Authority & Democracy
 2) Sentiment Analysis
 
 &nbsp;
 
-## **1: Authoritarian Tendencies**
+## **1: Authority & Democracy**
 
-1.1: Power distance scores of Hofstede's seminal cultural dimension's study. Power distance is the extent to which people accept unequal power in society *(Hofstede, 1980)*.
+1.1: Power distance scores in Hofstede's seminal cultural dimension's study. Power distance is the extent to which people accept unequal power and authority in society *(Hofstede, 1980)*.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
@@ -287,13 +293,11 @@ democracy_scores %>%
 
 ## **2: Sentiment Analysis**
 
-The tweets are collected within a 50 mile range of Anglophone and Sinic country capitals from 11-05-2021 to present. A sentiment analysis is then conducted using the NRC sentiment library.
-
-The Anglophone countries consist of the US, the UK, Canada, Australia, New Zealand and South Africa. The Sinic countries consist of China, Vietnam, Taiwan, South Korea, Hong Kong and Singapore.
+Tweets are collected within 50 miles of the Anglophone and Sinic country (those shown in figures 1.1 to 1.2) capitals from the 11th of May 2021 to present. A sentiment analysis is then conducted using the NRC sentiment library.
 
 The anti-authority words include 1) defy, 2) disobey, 3) dissent, 4) oppose, 5) protest, 6) rebel, 7) resist, 8) revolt and 9) riot.
 
-Figures 2.1 to 2.3 show net sentiment (positive minus negative words), while figures 2.4 to 2.5 show specific emotions.
+Figures 2.1 to 2.4 show net sentiment (positive minus negative words), while figures 2.5 to 2.6 show the total sentiment for specific emotions.
 
 <br>
 
@@ -333,7 +337,27 @@ kable(final_regional_table, align = 'c')
 
 ### Net Sentiment:
 
-2.1: The net sentiment for each week during the data collection process. Net sentiment here is calculated as positive minus negative words expressed as a percentage of the weekly total.  
+2.1: The overall net sentiment. Net sentiment is calculated here as positive minus negative words expressed as a percentage of the overall total.  
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
+
+regional_percentages %>%
+  spread(sentiment, percent) %>%
+  mutate(net = positive - negative) %>%
+  gather(sentiment, percent, -1) %>%
+  filter(sentiment == "net") %>%
+  ggplot(aes(x = region, y = percent, fill = region)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  ggtitle("Overall") +
+  ylab("% of Total Words") +
+  xlab("") +
+  scale_fill_manual(values = c("#0072B2", "#D55E00")) +
+  my_theme +
+  theme(axis.text.x=element_blank())
+
+```
+
+2.2: The net sentiment for each week during the data collection process. Net sentiment is calculated here as positive minus negative words expressed as a percentage of the weekly total.  
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
@@ -354,7 +378,7 @@ week_percentages %>%
 
 ```
 
-2.2: The net sentiment for each country. Net sentiment here is calculated as positive minus negative words expressed as a percentage of the country total.   
+2.3: The net sentiment for each country. Net sentiment is calculated here as positive minus negative words expressed as a percentage of the country total.   
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
@@ -384,14 +408,14 @@ country_percentages %>%
   ggtitle("Country") +
   ylab("% of Total Words") +
   xlab("") +
-  ylim(-7, 0) +
+  ylim(-6.5, 0) +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +
   my_theme +
   theme(axis.text.x=element_blank())
 
 ```
 
-2.3: The net sentiment for each search term. Net sentiment here is calculated as positive minus negative words expressed as a percentage of search term total.  
+2.4: The net sentiment for each search term. Net sentiment is calculated here as positive minus negative words expressed as a percentage of search term total.  
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
@@ -415,7 +439,7 @@ search_term_percentages %>%
 
 ### Specific Emotions:
 
-2.4: Selected positive emotions for tweets containing the anti-authority words. This figure is calculated as the number of words for each emotion expressed as a percentage of total words. 
+2.4: Total sentiment for selected positive emotions. This figure is calculated as the number of words matching each emotion expressed as a percentage of total words. 
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
@@ -435,7 +459,7 @@ regional_percentages %>%
 
 ```
 
-2.5: Selected negative emotions for tweets containing the anti-authority words. This figure is calculated as the number of words for each emotion expressed as a percentage of total words. 
+2.5: Total sentiment for selected negative emotions. This figure is calculated as the number of words matching each emotion expressed as a percentage of total words. 
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
