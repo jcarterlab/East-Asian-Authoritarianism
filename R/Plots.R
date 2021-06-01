@@ -140,35 +140,7 @@ democracy_scores %>%
 
 
 
-# positive emotions
-regional_percentages %>%
-  filter(sentiment %in% c("Joy", "Trust")) %>%
-  mutate(sentiment = factor(sentiment, levels = c("Joy", "Trust"))) %>%
-  ggplot(aes(x = region, y = percent, fill = region)) +
-  geom_bar(stat = "identity", position = "dodge") +
-  facet_wrap(~sentiment, ncol = 2) +
-  ggtitle("Positive Emotions") +
-  ylab("% of Total Words") +
-  xlab("") +
-  scale_fill_manual(values = c("#0072B2", "#D55E00")) +
-  my_theme +
-  theme(axis.text.x=element_blank())
-
-# negative emotions
-regional_percentages %>%
-  filter(sentiment %in% c("Anger", "Fear")) %>%
-  mutate(sentiment = factor(sentiment, levels = c("Anger", "Fear"))) %>%
-  ggplot(aes(x = region, y = percent, fill = region)) +
-  geom_bar(stat = "identity", position = "dodge") +
-  facet_wrap(~sentiment, ncol = 2) +
-  ggtitle("Negative Emotions") +
-  ylab("% of Total Words") +
-  xlab("") +
-  scale_fill_manual(values = c("#0072B2", "#D55E00")) +
-  my_theme +
-  theme(axis.text.x=element_blank())
-
-# region
+# Overall
 regional_percentages %>%
   spread(sentiment, percent) %>%
   mutate(net = positive - negative) %>%
@@ -239,6 +211,35 @@ search_term_percentages %>%
   geom_bar(stat = "identity", position = "dodge") +
   facet_wrap(~search) +
   ggtitle("Search Term") +
+  ylab("% of Total Words") +
+  xlab("") +
+  scale_fill_manual(values = c("#0072B2", "#D55E00")) +
+  my_theme +
+  theme(axis.text.x=element_blank())
+
+
+# positive emotions
+regional_percentages %>%
+  filter(sentiment %in% c("Joy", "Trust")) %>%
+  mutate(sentiment = factor(sentiment, levels = c("Joy", "Trust"))) %>%
+  ggplot(aes(x = region, y = percent, fill = region)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~sentiment, ncol = 2) +
+  ggtitle("Positive Emotions") +
+  ylab("% of Total Words") +
+  xlab("") +
+  scale_fill_manual(values = c("#0072B2", "#D55E00")) +
+  my_theme +
+  theme(axis.text.x=element_blank())
+
+# negative emotions
+regional_percentages %>%
+  filter(sentiment %in% c("Anger", "Fear")) %>%
+  mutate(sentiment = factor(sentiment, levels = c("Anger", "Fear"))) %>%
+  ggplot(aes(x = region, y = percent, fill = region)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~sentiment, ncol = 2) +
+  ggtitle("Negative Emotions") +
   ylab("% of Total Words") +
   xlab("") +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +

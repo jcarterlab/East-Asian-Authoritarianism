@@ -9,16 +9,13 @@ library(rtweet)
 library(jsonlite)
 
 # query information.
-date_collected <- "25-05-2021"
-
-week <- 3
-
+date_collected <- "01-06-2021"
+week <- 4
 region <- c("Sinic", "Anglo")
 
 search_term <- c("defy", "disobey", "dissent", 
                  "oppose", "protest", "rebel", 
                  "resist", "revolt", "riot")
-
 label <- c("Defy", "Disobey", "Dissent", 
            "Oppose", "Protest", "Rebel", 
            "Resist", "Revolt", "Riot")

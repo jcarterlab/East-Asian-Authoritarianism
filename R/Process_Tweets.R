@@ -84,16 +84,20 @@ calculate_search_term_percentages <- function(words) {
 }
 
 # reads in the data from csv files. 
-week_11_05_2021 <- read_data(file_name="11-05-2021.csv")
-week_18_05_2021 <- read_data(file_name="18-05-2021.csv", 
-                             previous_file=week_11_05_2021)
+week_11_05_2021 <- read_data(file_name = "11-05-2021.csv",
+                             previous_file = NULL)
+week_18_05_2021 <- read_data(file_name = "18-05-2021.csv", 
+                             previous_file = week_11_05_2021)
 week_25_05_2021 <- read_data(file_name = "25-05-2021.csv",
                              previous_file = week_18_05_2021)
+week_01_06_2021 <- read_data(file_name = "01-06-2021.csv",
+                             previous_file = week_25_05_2021)
 
 # binds the data together as a single object. 
 combined_raw_data <- week_11_05_2021 %>%
   rbind(week_18_05_2021) %>%
-  rbind(week_25_05_2021)
+  rbind(week_25_05_2021) %>%
+  rbind(week_01_06_2021)
 
 # counts the frequency of different NRC sentiments.  
 words <- join_words_with_sentiment(combined_raw_data) %>%
