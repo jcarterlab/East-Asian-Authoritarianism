@@ -8,8 +8,6 @@ The report can be found [here.](East-Asian-Authoritarianism.md)
 
 The code can be found [here.](East-Asian-Authoritarianism.Rmd)
 
-<br />
-
 **Sources:**
 
 EIU (2020) https://www.eiu.com/n/campaigns/democracy-index-2020/
