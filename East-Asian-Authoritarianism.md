@@ -5,17 +5,17 @@ Jack Carter
 
 ## **Summary**
 
-This report analyzes anti-authority sentiment between Anglophone and
+This repository analyzes anti-authority sentiment between Anglophone and
 Sinic countries. It finds that Sinic country Twitter users demonstrate
 significantly less positive sentiment in tweets containing a collection
 of nine anti-authority words. This may be due to the differing influence
 of Confucian verses European enlightenment values in defining attitudes
 towards individual liberty.
 
-Yet given how many Sinic country Twitter users heavily criticize the
-recent military coup in neighboring Myanmar, these findings could also
-represent an increasingly contentious chasm between older and younger,
-more pro-democracy orientated generations in East Asia.
+Given how many Sinic country Twitter users heavily criticize the recent
+military coup in neighboring Myanmar however, such findings could also
+represent the growing use of hyperbolic language between increasingly
+split pro-hierarchy and pro-democracy groups in East Asia.
 
 The rest of the report is organized into the following sections:
 
