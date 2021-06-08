@@ -12,10 +12,11 @@ of nine anti-authority words. This may be due to the differing influence
 of Confucian verses European enlightenment values in defining attitudes
 towards individual liberty.
 
-Given how many Sinic country Twitter users heavily criticize the recent
-military coup in neighboring Myanmar however, such findings could also
-represent the growing use of hyperbolic language between increasingly
-split pro-hierarchy and pro-democracy groups in East Asia.
+Yet given how a large portion of Sinic country Twitter users heavily
+criticize the recent military coup in neighboring Myanmar, these
+findings could also represent a greater use of hyperbolic language
+between increasingly split pro-hierarchy and pro-democracy groups in the
+Sino world.
 
 The rest of the report is organized into the following sections:
 
@@ -41,10 +42,11 @@ Democracy Index *(EIU, 2020)*.
 
 ## **2: Sentiment Analysis**
 
-Tweets are collected within 50 miles of the Anglophone and Sinic country
-(those shown in figures 1.1 to 1.2) capitals from the 11th of May 2021
-to present. A sentiment analysis is then conducted using the NRC
-sentiment library.
+Tweets are collected within 50 miles of the Anglophone (the US, the UK,
+Canada, Australia, New Zealand and South Africa) and Sinic (China,
+Vietnam, Taiwan, South Korea, Hong Kong and Singapore) country capitals
+from the 11th of May 2021 to present. A sentiment analysis is then
+conducted using the NRC sentiment library.
 
 The anti-authority words include 1) defy, 2) disobey, 3) dissent, 4)
 oppose, 5) protest, 6) rebel, 7) resist, 8) revolt and 9) riot.
@@ -58,9 +60,9 @@ while figures 2.5 to 2.6 show the total sentiment for specific emotions.
 
 | Region | Tweets (000s) | Tweets (%) |
 | :----: | :-----------: | :--------: |
-| Anglo  |     72.5      |    33.8    |
-| Sinic  |     141.7     |    66.2    |
-| Total  |     214.1     |   100.0    |
+| Anglo  |     89.2      |    33.5    |
+| Sinic  |     177.4     |    66.5    |
+| Total  |     266.6     |   100.0    |
 
  
 

@@ -110,12 +110,15 @@ week_25_05_2021 <- read_data(file_name = "25-05-2021.csv",
                              previous_file = week_18_05_2021)
 week_01_06_2021 <- read_data(file_name = "01-06-2021.csv",
                              previous_file = week_25_05_2021)
+week_08_06_2021 <- read_data(file_name = "08-06-2021.csv",
+                             previous_file = week_01_06_2021)
 
 # binds the data together as a single object. 
 combined_raw_data <- week_11_05_2021 %>%
   rbind(week_18_05_2021) %>%
   rbind(week_25_05_2021) %>%
-  rbind(week_01_06_2021)
+  rbind(week_01_06_2021) %>%
+  rbind(week_08_06_2021)
 
 # counts the frequency of different NRC sentiments.  
 words <- join_words_with_sentiment(combined_raw_data) %>%
@@ -230,7 +233,7 @@ democracy_scores <- tibble(country = c("China", "Vietnam", "Hong Kong",
 
 This repository analyzes anti-authority sentiment between Anglophone and Sinic countries. It finds that Sinic country Twitter users demonstrate significantly less positive sentiment in tweets containing a collection of nine anti-authority words. This may be due to the differing influence of Confucian verses European enlightenment values in defining attitudes towards individual liberty. 
 
-Given how many Sinic country Twitter users heavily criticize the recent military coup in neighboring Myanmar however, such findings could also represent the growing use of hyperbolic language between increasingly split pro-hierarchy and pro-democracy groups in East Asia.
+Yet given how a large portion of Sinic country Twitter users heavily criticize the recent military coup in neighboring Myanmar, these findings could also represent a greater use of hyperbolic language between increasingly split pro-hierarchy and pro-democracy groups in the Sino world.
 
 The rest of the report is organized into the following sections:
 
@@ -293,7 +296,7 @@ democracy_scores %>%
 
 ## **2: Sentiment Analysis**
 
-Tweets are collected within 50 miles of the Anglophone and Sinic country (those shown in figures 1.1 to 1.2) capitals from the 11th of May 2021 to present. A sentiment analysis is then conducted using the NRC sentiment library.
+Tweets are collected within 50 miles of the Anglophone (the US, the UK, Canada, Australia, New Zealand and South Africa) and Sinic (China, Vietnam, Taiwan, South Korea, Hong Kong and Singapore) country capitals from the 11th of May 2021 to present. A sentiment analysis is then conducted using the NRC sentiment library.
 
 The anti-authority words include 1) defy, 2) disobey, 3) dissent, 4) oppose, 5) protest, 6) rebel, 7) resist, 8) revolt and 9) riot.
 
@@ -369,7 +372,7 @@ week_percentages %>%
   filter(sentiment == "net") %>%
   ggplot(aes(x = week, y = percent, fill = region)) +
   geom_bar(stat = "identity", position = "dodge") +
-  ggtitle("Week Collected") +
+  ggtitle("Week") +
   ylab("% of Total Words") +
   xlab("") +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +

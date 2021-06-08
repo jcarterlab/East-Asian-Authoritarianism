@@ -196,7 +196,7 @@ country_percentages %>%
   ggtitle("Country") +
   ylab("% of Total Words") +
   xlab("") +
-  ylim(-7, 0) +
+  ylim(-6.5, 0) +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +
   my_theme +
   theme(axis.text.x=element_blank())
