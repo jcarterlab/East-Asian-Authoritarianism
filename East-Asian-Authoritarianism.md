@@ -12,11 +12,10 @@ of nine anti-authority words. This may be due to the differing influence
 of Confucian verses European enlightenment values in defining attitudes
 towards individual liberty.
 
-Yet given how a large portion of Sinic country Twitter users heavily
-criticize the recent military coup in neighboring Myanmar, these
-findings could also represent a greater use of hyperbolic language
-between increasingly split pro-hierarchy and pro-democracy groups in the
-Sino world.
+Given that a large portion of Sinic country users heavily criticize the
+recent military coup in Myanmar however, these findings could also
+represent the use of hyperbolic language between increasingly split
+pro-hierarchical and pro-democracy groups in the Sinic world.
 
 The rest of the report is organized into the following sections:
 
@@ -53,6 +52,8 @@ oppose, 5) protest, 6) rebel, 7) resist, 8) revolt and 9) riot.
 
 Figures 2.1 to 2.4 show net sentiment (positive minus negative words),
 while figures 2.5 to 2.6 show the total sentiment for specific emotions.
+The results are presented as bar charts with each bar representing a
+different week.
 
 <br>
 
@@ -60,9 +61,9 @@ while figures 2.5 to 2.6 show the total sentiment for specific emotions.
 
 | Region | Tweets (000s) | Tweets (%) |
 | :----: | :-----------: | :--------: |
-| Anglo  |     89.2      |    33.5    |
-| Sinic  |     177.4     |    66.5    |
-| Total  |     266.6     |   100.0    |
+| Anglo  |      107      |    32.5    |
+| Sinic  |      222      |    67.5    |
+| Total  |      329      |   100.0    |
 
  
 
@@ -74,23 +75,17 @@ total.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
-2.2: The net sentiment for each week during the data collection process.
-Net sentiment is calculated here as positive minus negative words
-expressed as a percentage of the weekly total.
-
-![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
-
-2.3: The net sentiment for each country. Net sentiment is calculated
+2.2: The net sentiment for each country. Net sentiment is calculated
 here as positive minus negative words expressed as a percentage of the
 country total.
 
-![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
-2.4: The net sentiment for each search term. Net sentiment is calculated
+2.3: The net sentiment for each search term. Net sentiment is calculated
 here as positive minus negative words expressed as a percentage of
 search term total.
 
-![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 ### Specific Emotions:
 
@@ -98,13 +93,13 @@ search term total.
 calculated as the number of words matching each emotion expressed as a
 percentage of total words.
 
-![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 2.5: Total sentiment for selected negative emotions. This figure is
 calculated as the number of words matching each emotion expressed as a
 percentage of total words.
 
-![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
  
 

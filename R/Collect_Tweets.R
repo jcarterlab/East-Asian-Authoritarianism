@@ -9,8 +9,8 @@ library(rtweet)
 library(jsonlite)
 
 # query information.
-date_collected <- "08-06-2021"
-week <- 5
+date_collected <- "15-06-2021"
+week <- 6
 region <- c("Sinic", "Anglo")
 
 search_term <- c("defy", "disobey", "dissent", 
