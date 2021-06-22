@@ -9,8 +9,8 @@ library(rtweet)
 library(jsonlite)
 
 # query information.
-date_collected <- "15-06-2021"
-week <- 6
+date_collected <- "29-06-2021"
+week <- 8
 region <- c("Sinic", "Anglo")
 
 search_term <- c("defy", "disobey", "dissent", 
@@ -83,6 +83,8 @@ china <- process_country("China", region[1], "39.9042,116.4074,50mi")
   south_korea <- process_country("South Korea", region[1], "37.5665,126.9780,50mi")
   hong_kong <- process_country("Hong Kong", region[1], "22.2800,114.1588,50mi")
   singapore <- process_country("Singapore", region[1], "1.3521,103.8198,50mi")
+  
+  11,184
 
 # searches within 50 miles of Anglophone country capitals
 # with parameters country name, region and coordinates. 

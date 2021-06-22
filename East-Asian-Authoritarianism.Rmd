@@ -102,6 +102,8 @@ week_08_06_2021 <- read_data(file_name = "08-06-2021.csv",
                              previous_file = week_01_06_2021)
 week_15_06_2021 <- read_data(file_name = "15-06-2021.csv",
                              previous_file = week_08_06_2021)
+week_22_06_2021 <- read_data(file_name = "22-06-2021.csv",
+                             previous_file = week_15_06_2021)
 
 
 # binds the data together as a single object. 
@@ -110,7 +112,8 @@ combined_raw_data <- week_11_05_2021 %>%
   rbind(week_25_05_2021) %>%
   rbind(week_01_06_2021) %>%
   rbind(week_08_06_2021) %>%
-  rbind(week_15_06_2021)
+  rbind(week_15_06_2021) %>%
+  rbind(week_22_06_2021)
 
 # counts the frequency of different NRC sentiments.  
 words <- join_words_with_sentiment(combined_raw_data) %>%
@@ -221,7 +224,7 @@ democracy_scores <- tibble(country = c("China", "Vietnam", "Hong Kong",
 
 This repository analyzes anti-authority sentiment between Anglophone and Sinic countries. It finds that Sinic country Twitter users demonstrate significantly less positive sentiment in tweets containing a collection of nine anti-authority words. This may be due to the differing influence of Confucian verses European enlightenment values in defining attitudes towards individual liberty. 
 
-Given that a large portion of Sinic country users heavily criticize the recent military coup in Myanmar however, these findings could also represent the use of hyperbolic language between increasingly split pro-hierarchical and pro-democracy groups in the Sinic world.
+Yet given how a large portion of Sinic country users heavily criticize the recent military coup in Myanmar, these findings could also indicate greater hyperbolic language among increasingly split hierarchical and pro-democracy orientated groups in the Sinic world.
 
 The rest of the report is organized into the following sections:
 

@@ -12,10 +12,10 @@ of nine anti-authority words. This may be due to the differing influence
 of Confucian verses European enlightenment values in defining attitudes
 towards individual liberty.
 
-Given that a large portion of Sinic country users heavily criticize the
-recent military coup in Myanmar however, these findings could also
-represent the use of hyperbolic language between increasingly split
-pro-hierarchical and pro-democracy groups in the Sinic world.
+Yet given how a large portion of Sinic country users heavily criticize
+the recent military coup in Myanmar, these findings could also indicate
+greater hyperbolic language among increasingly split hierarchical and
+pro-democracy orientated groups in the Sinic world.
 
 The rest of the report is organized into the following sections:
 
@@ -61,9 +61,9 @@ different week.
 
 | Region | Tweets (000s) | Tweets (%) |
 | :----: | :-----------: | :--------: |
-| Anglo  |      107      |    32.5    |
-| Sinic  |      222      |    67.5    |
-| Total  |      329      |   100.0    |
+| Anglo  |      124      |    31.9    |
+| Sinic  |      265      |    68.1    |
+| Total  |      389      |   100.0    |
 
  
 
