@@ -7,24 +7,26 @@ Jack Carter
 
 This repository analyzes anti-authority sentiment between Anglophone and
 Sinic countries. It finds that Sinic country Twitter users demonstrate
-significantly less positive sentiment in tweets containing a collection
-of nine anti-authority words. This may be due to the differing influence
-of Confucian verses European enlightenment values in defining attitudes
-towards individual liberty.
+significantly less positive sentiment in a collection of tweets
+containing nine anti-authority words. This may be due to the differing
+influence of Confucian verses European enlightenment values in defining
+attitudes towards individual liberty.
 
-Yet given how a large portion of Sinic country users heavily criticize
-the recent military coup in Myanmar, these findings could also indicate
-greater hyperbolic language among increasingly split hierarchical and
-pro-democracy orientated groups in the Sinic world.
+Yet on the other hand, given how a large portion of Sinic users heavily
+criticize the recent military coup in Myanmar, these findings could also
+represent the growing use of hyperbolic language among increasingly
+split hierarchical and pro-democracy orientated groups in the far East.
+The Sinic world may thus be both culturally hierarchical and
+experiencing the consolidation of democratic values.
 
 The rest of the report is organized into the following sections:
 
-1)  Authority & Democracy
+1)  Authorianism
 2)  Sentiment Analysis
 
  
 
-## **1: Authority & Democracy**
+## **1: Authorianism**
 
 1.1: Power distance scores in Hofstede’s seminal cultural dimension’s
 study. Power distance is the extent to which people accept unequal power
@@ -41,19 +43,19 @@ Democracy Index *(EIU, 2020)*.
 
 ## **2: Sentiment Analysis**
 
-Tweets are collected within 50 miles of the Anglophone (the US, the UK,
-Canada, Australia, New Zealand and South Africa) and Sinic (China,
-Vietnam, Taiwan, South Korea, Hong Kong and Singapore) country capitals
-from the 11th of May 2021 to present. A sentiment analysis is then
-conducted using the NRC sentiment library.
+The tweets are collected within a 50 mile range of the Anglophone (the
+US, the UK, Canada, Australia, New Zealand and South Africa) and Sinic
+(China, Vietnam, Taiwan, South Korea, Hong Kong and Singapore) country
+capitals from the 11th of May 2021 to present. A sentiment analysis is
+then conducted using the NRC sentiment library.
 
 The anti-authority words include 1) defy, 2) disobey, 3) dissent, 4)
 oppose, 5) protest, 6) rebel, 7) resist, 8) revolt and 9) riot.
 
-Figures 2.1 to 2.4 show net sentiment (positive minus negative words),
-while figures 2.5 to 2.6 show the total sentiment for specific emotions.
-The results are presented as bar charts with each bar representing a
-different week.
+Figures 2.1 to 2.2 show the scores for specific emotions across the
+combined anti-authority tweet collection, while figures 2.3 to 2.5 show
+net sentiment (positive minus negative scores). The results are
+presented as bar charts with each bar representing a different week.
 
 <br>
 
@@ -61,43 +63,40 @@ different week.
 
 | Region | Tweets (000s) | Tweets (%) |
 | :----: | :-----------: | :--------: |
-| Anglo  |      124      |    31.9    |
-| Sinic  |      265      |    68.1    |
-| Total  |      389      |   100.0    |
+| Anglo  |      142      |    31.8    |
+| Sinic  |      303      |    68.2    |
+| Total  |      445      |   100.0    |
 
  
 
-### Net Sentiment:
+### Specific Emotions:
 
-2.1: The overall net sentiment. Net sentiment is calculated here as
-positive minus negative words expressed as a percentage of the overall
-total.
+2.1: The scores for selected positive emotions across the combined
+anti-authority tweet collection.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
-2.2: The net sentiment for each country. Net sentiment is calculated
-here as positive minus negative words expressed as a percentage of the
-country total.
+2.2: The scores for selected negative emotions across the combined
+anti-authority tweet collection.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
-2.3: The net sentiment for each search term. Net sentiment is calculated
-here as positive minus negative words expressed as a percentage of
-search term total.
+### Net Sentiment:
+
+2.3: The overall net sentiment. Net sentiment is calculated as positive
+minus negative words expressed as a percentage of the overall total.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
-### Specific Emotions:
-
-2.4: Total sentiment for selected positive emotions. This figure is
-calculated as the number of words matching each emotion expressed as a
-percentage of total words.
+2.4: The net sentiment for each country. Net sentiment is calculated as
+positive minus negative words expressed as a percentage of the country
+total.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
-2.5: Total sentiment for selected negative emotions. This figure is
-calculated as the number of words matching each emotion expressed as a
-percentage of total words.
+2.5: The net sentiment for each search term. Net sentiment is calculated
+as positive minus negative words expressed as a percentage of search
+term total.
 
 ![](East-Asian-Authoritarianism_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 

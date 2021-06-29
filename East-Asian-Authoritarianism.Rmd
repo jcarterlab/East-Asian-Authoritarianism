@@ -104,7 +104,8 @@ week_15_06_2021 <- read_data(file_name = "15-06-2021.csv",
                              previous_file = week_08_06_2021)
 week_22_06_2021 <- read_data(file_name = "22-06-2021.csv",
                              previous_file = week_15_06_2021)
-
+week_29_06_2021 <- read_data(file_name = "29-06-2021.csv",
+                             previous_file = week_22_06_2021)
 
 # binds the data together as a single object. 
 combined_raw_data <- week_11_05_2021 %>%
@@ -113,7 +114,8 @@ combined_raw_data <- week_11_05_2021 %>%
   rbind(week_01_06_2021) %>%
   rbind(week_08_06_2021) %>%
   rbind(week_15_06_2021) %>%
-  rbind(week_22_06_2021)
+  rbind(week_22_06_2021) %>%
+  rbind(week_29_06_2021)
 
 # counts the frequency of different NRC sentiments.  
 words <- join_words_with_sentiment(combined_raw_data) %>%
@@ -222,18 +224,18 @@ democracy_scores <- tibble(country = c("China", "Vietnam", "Hong Kong",
 
 ## **Summary**
 
-This repository analyzes anti-authority sentiment between Anglophone and Sinic countries. It finds that Sinic country Twitter users demonstrate significantly less positive sentiment in tweets containing a collection of nine anti-authority words. This may be due to the differing influence of Confucian verses European enlightenment values in defining attitudes towards individual liberty. 
+This repository analyzes anti-authority sentiment between Anglophone and Sinic countries. It finds that Sinic country Twitter users demonstrate significantly less positive sentiment in a collection of tweets containing nine anti-authority words. This may be due to the differing influence of Confucian verses European enlightenment values in defining attitudes towards individual liberty. 
 
-Yet given how a large portion of Sinic country users heavily criticize the recent military coup in Myanmar, these findings could also indicate greater hyperbolic language among increasingly split hierarchical and pro-democracy orientated groups in the Sinic world.
+Yet on the other hand, given how a large portion of Sinic users heavily criticize the recent military coup in Myanmar, these findings could also represent the growing use of hyperbolic language among increasingly split hierarchical and pro-democracy orientated groups in the far East. The Sinic world may thus be both culturally hierarchical and experiencing the consolidation of democratic values.  
 
-The rest of the report is organized into the following sections:
+The rest of the report is organized into the following sections: 
 
-1) Authority & Democracy
+1) Authorianism 
 2) Sentiment Analysis
 
 &nbsp;
 
-## **1: Authority & Democracy**
+## **1: Authorianism**
 
 1.1: Power distance scores in Hofstede's seminal cultural dimension's study. Power distance is the extent to which people accept unequal power and authority in society *(Hofstede, 1980)*.
 
@@ -287,11 +289,11 @@ democracy_scores %>%
 
 ## **2: Sentiment Analysis**
 
-Tweets are collected within 50 miles of the Anglophone (the US, the UK, Canada, Australia, New Zealand and South Africa) and Sinic (China, Vietnam, Taiwan, South Korea, Hong Kong and Singapore) country capitals from the 11th of May 2021 to present. A sentiment analysis is then conducted using the NRC sentiment library.
+The tweets are collected within a 50 mile range of the Anglophone (the US, the UK, Canada, Australia, New Zealand and South Africa) and Sinic (China, Vietnam, Taiwan, South Korea, Hong Kong and Singapore) country capitals from the 11th of May 2021 to present. A sentiment analysis is then conducted using the NRC sentiment library.
 
 The anti-authority words include 1) defy, 2) disobey, 3) dissent, 4) oppose, 5) protest, 6) rebel, 7) resist, 8) revolt and 9) riot.
 
-Figures 2.1 to 2.4 show net sentiment (positive minus negative words), while figures 2.5 to 2.6 show the total sentiment for specific emotions. The results are presented as bar charts with each bar representing a different week.
+Figures 2.1 to 2.2 show the scores for specific emotions across the combined anti-authority tweet collection, while figures 2.3 to 2.5 show net sentiment (positive minus negative scores). The results are presented as bar charts with each bar representing a different week.
  
 <br>
 
@@ -329,9 +331,51 @@ kable(final_regional_table, align = 'c')
 
 &nbsp;
 
+### Specific Emotions:
+
+2.1: The scores for selected positive emotions across the combined anti-authority tweet collection.
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
+
+# positive emotions
+regional_percentages %>%
+  filter(sentiment %in% c("Joy", "Trust")) %>%
+  mutate(sentiment = factor(sentiment, levels = c("Joy", "Trust"))) %>%
+  ggplot(aes(x = week, y = percent, fill = region)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~sentiment, ncol = 2) +
+  ggtitle("Positive Emotions") +
+  ylab("% of Total Words") +
+  xlab("") +
+  scale_fill_manual(values = c("#0072B2", "#D55E00")) +
+  my_theme +
+  theme(axis.text.x=element_blank())
+
+```
+
+2.2: The scores for selected negative emotions across the combined anti-authority tweet collection.
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
+
+# negative emotions
+regional_percentages %>%
+  filter(sentiment %in% c("Anger", "Fear")) %>%
+  mutate(sentiment = factor(sentiment, levels = c("Anger", "Fear"))) %>%
+  ggplot(aes(x = week, y = percent, fill = region)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~sentiment, ncol = 2) +
+  ggtitle("Negative Emotions") +
+  ylab("% of Total Words") +
+  xlab("") +
+  scale_fill_manual(values = c("#0072B2", "#D55E00")) +
+  my_theme +
+  theme(axis.text.x=element_blank())
+
+```
+
 ### Net Sentiment:
 
-2.1: The overall net sentiment. Net sentiment is calculated here as positive minus negative words expressed as a percentage of the overall total.   
+2.3: The overall net sentiment. Net sentiment is calculated as positive minus negative words expressed as a percentage of the overall total.   
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
@@ -352,7 +396,7 @@ regional_percentages %>%
 
 ```
 
-2.2: The net sentiment for each country. Net sentiment is calculated here as positive minus negative words expressed as a percentage of the country total.   
+2.4: The net sentiment for each country. Net sentiment is calculated as positive minus negative words expressed as a percentage of the country total.   
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
@@ -384,7 +428,7 @@ country_percentages %>%
 
 ```
 
-2.3: The net sentiment for each search term. Net sentiment is calculated here as positive minus negative words expressed as a percentage of search term total.  
+2.5: The net sentiment for each search term. Net sentiment is calculated as positive minus negative words expressed as a percentage of search term total.  
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
@@ -398,48 +442,6 @@ search_term_percentages %>%
   geom_bar(stat = "identity", position = "dodge") +
   facet_wrap(~search) +
   ggtitle("Search Term") +
-  ylab("% of Total Words") +
-  xlab("") +
-  scale_fill_manual(values = c("#0072B2", "#D55E00")) +
-  my_theme +
-  theme(axis.text.x=element_blank())
-
-```
-
-### Specific Emotions:
-
-2.4: Total sentiment for selected positive emotions. This figure is calculated as the number of words matching each emotion expressed as a percentage of total words. 
-
-```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
-
-# positive emotions
-regional_percentages %>%
-  filter(sentiment %in% c("Joy", "Trust")) %>%
-  mutate(sentiment = factor(sentiment, levels = c("Joy", "Trust"))) %>%
-  ggplot(aes(x = week, y = percent, fill = region)) +
-  geom_bar(stat = "identity", position = "dodge") +
-  facet_wrap(~sentiment, ncol = 2) +
-  ggtitle("Positive Emotions") +
-  ylab("% of Total Words") +
-  xlab("") +
-  scale_fill_manual(values = c("#0072B2", "#D55E00")) +
-  my_theme +
-  theme(axis.text.x=element_blank())
-
-```
-
-2.5: Total sentiment for selected negative emotions. This figure is calculated as the number of words matching each emotion expressed as a percentage of total words. 
-
-```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
-
-# negative emotions
-regional_percentages %>%
-  filter(sentiment %in% c("Anger", "Fear")) %>%
-  mutate(sentiment = factor(sentiment, levels = c("Anger", "Fear"))) %>%
-  ggplot(aes(x = week, y = percent, fill = region)) +
-  geom_bar(stat = "identity", position = "dodge") +
-  facet_wrap(~sentiment, ncol = 2) +
-  ggtitle("Negative Emotions") +
   ylab("% of Total Words") +
   xlab("") +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +
