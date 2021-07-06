@@ -3,6 +3,7 @@ This repository conducts a sentiment analysis on a collection of tweets containi
 
 This could represent the differing influence of Confucian verses European enlightenment values in defining attitudes towards individual liberty. Yet it could also represent the growing use of hyperbolic language between increasingly split pro-hierarchy and pro-democracy groups in East Asia.
 
+<br/>
 
 The report can be found [here.](East-Asian-Authoritarianism.md)
 
