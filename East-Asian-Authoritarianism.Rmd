@@ -106,6 +106,9 @@ week_22_06_2021 <- read_data(file_name = "22-06-2021.csv",
                              previous_file = week_15_06_2021)
 week_29_06_2021 <- read_data(file_name = "29-06-2021.csv",
                              previous_file = week_22_06_2021)
+week_06_07_2021 <- read_data(file_name = "06-07-2021.csv",
+                             previous_file = week_29_06_2021)
+
 
 # binds the data together as a single object. 
 combined_raw_data <- week_11_05_2021 %>%
@@ -115,7 +118,8 @@ combined_raw_data <- week_11_05_2021 %>%
   rbind(week_08_06_2021) %>%
   rbind(week_15_06_2021) %>%
   rbind(week_22_06_2021) %>%
-  rbind(week_29_06_2021)
+  rbind(week_29_06_2021) %>%
+  rbind(week_06_07_2021)
 
 # counts the frequency of different NRC sentiments.  
 words <- join_words_with_sentiment(combined_raw_data) %>%
@@ -226,7 +230,7 @@ democracy_scores <- tibble(country = c("China", "Vietnam", "Hong Kong",
 
 This repository analyzes anti-authority sentiment between Anglophone and Sinic countries. It finds that Sinic country Twitter users demonstrate significantly less positive sentiment in a collection of tweets containing nine anti-authority words. This may be due to the differing influence of Confucian verses European enlightenment values in defining attitudes towards individual liberty. 
 
-Yet on the other hand, given how a large portion of Sinic users heavily criticize the recent military coup in Myanmar, these findings could also represent the growing use of hyperbolic language among increasingly split hierarchical and pro-democracy orientated groups in the far East. The Sinic world may thus be both culturally hierarchical and experiencing the consolidation of democratic values.  
+Yet given how a large portion of Sinic users heavily criticize the recent military coup in Myanmar, these findings could also represent the growing use of hyperbolic language among increasingly split hierarchical and pro-democracy orientated groups in East Asia. The Sinic world may thus be both culturally hierarchical and experiencing a consolidation of democratic values among certain sections of society. 
 
 The rest of the report is organized into the following sections: 
 

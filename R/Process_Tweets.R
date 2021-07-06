@@ -88,6 +88,8 @@ week_22_06_2021 <- read_data(file_name = "22-06-2021.csv",
                              previous_file = week_15_06_2021)
 week_29_06_2021 <- read_data(file_name = "29-06-2021.csv",
                              previous_file = week_22_06_2021)
+week_06_07_2021 <- read_data(file_name = "06-07-2021.csv",
+                             previous_file = week_29_06_2021)
 
 
 # binds the data together as a single object. 
@@ -98,7 +100,8 @@ combined_raw_data <- week_11_05_2021 %>%
   rbind(week_08_06_2021) %>%
   rbind(week_15_06_2021) %>%
   rbind(week_22_06_2021) %>%
-  rbind(week_29_06_2021)
+  rbind(week_29_06_2021) %>%
+  rbind(week_06_07_2021)
 
 # counts the frequency of different NRC sentiments.  
 words <- join_words_with_sentiment(combined_raw_data) %>%
