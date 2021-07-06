@@ -1,5 +1,5 @@
 # East-Asian-Authoritarianism?
-This repository conducts a sentiment analysis on tweets containing nine anti-authority words between Anglosphere and Sinosphere Twitter users. It finds that Sinic country users demonstrate significantly less positive sentiment. 
+This repository conducts a sentiment analysis on a collection of tweets containing nine anti-authority words between Anglosphere and Sinosphere Twitter users. It finds that Sinic country users demonstrate significantly less positive sentiment. 
 
 This could represent the differing influence of Confucian verses European enlightenment values in defining attitudes towards individual liberty. It could also however represent the growing use of hyperbolic language between increasingly split pro-hierarchy and pro-democracy groups in East Asia.
 
