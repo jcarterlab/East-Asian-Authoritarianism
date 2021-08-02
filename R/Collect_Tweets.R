@@ -9,8 +9,8 @@ library(rtweet)
 library(jsonlite)
 
 # query information.
-date_collected <- "06-07-2021"
-week <- 9
+date_collected <- "27-07-2021"
+week <- 12
 region <- c("Sinic", "Anglo")
 
 search_term <- c("defy", "disobey", "dissent", 
@@ -116,4 +116,5 @@ write_as_csv(
   prepend_ids = TRUE, na = "", 
   fileEncoding = "UTF-8"
 )
+
 

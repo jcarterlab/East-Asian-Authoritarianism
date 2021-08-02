@@ -63,9 +63,9 @@ presented as bar charts with each bar representing a different week.
 
 | Region | Tweets (000s) | Tweets (%) |
 | :----: | :-----------: | :--------: |
-| Anglo  |      180      |    32.3    |
-| Sinic  |      379      |    67.7    |
-| Total  |      559      |   100.0    |
+| Anglo  |      215      |    34.1    |
+| Sinic  |      416      |    65.9    |
+| Total  |      631      |   100.0    |
 
  
 
