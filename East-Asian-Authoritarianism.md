@@ -1,4 +1,5 @@
-Who's the Boss? Anti-authority Sentiment Between East & West
+Who's the Boss? 
+Anti-authority Sentiment Between East & West
 ================
 Jack Carter
 5/11/2021
