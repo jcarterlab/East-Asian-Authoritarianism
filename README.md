@@ -1,5 +1,9 @@
 # Rebel Without a Cause
 
+This project analyzes anti-authority sentiment between Anglosphere and Sinosphere countries on a corpus of over 900,000 tweets.
+
+<br/>
+
 The report can be found [here.](East-Asian-Authoritarianism.md)
 
 The code can be found [here.](East-Asian-Authoritarianism.Rmd)
