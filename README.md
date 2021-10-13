@@ -6,6 +6,7 @@ The report can be found [here.](Rebel-Without-a-Cause.md)
 
 The code can be found [here.](Rebel-Without-a-Cause.Rmd)
 
+<br/>
 
 **Sources:**
 
