@@ -4,9 +4,9 @@ This project analyzes anti-authority sentiment between Anglosphere and Sinospher
 
 <br/>
 
-The report can be found [here.](East-Asian-Authoritarianism.md)
+The report can be found [here.](Rebel-Without-a-Cause.md)
 
-The code can be found [here.](East-Asian-Authoritarianism.Rmd)
+The code can be found [here.](Rebel-Without-a-Cause.Rmd)
 
 <br/>
 
