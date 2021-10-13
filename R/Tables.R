@@ -6,10 +6,10 @@ library(tibble)
 library(knitr)
 
 # total tweets
-total_tweets <- sum(nrow(combined_raw_data))
+total_tweets <- sum(nrow(raw_data[index,]))
 
 # regional tweets
-regional_tweets <- combined_raw_data %>%
+regional_tweets <- raw_data[index,] %>%
   mutate(Region = region) %>%
   group_by(Region) %>%
   summarise(Tweets = sum(tweets) / 10^3) %>%
