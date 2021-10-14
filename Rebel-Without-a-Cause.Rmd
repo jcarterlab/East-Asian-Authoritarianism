@@ -24,17 +24,22 @@ library(jsonlite)
 # read in spreadsheet data without including duplicate 
 # tweets  from the previous week's search results.  
 read_data <- function(file_name) {
-  file <- read_csv(here("data", file_name))
+  
+  file <- read_csv(
+    here("data", file_name)
+    )
   return(file[,c(1,2,4,5,6,7,9)])
 }
 
 # performs the read_data function for all of the data frames
 # and joins them into a single tibble data frame. 
 read_all_data <- function(dataframes) {
+  
   data <- list()
   for(i in 1:length(dataframes)) {
-    data[[i]] <- read_data(file_name = paste0(dataframes[i], 
-                                              ".csv"))
+    data[[i]] <- read_data(
+      file_name = paste0(dataframes[i], ".csv")
+      )
   }
   return(as_tibble(rbind_pages(data)))
 }
@@ -43,64 +48,128 @@ read_all_data <- function(dataframes) {
 # inner joins them with the NRC library 
 # and counts the frequency of each sentiment. 
 join_words_with_sentiment <- function(raw_tweets) {
-  nrc_sentiment <- get_sentiments("nrc") %>% select(word, sentiment)
+  
+  nrc_sentiment <- get_sentiments("nrc") %>% 
+    select(word, sentiment)
+  
   words <- raw_tweets %>%
-    unnest_tokens(word, text) %>%
-    left_join(nrc_sentiment, by = "word") %>%
-    mutate(sentiment = replace_na(sentiment, replace = "none")) %>%
-    filter(!word %in% stop_words$word) %>%
-    group_by(search, region, country, sentiment, week) %>%
-    count(sentiment) %>%
-    rename(words = "n")
+    unnest_tokens(
+      word, text
+      ) %>%
+    left_join(
+      nrc_sentiment, by = "word"
+      ) %>%
+    mutate(
+      sentiment = replace_na(sentiment, replace = "none")
+      ) %>%
+    filter(
+      !word %in% stop_words$word
+      ) %>%
+    group_by(
+      search, region, country, sentiment, week
+      ) %>%
+    count(
+      sentiment
+      ) %>%
+    rename(
+      words = "n"
+      )
     return(words)
 }
 
 # calculates the sentiment for each region
 # as a percentage of total words. 
 calculate_regional_percentages <- function(words) {
+  
   final_value <- words %>%
-    group_by(region) %>%
-    mutate(total_words = sum(words),
-           percent = (words / total_words)*100) %>%
-    select(region, sentiment, percent) %>%
-    group_by(region, sentiment) %>%
-    summarise(percent = sum(percent))
+    group_by(
+      region
+      ) %>%
+    mutate(
+      total_words = sum(words),
+           percent = (words / total_words)*100
+      ) %>%
+    select(
+      region, sentiment, percent
+      ) %>%
+    group_by(
+      region, sentiment
+      ) %>%
+    summarise(percent = sum(percent)
+              )
+  return(final_value)
 }
 
 # calculates the sentiment for each week
 # as a percentage of total words. 
 calculate_week_percentages <- function(words) {
+  
   final_value <- words %>%
-    group_by(region, week) %>%
-    mutate(total_words = sum(words),
-           percent = (words / total_words)*100) %>%
-    select(region, sentiment, percent, week) %>%
-    group_by(region, sentiment, week) %>%
-    summarise(percent = sum(percent))
+    group_by(
+      region, week
+      ) %>%
+    mutate(
+      total_words = sum(words),
+           percent = (words / total_words)*100
+      ) %>%
+    select(
+      region, sentiment, percent, week
+      ) %>%
+    group_by(
+      region, sentiment, week
+      ) %>%
+    summarise(
+      percent = sum(percent)
+      )
+  return(final_value)
 }
 
 # calculates the sentiment for each search term
 # as a percentage of total words. 
 calculate_search_term_percentages <- function(words) {
+  
   final_value <- words %>%
-    group_by(region, search) %>%
-    mutate(total_words = sum(words),
-           percent = (words / total_words)*100) %>%
-    select(region, search, sentiment, percent) %>%
-    group_by(region, search, sentiment) %>%
-    summarise(percent = sum(percent))
+    group_by(
+      region, search
+      ) %>%
+    mutate(
+      total_words = sum(words),
+           percent = (words / total_words)*100
+      ) %>%
+    select(
+      region, search, sentiment, percent
+      ) %>%
+    group_by(
+      region, search, sentiment
+      ) %>%
+    summarise(
+      percent = sum(percent)
+      )
+  return(final_value)
 }
 
 # calculates the sentiment for each country
 # as a percentage of total words. 
 calculate_country_percentages <- function(words) {
+  
   final_value <- words %>%
-    group_by(country, region) %>%
-    mutate(total_words = sum(words),
-           percent = (words / total_words)*100) %>%
-    select(region, country, sentiment, percent) %>%
-    group_by(region, country, sentiment) %>%
-    summarise(percent = sum(percent))
+    group_by(
+      country, region
+      ) %>%
+    mutate(
+      total_words = sum(words),
+           percent = (words / total_words)*100
+      ) %>%
+    select(
+      region, country, sentiment, percent
+      ) %>%
+    group_by(
+      region, country, sentiment
+      ) %>%
+    summarise(
+      percent = sum(percent)
+      )
+  return(final_value)
 }
 
 # a list of different data frame names.  
@@ -279,7 +348,7 @@ search_term_percentages %>%
   ggplot(aes(x = search, y = percent, fill = region)) +
   geom_bar(stat = "identity", position = "dodge") +
   ggtitle("Search Term") +
-  ylab("% of Total Words") +
+  ylab("Net Sentiment") +
   xlab("") +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +
   my_theme
