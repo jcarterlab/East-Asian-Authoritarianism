@@ -6,7 +6,7 @@ Jack Carter
 ## **Summary**
 
 This project analyzes a corpus of over 900,000 tweets containing, or in
-response to those containing, a range of anti-authority words. It aims
+response to tweets containing, a range of different anti-authority words. It aims
 to test whether there are systematic differences in anti-authority
 sentiment between Anglosphere and Sinosphere Twitter users. It finds
 that negative sentiment is significantly higher among Sinosphere users,
@@ -39,16 +39,18 @@ Kong, Singapore, South Korea, Taiwan and Vietnam.
 
 The tweets are collected using Twitter location data from within a 50
 mile range of the country capitals each week from the 11th of May to
-present. They are then filtered to exclude duplicates.
+present. They are filtered to exclude duplicates before being cleaned
+to eliminate stop words (those adding no sentiment value) and punctuation. 
 
 <br/>
 
 **4) Sentiment Calculation:**
 
-The tweets are cleaned to eliminate stop words (common words adding no
-sentiment value) and punctuation. Net sentiment is then calculated as
-positive minus negative words and expressed as a percentage of total
-words.
+Net sentiment is then calculated as the total share of 
+positive words minus the total share of negative words. 
+It is expressed in each visualization as a percentage of 
+all words, taking into account differences in the number 
+of and length of tweets. 
 
  
 
