@@ -11,7 +11,9 @@ to test whether there are systematic differences in anti-authority
 sentiment between Anglosphere and Sinosphere Twitter users. It finds
 that negative sentiment is significantly higher among Sinosphere users,
 potentially indicating a deep rooted cultural difference in attitudes to
-authority.
+authority. These results could also however be due to other factors, 
+such as the more limited use of anti-authority words in everyday language 
+for those whose other tongue is not English. 
 
  
 
