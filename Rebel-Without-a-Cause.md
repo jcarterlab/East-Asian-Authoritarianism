@@ -56,7 +56,7 @@ words.
 
 ![](Rebel-Without-a-Cause_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
-**2. Net sentiment by week.
+2. Net sentiment by week.
 
 ![](Rebel-Without-a-Cause_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
