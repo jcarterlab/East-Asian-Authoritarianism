@@ -36,22 +36,14 @@ Kong, Singapore, South Korea, Taiwan and Vietnam.
 The tweets are collected using Twitter location data from within a 50
 mile range of the respective country capitals every week from the 11th
 of May to present. They are then cleaned to exclude duplicates,
-eliminate stop words (those adding no sentiment value) and remove
-punctuation.
+eliminate stopwords and remove punctuation.
 
 **4) Sentiment Calculation:**
 
-<<<<<<< HEAD
-Net sentiment is calculated as the total share of positive words minus
-the total share of negative words. It is expressed as a percentage of
-all words depending on the third variable being faceted, taking into
-account differences in the number and length of tweets.
-=======
 Net sentiment is calculated as the total share of 
 positive minus negative words. It is expressed as a percentage of 
 all words by region and other relevant faceting variables, taking 
-into account differences in the number and length of tweets. 
->>>>>>> 8a8f6584af2817d75309a8e6e0866732258dc266
+into account differences in the number and length of tweets.
 
  
 
