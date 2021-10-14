@@ -72,11 +72,11 @@ calculate_week_percentages <- function(words) {
 # as a percentage of total words. 
 calculate_search_term_percentages <- function(words) {
   final_value <- words %>%
-    group_by(region, search, week) %>%
+    group_by(region, search) %>%
     mutate(total_words = sum(words),
            percent = (words / total_words)*100) %>%
-    select(region, search, sentiment, percent, week) %>%
-    group_by(region, search, sentiment, week) %>%
+    select(region, search, sentiment, percent) %>%
+    group_by(region, search, sentiment) %>%
     summarise(percent = sum(percent))
 }
 
