@@ -116,6 +116,9 @@ dataframes <- c("11-05-2021", "18-05-2021", "25-05-2021",
 # a combined list of raw data. 
 raw_data <- read_all_data(dataframes)
 
+# replace Sinic region name with Sino.  
+raw_data[raw_data=="Sinic"] <- "Sino"
+
 # creates an index of non-duplicated tweets.
 index <- which(!duplicated(raw_data[,1]))
 
@@ -145,7 +148,7 @@ search_term_percentages <- calculate_search_term_percentages(words)
 
 # calculates each sentiment as a percentage of 
 # total words based on country.  
-country_percentages <- calculate_country_percentages(words)  
+country_percentages <- calculate_country_percentages(words) 
 
 # my personal plot theme for data visualizations. 
 my_theme <- theme_economist_white(gray_bg = FALSE) +
@@ -182,7 +185,7 @@ my_theme <- theme_economist_white(gray_bg = FALSE) +
 
 ## **Summary**
 
-This project analyzes anti-authority sentiment between Anglosphere and Sinosphere countries on a corpus of over 900,000 tweets containing, or in response to those containing, anti-authority words. It finds that negative sentiment is significantly higher among Sinosphere Twitter users, potentially indicating a deep rooted cultural difference in attitudes to authority.
+This project analyzes a corpus of over 900,000 tweets containing, or in response to those containing, anti-authority words. It aims to test whether there are systematic differences in anti-authority sentiment between Anglosphere and Sinosphere Twitter users. It finds that negative sentiment is significantly higher among Sinosphere Twitter users, potentially indicating a deep rooted cultural difference in attitudes to authority.
 
 &nbsp;
 
@@ -202,7 +205,7 @@ The Anglosphere countries include Australia, Canada, New Zealand, South Africa, 
 
 **Data Collection:**
 
-The tweets are collected using Twitter location data from within a 50 mile range of the country capitals each week from the 11th of May to present. 
+The tweets are collected using Twitter location data from within a 50 mile range of the country capitals each week from the 11th of May to present. The are then filtered to exclude exact duplicates. 
 
 <br/>
  
@@ -230,8 +233,7 @@ regional_percentages %>%
   ylab("Net Sentiment") +
   xlab("") +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +
-  my_theme +
-  theme(axis.text.x=element_blank())
+  my_theme
 
 ```
 
@@ -279,10 +281,6 @@ search_term_percentages %>%
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
-# labels for the countries plot
-country_labels <- c("AU", "CA", "NZ", "SA", "UK", "US", 
-                    "CH", "HG", "SG", "SK", "TW", "VT")
-
 # selected countries 
 country_percentages %>%
   spread(sentiment, percent) %>%
@@ -296,11 +294,6 @@ country_percentages %>%
   filter(sentiment == "net") %>%
   ggplot(aes(x = country, y = percent, fill = region)) +
   geom_bar(stat = "identity", position = "dodge") +
-  geom_text(aes(label=country_labels),
-             position=position_stack(vjust=0.5), 
-             colour="white",
-             size = 2.25,
-             show.legend = FALSE) +
   ggtitle("Country") +
   ylab("Net Sentiment") +
   xlab("") +

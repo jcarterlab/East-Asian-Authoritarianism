@@ -5,12 +5,13 @@ Jack Carter
 
 ## **Summary**
 
-This project analyzes anti-authority sentiment between Anglosphere and
-Sinosphere countries on a corpus of over 900,000 tweets containing, or
-in response to those containing, anti-authority words. It finds that
-negative sentiment is significantly higher among Sinosphere Twitter
-users, potentially indicating a deep rooted cultural difference in
-attitudes to authority.
+This project analyzes a corpus of over 900,000 tweets containing, or in
+response to those containing, anti-authority words. It aims to test
+whether there are systematic differences in anti-authority sentiment
+between Anglosphere and Sinosphere Twitter users. It finds that negative
+sentiment is significantly higher among Sinosphere Twitter users,
+potentially indicating a deep rooted cultural difference in attitudes to
+authority.
 
  
 
@@ -36,7 +37,7 @@ Kong, Singapore, South Korea, Taiwan and Vietnam.
 
 The tweets are collected using Twitter location data from within a 50
 mile range of the country capitals each week from the 11th of May to
-present.
+present. The are then filtered to exclude exact duplicates.
 
 <br/>
 

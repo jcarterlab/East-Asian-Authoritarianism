@@ -105,6 +105,9 @@ dataframes <- c("11-05-2021", "18-05-2021", "25-05-2021",
 # a combined list of raw data. 
 raw_data <- read_all_data(dataframes)
 
+# replace Sinic region name with Sino.  
+raw_data[raw_data=="Sinic"] <- "Sino"
+
 # creates an index of non-duplicated tweets.
 index <- which(!duplicated(raw_data[,1]))
 

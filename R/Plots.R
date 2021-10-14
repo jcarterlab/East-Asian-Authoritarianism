@@ -50,8 +50,7 @@ regional_percentages %>%
   ylab("Net Sentiment") +
   xlab("") +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +
-  my_theme +
-  theme(axis.text.x=element_blank())
+  my_theme
 
 # week
 week_percentages %>%
@@ -81,10 +80,6 @@ search_term_percentages %>%
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +
   my_theme
 
-# labels for the countries plot
-country_labels <- c("AU", "CA", "CH", "HG", "NZ", "SG", 
-                    "SA", "KR", "TW", "UK", "US", "VT")
-
 # selected countries 
 country_percentages %>%
   spread(sentiment, percent) %>%
@@ -98,14 +93,9 @@ country_percentages %>%
   filter(sentiment == "net") %>%
   ggplot(aes(x = country, y = percent, fill = region)) +
   geom_bar(stat = "identity", position = "dodge") +
-  geom_text(aes(label=country_labels),
-             position=position_stack(vjust=0.5), 
-             colour="white",
-             size = 2.25,
-             show.legend = FALSE) +
   ggtitle("Country") +
   ylab("Net Sentiment") +
-  xlab("Countries") +
+  xlab("") +
   ylim(-6.5, 0) +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +
   my_theme +
