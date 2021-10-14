@@ -13,7 +13,7 @@ that negative sentiment is significantly higher among Sinosphere users,
 potentially indicating a deep rooted cultural difference in attitudes to
 authority. These results could also however be due to other factors, 
 such as the more limited use of anti-authority words in everyday language 
-for those whose other tongue is not English. 
+for those whose mother tongue is not English. 
 
  
 
@@ -38,19 +38,19 @@ Kong, Singapore, South Korea, Taiwan and Vietnam.
 **3) Data Collection:**
 
 The tweets are collected using Twitter location data from within a 50
-mile range of the country capitals each week from the 11th of May to
-present. They are filtered to exclude duplicates before being cleaned
-to eliminate stop words (those adding no sentiment value) and punctuation. 
+mile range of the respective country capitals every week from the 11th of May to
+present. They are then cleaned to exclude duplicates, eliminate stop words (those 
+adding no sentiment value) and remove punctuation. 
 
 <br/>
 
 **4) Sentiment Calculation:**
 
-Net sentiment is then calculated as the total share of 
+Net sentiment is calculated as the total share of 
 positive words minus the total share of negative words. 
-It is expressed in each visualization as a percentage of 
-all words, taking into account differences in the number 
-of and length of tweets. 
+It is expressed as a percentage of all words depending 
+on the third variable being faceted, taking into account 
+differences in the number and length of tweets. 
 
  
 
