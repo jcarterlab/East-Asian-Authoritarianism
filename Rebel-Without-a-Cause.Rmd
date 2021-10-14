@@ -285,11 +285,7 @@ adding no sentiment value) and remove punctuation.
  
 **4) Sentiment Calculation:**
 
-Net sentiment is calculated as the total share of 
-positive words minus the total share of negative words. 
-It is expressed as a percentage of all words depending 
-on the third variable being faceted, taking into account 
-differences in the number and length of tweets. 
+Net sentiment is calculated as the total share of positive minus negative words. It is expressed as a percentage of all words by region and other relevant faceting variables, taking into account differences in the number and length of tweets.
 
 &nbsp;
 
