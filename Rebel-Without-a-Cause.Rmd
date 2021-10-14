@@ -278,10 +278,7 @@ The Anglosphere countries include Australia, Canada, New Zealand, South Africa, 
 
 **3) Data Collection:**
 
-The tweets are collected using Twitter location data from within a 50
-mile range of the respective country capitals every week from the 11th of May to
-present. They are then cleaned to exclude duplicates, eliminate stop words (those 
-adding no sentiment value) and remove punctuation. 
+The tweets are collected using Twitter location data from within a 50 mile range of the respective country capitals every week from the 11th of May to present. They are then cleaned to exclude duplicates, eliminate stopwords and remove punctuation.
  
 **4) Sentiment Calculation:**
 
