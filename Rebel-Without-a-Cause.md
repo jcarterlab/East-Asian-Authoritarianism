@@ -13,7 +13,8 @@ users. It finds that negative sentiment is significantly higher among
 Sinosphere users, potentially indicating a deep rooted cultural
 difference in attitudes to authority. These results could also however
 be due to other factors, such as the more limited use of anti-authority
-words in everyday language for those whose mother tongue is not English.
+words in everyday, non-emotive langauge for those whose mother tongue is 
+not English.
 
  
 
