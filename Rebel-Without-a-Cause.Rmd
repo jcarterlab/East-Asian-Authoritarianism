@@ -26,7 +26,7 @@ library(jsonlite)
 read_data <- function(file_name) {
   file <- read_csv(
     here("data", file_name)
-    )
+  )
   return(file[,c(1,2,4,5,6,7,9)])
 }
 
@@ -37,7 +37,7 @@ read_all_data <- function(dataframes) {
   for(i in 1:length(dataframes)) {
     data[[i]] <- read_data(
       file_name = paste0(dataframes[i], ".csv")
-      )
+    )
   }
   return(as_tibble(rbind_pages(data)))
 }
@@ -49,30 +49,30 @@ join_words_with_sentiment <- function(raw_tweets) {
   nrc_sentiment <- get_sentiments("nrc") %>% 
     select(
       word, sentiment
-      )
+    )
   words <- raw_tweets %>%
     unnest_tokens(
       word, text
-      ) %>%
+    ) %>%
     left_join(
       nrc_sentiment, by = "word"
-      ) %>%
+    ) %>%
     mutate(
       sentiment = replace_na(sentiment, replace = "none")
-      ) %>%
+    ) %>%
     filter(
       !word %in% stop_words$word
-      ) %>%
+    ) %>%
     group_by(
       search, region, country, sentiment, week
-      ) %>%
+    ) %>%
     count(
       sentiment
-      ) %>%
+    ) %>%
     rename(
       words = "n"
-      )
-    return(words)
+    )
+  return(words)
 }
 
 # calculates the sentiment for each region
@@ -81,19 +81,19 @@ calculate_regional_percentages <- function(words) {
   final_value <- words %>%
     group_by(
       region
-      ) %>%
+    ) %>%
     mutate(
       total_words = sum(words),
-           percent = (words / total_words)*100
-      ) %>%
+      percent = (words / total_words)*100
+    ) %>%
     select(
       region, sentiment, percent
-      ) %>%
+    ) %>%
     group_by(
       region, sentiment
-      ) %>%
+    ) %>%
     summarise(percent = sum(percent)
-              )
+    )
   return(final_value)
 }
 
@@ -103,20 +103,20 @@ calculate_week_percentages <- function(words) {
   final_value <- words %>%
     group_by(
       region, week
-      ) %>%
+    ) %>%
     mutate(
       total_words = sum(words),
-           percent = (words / total_words)*100
-      ) %>%
+      percent = (words / total_words)*100
+    ) %>%
     select(
       region, sentiment, percent, week
-      ) %>%
+    ) %>%
     group_by(
       region, sentiment, week
-      ) %>%
+    ) %>%
     summarise(
       percent = sum(percent)
-      )
+    )
   return(final_value)
 }
 
@@ -126,20 +126,20 @@ calculate_search_term_percentages <- function(words) {
   final_value <- words %>%
     group_by(
       region, search
-      ) %>%
+    ) %>%
     mutate(
       total_words = sum(words),
-           percent = (words / total_words)*100
-      ) %>%
+      percent = (words / total_words)*100
+    ) %>%
     select(
       region, search, sentiment, percent
-      ) %>%
+    ) %>%
     group_by(
       region, search, sentiment
-      ) %>%
+    ) %>%
     summarise(
       percent = sum(percent)
-      )
+    )
   return(final_value)
 }
 
@@ -149,20 +149,20 @@ calculate_country_percentages <- function(words) {
   final_value <- words %>%
     group_by(
       country, region
-      ) %>%
+    ) %>%
     mutate(
       total_words = sum(words),
-           percent = (words / total_words)*100
-      ) %>%
+      percent = (words / total_words)*100
+    ) %>%
     select(
       region, country, sentiment, percent
-      ) %>%
+    ) %>%
     group_by(
       region, country, sentiment
-      ) %>%
+    ) %>%
     summarise(
       percent = sum(percent)
-      )
+    )
   return(final_value)
 }
 
@@ -174,42 +174,44 @@ dataframes <- c("11-05-2021", "18-05-2021", "25-05-2021",
                 "03-08-2021", "10-08-2021", "17-08-2021", 
                 "24-08-2021", "31-08-2021", "07-09-2021", 
                 "14-09-2021", "21-09-2021", "28-09-2021", 
-                "05-10-2021", "12-10-2021", "19-10-2021")
+                "05-10-2021", "12-10-2021", "19-10-2021",
+                "26-10-2021")
 
 # a combined list of raw data. 
 raw_data <- read_all_data(
   dataframes
-  )
+)
 
-# replace Sinic region name with Sino.  
-raw_data[raw_data=="Sinic"] <- "Sino"
+# rename regions.   
+raw_data[raw_data=="Sinic"] <- "Sinosphere"
+raw_data[raw_data=="Anglo"] <- "Anglosphere"
 
 # creates an index of non-duplicated tweets.
 index <- which(
   !duplicated(raw_data[,1])
-  )
+)
 
 # counts the frequency of different NRC sentiments.  
 words <- join_words_with_sentiment(
   raw_data[index,]
-  ) %>%
+) %>%
   spread(
     sentiment, words
-    ) %>%
+  ) %>%
   rename(
     "Anticipation" = "anticipation", 
-         "Joy" = "joy", 
-         "Trust" = "trust",
-         "Anger" = "anger", 
-         "Disgust" = "disgust", 
-         "Fear" = "fear"
-    ) %>%
+    "Joy" = "joy", 
+    "Trust" = "trust",
+    "Anger" = "anger", 
+    "Disgust" = "disgust", 
+    "Fear" = "fear"
+  ) %>%
   gather(
     sentiment, words, -c(1:4)
-    ) %>%
+  ) %>%
   mutate(
     words = replace_na(words, replace = 0)
-    ) 
+  ) 
 
 # Calculates each sentiment as a percentage of 
 # total words based on region. 
@@ -225,15 +227,15 @@ search_term_percentages <- calculate_search_term_percentages(words)
 
 # calculates each sentiment as a percentage of 
 # total words based on country.  
-country_percentages <- calculate_country_percentages(words) 
+country_percentages <- calculate_country_percentages(words)
 
-# my personal plot theme for data visualizations. 
+# my theme
 my_theme <- theme_economist_white(gray_bg = FALSE) +
   theme(plot.title = element_text(hjust = 0.5, 
                                   vjust = 12, 
-                                  size = 9, 
+                                  size = 10, 
                                   color = "#474747"),
-        plot.margin = unit(c(1.5, 1, 1.5, 1), "cm"),
+        plot.margin = unit(c(1, 1, 1, 1), "cm"),
         axis.text = element_text(size = 9, 
                                  color = "gray30"),
         axis.text.x=element_text(vjust = -2.5),
@@ -268,50 +270,36 @@ words. It aims to test whether there are systematic differences in
 anti-authority sentiment between Anglosphere and Sinosphere Twitter
 users. It finds that negative sentiment is significantly higher among
 Sinosphere users, potentially indicating a deep rooted cultural
-difference in attitudes to authority. These results could also however
-be due to other factors, such as the more limited use of anti-authority
-words in everyday, non-emotive langauge for those whose mother tongue is 
-not English.
+difference in attitudes to authority. These findings could also
+be a result of other factors though, including a negative reaction Myanmar's 2021 military coup and China's growing regional assertiveness.  
 
 &nbsp;
 
 ## **Method**
 
-**1) Terms:**
+**1) Search Parameters:**
 
-The tweets contain or are in response to those containing one or more of nine anti-authority terms, including defy, disobey, dissent, oppose, protest, rebel, resist, revolt and riot.
-
-<br/>
-
-**2) Countries:**
-
-The Anglosphere countries include Australia, Canada, New Zealand, South Africa, the UK and the US. The Sinosphere countries include China, Hong Kong, Singapore, South Korea, Taiwan and Vietnam. 
+The anti-authority terms searched for include defy, disobey, dissent, oppose, protest, rebel, resist, revolt and riot, while the countries targeted include Australia, Canada, New Zealand, South Africa, the UK, the US, China, Hong Kong, Singapore, South Korea, Taiwan and Vietnam. 
 
 <br/>
 
-**3) Data Collection:**
+**2) Data Collection:**
 
-The tweets are collected using Twitter location data from within a 50 mile range of the respective country capitals every week from the 11th of May to present. They are then cleaned to exclude duplicates, eliminate stopwords and remove punctuation.
+The tweets are collected using Twitter location data from within a 50 mile range of the respective country capitals every week from the 11th of May to present. They are then cleaned to exclude duplicates, eliminate stopwords (common words with little sentiment value) and remove punctuation.
 
 <br/>
  
-**4) Net Sentiment:**
+**3) Net Sentiment:**
 
-Net sentiment is calculated as the total share of positive minus negative words. It is then expressed as a percentage of all words by relevant faceting variables, taking into account differences in the volume of and number of words in tweets.
+Net sentiment is calculated as the total share of positive minus negative words. It is expressed as a percentage of all words according to the relevant faceting variables (region, country etc.). This takes into account differences in the number of tweets. 
 
 &nbsp;
 
 ## Results
 
-### **1) Sphere:**
-
-<br/>
-
-**Tweets (000s)**
+### **1) Region:**
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
-
-knitr::kable(t(round(table(raw_data[index,]$region) / 10^3, 0)))
 
 # Region
 regional_percentages %>%
@@ -334,10 +322,10 @@ regional_percentages %>%
     stat = "identity", position = "dodge"
     ) +
   ggtitle(
-    "Sphere"
+    ""
     ) +
   ylab(
-    "Net Sentiment"
+    "Net Sentiment (%)"
     ) +
   xlab("") +
   scale_fill_manual(
@@ -347,59 +335,19 @@ regional_percentages %>%
 
 ```
 
-### **2) Term:**
-
-<br/>
-
-**Tweets (000s)**
+**Region Tweets (000s)**
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
-knitr::kable(t(round(table(raw_data[index,]$search) / 10^3, 0)))
-
-# search terms
-search_term_percentages %>%
-  spread(
-    sentiment, percent
-    ) %>%
-  mutate(
-    net = positive - negative
-    ) %>%
-  gather(
-    sentiment, percent, -c(1:2)
-    ) %>%
-  filter(
-    sentiment == "net"
-    ) %>%
-  ggplot(
-    aes(x = search, y = percent, fill = region)
-    ) +
-  geom_bar(
-    stat = "identity", position = "dodge"
-    ) +
-  ggtitle(
-    "Term"
-    ) +
-  ylab(
-    "Net Sentiment"
-    ) +
-  xlab("") +
-  scale_fill_manual(
-    values = c("#0072B2", "#D55E00")
-    ) +
-  my_theme
+knitr::kable(t(round(table(raw_data[index,]$region) / 10^3, 0)))
 
 ```
 
-### **3) Country:**
-
 <br/>
 
-**Tweets (000s)**
+### **2) Country:**
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
-
-knitr::kable(t(round(table(raw_data[index,]$country) / 10^3, 0)))
 
 # selected countries 
 country_percentages %>%
@@ -427,10 +375,10 @@ country_percentages %>%
     stat = "identity", position = "dodge"
     ) +
   ggtitle(
-    "Country"
+    ""
     ) +
   ylab(
-    "Net Sentiment"
+    "Net Sentiment (%)"
     ) +
   xlab("") +
   scale_fill_manual(
@@ -441,18 +389,72 @@ country_percentages %>%
     guide = guide_axis(n.dodge=2)
     )
 
-
 ```
 
-### **4) Week:**
-
-<br/>
-
-**Tweets (000s)**
+**Country Tweets (000s)**
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
-knitr::kable(t(round(table(raw_data[index,]$week) / 10^3, 0)))
+knitr::kable(t(round(table(raw_data[index,]$country) / 10^3, 0)))
+
+```
+
+<br/>
+
+### **3) Search Term:**
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
+
+# search terms
+search_term_percentages %>%
+  spread(
+    sentiment, percent
+    ) %>%
+  mutate(
+    net = positive - negative
+    ) %>%
+  gather(
+    sentiment, percent, -c(1:2)
+    ) %>%
+  filter(
+    sentiment == "net"
+    ) %>%
+  ggplot(
+    aes(x = search, y = percent, fill = region)
+    ) +
+  geom_bar(
+    stat = "identity", position = "dodge"
+    ) +
+  ggtitle(
+    ""
+    ) +
+  ylab(
+    "Net Sentiment (%)"
+    ) +
+  xlab("") +
+  scale_fill_manual(
+    values = c("#0072B2", "#D55E00")
+    ) +
+  my_theme +
+  scale_x_discrete(
+    guide = guide_axis(n.dodge=2)
+    )
+
+```
+
+**Search Term Tweets (000s)**
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
+
+knitr::kable(t(round(table(raw_data[index,]$search) / 10^3, 0)))
+
+```
+
+<br/>
+
+### **4) Week Collected:**
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
 # week
 week_percentages %>%
@@ -475,10 +477,10 @@ week_percentages %>%
     stat = "identity", position = "dodge"
     ) +
   ggtitle(
-    "Week"
+    ""
     ) +
   ylab(
-    "Net Sentiment"
+    "Net Sentiment (%)"
     ) +
   xlab("") +
   scale_fill_manual(
@@ -487,6 +489,16 @@ week_percentages %>%
   my_theme
 
 ```
+
+**Week Collected Tweets (000s)**
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
+
+knitr::kable(t(round(table(raw_data[index,]$week) / 10^3, 0)))
+
+```
+
+<br/>
 
 &nbsp;
 

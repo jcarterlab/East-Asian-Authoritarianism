@@ -13,7 +13,6 @@ library(jsonlite)
 # read in spreadsheet data without including duplicate 
 # tweets  from the previous week's search results.  
 read_data <- function(file_name) {
-  
   file <- read_csv(
     here("data", file_name)
   )
@@ -23,7 +22,6 @@ read_data <- function(file_name) {
 # performs the read_data function for all of the data frames
 # and joins them into a single tibble data frame. 
 read_all_data <- function(dataframes) {
-  
   data <- list()
   for(i in 1:length(dataframes)) {
     data[[i]] <- read_data(
@@ -37,10 +35,10 @@ read_all_data <- function(dataframes) {
 # inner joins them with the NRC library 
 # and counts the frequency of each sentiment. 
 join_words_with_sentiment <- function(raw_tweets) {
-  
   nrc_sentiment <- get_sentiments("nrc") %>% 
-    select(word, sentiment)
-  
+    select(
+      word, sentiment
+    )
   words <- raw_tweets %>%
     unnest_tokens(
       word, text
@@ -69,7 +67,6 @@ join_words_with_sentiment <- function(raw_tweets) {
 # calculates the sentiment for each region
 # as a percentage of total words. 
 calculate_regional_percentages <- function(words) {
-  
   final_value <- words %>%
     group_by(
       region
@@ -92,7 +89,6 @@ calculate_regional_percentages <- function(words) {
 # calculates the sentiment for each week
 # as a percentage of total words. 
 calculate_week_percentages <- function(words) {
-  
   final_value <- words %>%
     group_by(
       region, week
@@ -116,7 +112,6 @@ calculate_week_percentages <- function(words) {
 # calculates the sentiment for each search term
 # as a percentage of total words. 
 calculate_search_term_percentages <- function(words) {
-  
   final_value <- words %>%
     group_by(
       region, search
@@ -140,7 +135,6 @@ calculate_search_term_percentages <- function(words) {
 # calculates the sentiment for each country
 # as a percentage of total words. 
 calculate_country_percentages <- function(words) {
-  
   final_value <- words %>%
     group_by(
       country, region
@@ -169,28 +163,44 @@ dataframes <- c("11-05-2021", "18-05-2021", "25-05-2021",
                 "03-08-2021", "10-08-2021", "17-08-2021", 
                 "24-08-2021", "31-08-2021", "07-09-2021", 
                 "14-09-2021", "21-09-2021", "28-09-2021", 
-                "05-10-2021", "12-10-2021")
+                "05-10-2021", "12-10-2021", "19-10-2021",
+                "26-10-2021")
 
 # a combined list of raw data. 
-raw_data <- read_all_data(dataframes)
+raw_data <- read_all_data(
+  dataframes
+)
 
-# replace Sinic region name with Sino.  
-raw_data[raw_data=="Sinic"] <- "Sino"
+# rename regions.   
+raw_data[raw_data=="Sinic"] <- "Sinosphere"
+raw_data[raw_data=="Anglo"] <- "Anglosphere"
 
 # creates an index of non-duplicated tweets.
-index <- which(!duplicated(raw_data[,1]))
+index <- which(
+  !duplicated(raw_data[,1])
+)
 
 # counts the frequency of different NRC sentiments.  
-words <- join_words_with_sentiment(raw_data[index,]) %>%
-  spread(sentiment, words) %>%
-  rename("Anticipation" = "anticipation", 
-         "Joy" = "joy", 
-         "Trust" = "trust",
-         "Anger" = "anger", 
-         "Disgust" = "disgust", 
-         "Fear" = "fear") %>%
-  gather(sentiment, words, -c(1:4)) %>%
-  mutate(words = replace_na(words, replace = 0)) 
+words <- join_words_with_sentiment(
+  raw_data[index,]
+) %>%
+  spread(
+    sentiment, words
+  ) %>%
+  rename(
+    "Anticipation" = "anticipation", 
+    "Joy" = "joy", 
+    "Trust" = "trust",
+    "Anger" = "anger", 
+    "Disgust" = "disgust", 
+    "Fear" = "fear"
+  ) %>%
+  gather(
+    sentiment, words, -c(1:4)
+  ) %>%
+  mutate(
+    words = replace_na(words, replace = 0)
+  ) 
 
 # Calculates each sentiment as a percentage of 
 # total words based on region. 
@@ -207,3 +217,4 @@ search_term_percentages <- calculate_search_term_percentages(words)
 # calculates each sentiment as a percentage of 
 # total words based on country.  
 country_percentages <- calculate_country_percentages(words) 
+

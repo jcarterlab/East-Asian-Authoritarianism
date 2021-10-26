@@ -9,8 +9,8 @@ library(rtweet)
 library(jsonlite)
 
 # query information.
-date_collected <- "27-07-2021"
-week <- 12
+date_collected <- "26-10-2021"
+week <- 25
 region <- c("Sinic", "Anglo")
 
 search_term <- c("defy", "disobey", "dissent", 
@@ -108,6 +108,9 @@ tidy_table <- china %>%
   rbind(new_zealand) %>%
   rbind(south_africa) %>%
   distinct() 
+
+# view the distribution across countries. 
+table(tidy_table$country)
 
 # saves the results to a csv file in the current
 # working directory named "change_this_name.csv". 

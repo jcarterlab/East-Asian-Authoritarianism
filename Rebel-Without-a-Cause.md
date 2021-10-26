@@ -11,107 +11,49 @@ to test whether there are systematic differences in anti-authority
 sentiment between Anglosphere and Sinosphere Twitter users. It finds
 that negative sentiment is significantly higher among Sinosphere users,
 potentially indicating a deep rooted cultural difference in attitudes to
-authority. These results could also however be due to other factors,
-such as the more limited use of anti-authority words in everyday,
-non-emotive langauge for those whose mother tongue is not English.
+authority. These findings could also be a result of other factors
+though, including a negative reaction Myanmar’s 2021 military coup and
+China’s growing regional assertiveness.
 
  
 
 ## **Method**
 
-**1) Terms:**
+**1) Search Parameters:**
 
-The tweets contain or are in response to those containing one or more of
-nine anti-authority terms, including defy, disobey, dissent, oppose,
-protest, rebel, resist, revolt and riot.
-
-<br/>
-
-**2) Countries:**
-
-The Anglosphere countries include Australia, Canada, New Zealand, South
-Africa, the UK and the US. The Sinosphere countries include China, Hong
-Kong, Singapore, South Korea, Taiwan and Vietnam.
+The anti-authority terms searched for include defy, disobey, dissent,
+oppose, protest, rebel, resist, revolt and riot, while the countries
+targeted include Australia, Canada, New Zealand, South Africa, the UK,
+the US, China, Hong Kong, Singapore, South Korea, Taiwan and Vietnam.
 
 <br/>
 
-**3) Data Collection:**
+**2) Data Collection:**
 
 The tweets are collected using Twitter location data from within a 50
 mile range of the respective country capitals every week from the 11th
 of May to present. They are then cleaned to exclude duplicates,
-eliminate stopwords and remove punctuation.
+eliminate stopwords (common words with little sentiment value) and
+remove punctuation.
 
 <br/>
 
-**4) Net Sentiment:**
+**3) Net Sentiment:**
 
 Net sentiment is calculated as the total share of positive minus
-negative words. It is then expressed as a percentage of all words by
-relevant faceting variables, taking into account differences in the
-volume of and number of words in tweets.
+negative words. It is expressed as a percentage of all words according
+to the relevant faceting variables (region, country etc.). This takes
+into account differences in the number of tweets.
 
  
 
 ## Results
 
-### **1) Sphere:**
-
-<br/>
-
-**Tweets (000s)**
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:right;">
-
-Anglo
-
-</th>
-
-<th style="text-align:right;">
-
-Sino
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:right;">
-
-378
-
-</td>
-
-<td style="text-align:right;">
-
-545
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
+### **1) Region:**
 
 ![](Rebel-Without-a-Cause_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
-### **2) Term:**
-
-<br/>
-
-**Tweets (000s)**
+**Region Tweets (000s)**
 
 <table>
 
@@ -121,55 +63,13 @@ Sino
 
 <th style="text-align:right;">
 
-Defy
+Anglosphere
 
 </th>
 
 <th style="text-align:right;">
 
-Disobey
-
-</th>
-
-<th style="text-align:right;">
-
-Dissent
-
-</th>
-
-<th style="text-align:right;">
-
-Oppose
-
-</th>
-
-<th style="text-align:right;">
-
-Protest
-
-</th>
-
-<th style="text-align:right;">
-
-Rebel
-
-</th>
-
-<th style="text-align:right;">
-
-Resist
-
-</th>
-
-<th style="text-align:right;">
-
-Revolt
-
-</th>
-
-<th style="text-align:right;">
-
-Riot
+Sinosphere
 
 </th>
 
@@ -183,55 +83,13 @@ Riot
 
 <td style="text-align:right;">
 
-36
+389
 
 </td>
 
 <td style="text-align:right;">
 
-3
-
-</td>
-
-<td style="text-align:right;">
-
-10
-
-</td>
-
-<td style="text-align:right;">
-
-70
-
-</td>
-
-<td style="text-align:right;">
-
-624
-
-</td>
-
-<td style="text-align:right;">
-
-39
-
-</td>
-
-<td style="text-align:right;">
-
-67
-
-</td>
-
-<td style="text-align:right;">
-
-15
-
-</td>
-
-<td style="text-align:right;">
-
-59
+548
 
 </td>
 
@@ -241,13 +99,13 @@ Riot
 
 </table>
 
-![](Rebel-Without-a-Cause_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
-
-### **3) Country:**
-
 <br/>
 
-**Tweets (000s)**
+### **2) Country:**
+
+![](Rebel-Without-a-Cause_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+
+**Country Tweets (000s)**
 
 <table>
 
@@ -343,7 +201,7 @@ Vietnam
 
 <td style="text-align:right;">
 
-8
+9
 
 </td>
 
@@ -361,19 +219,19 @@ Vietnam
 
 <td style="text-align:right;">
 
-2
+3
 
 </td>
 
 <td style="text-align:right;">
 
-489
+491
 
 </td>
 
 <td style="text-align:right;">
 
-30
+31
 
 </td>
 
@@ -391,13 +249,13 @@ Vietnam
 
 <td style="text-align:right;">
 
-173
+178
 
 </td>
 
 <td style="text-align:right;">
 
-162
+167
 
 </td>
 
@@ -413,13 +271,149 @@ Vietnam
 
 </table>
 
-![](Rebel-Without-a-Cause_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+<br/>
 
-### **4) Week:**
+### **3) Search Term:**
+
+![](Rebel-Without-a-Cause_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+**Search Term Tweets (000s)**
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:right;">
+
+Defy
+
+</th>
+
+<th style="text-align:right;">
+
+Disobey
+
+</th>
+
+<th style="text-align:right;">
+
+Dissent
+
+</th>
+
+<th style="text-align:right;">
+
+Oppose
+
+</th>
+
+<th style="text-align:right;">
+
+Protest
+
+</th>
+
+<th style="text-align:right;">
+
+Rebel
+
+</th>
+
+<th style="text-align:right;">
+
+Resist
+
+</th>
+
+<th style="text-align:right;">
+
+Revolt
+
+</th>
+
+<th style="text-align:right;">
+
+Riot
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:right;">
+
+36
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+<td style="text-align:right;">
+
+72
+
+</td>
+
+<td style="text-align:right;">
+
+630
+
+</td>
+
+<td style="text-align:right;">
+
+40
+
+</td>
+
+<td style="text-align:right;">
+
+69
+
+</td>
+
+<td style="text-align:right;">
+
+16
+
+</td>
+
+<td style="text-align:right;">
+
+61
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
 
 <br/>
 
-**Tweets (000s)**
+### **4) Week Collected:**
+
+![](Rebel-Without-a-Cause_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+**Week Collected Tweets (000s)**
 
 <table>
 
@@ -568,6 +562,12 @@ Vietnam
 <th style="text-align:right;">
 
 24
+
+</th>
+
+<th style="text-align:right;">
+
+25
 
 </th>
 
@@ -723,13 +723,19 @@ Vietnam
 
 </td>
 
+<td style="text-align:right;">
+
+14
+
+</td>
+
 </tr>
 
 </tbody>
 
 </table>
 
-![](Rebel-Without-a-Cause_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+<br/>
 
  
 

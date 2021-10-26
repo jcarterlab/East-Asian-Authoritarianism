@@ -5,6 +5,8 @@ library(ggplot2)
 library(ggthemes)
 library(here)
 library(ggrepel)
+library(knitr)
+library(kableExtra)
 
 # my theme
 my_theme <- theme_economist_white(gray_bg = FALSE) +
@@ -37,68 +39,144 @@ my_theme <- theme_economist_white(gray_bg = FALSE) +
                                   color = "#474747"),
         panel.spacing = unit(2, "lines"))
 
-
 # Region
 regional_percentages %>%
-  spread(sentiment, percent) %>%
-  mutate(net = positive - negative) %>%
-  gather(sentiment, percent, -1) %>%
-  filter(sentiment == "net") %>%
-  ggplot(aes(x = region, y = percent, fill = region)) +
-  geom_bar(stat = "identity", position = "dodge") +
-  ggtitle("Region") +
-  ylab("Net Sentiment") +
+  spread(
+    sentiment, percent
+  ) %>%
+  mutate(
+    net = positive - negative
+  ) %>%
+  gather(
+    sentiment, percent, -1
+  ) %>%
+  filter(
+    sentiment == "net"
+  ) %>%
+  ggplot(
+    aes(x = region, y = percent, fill = region)
+  ) +
+  geom_bar(
+    stat = "identity", position = "dodge"
+  ) +
+  ggtitle(
+    "Region"
+  ) +
+  ylab(
+    "Net Sentiment"
+  ) +
   xlab("") +
-  scale_fill_manual(values = c("#0072B2", "#D55E00")) +
+  scale_fill_manual(
+    values = c("#0072B2", "#D55E00")
+  ) +
   my_theme
 
 # week
 week_percentages %>%
-  spread(sentiment, percent) %>%
-  mutate(net = positive - negative) %>%
-  gather(sentiment, percent, -c(1:2)) %>%
-  filter(sentiment == "net") %>%
-  ggplot(aes(x = week, y = percent, fill = region)) +
-  geom_bar(stat = "identity", position = "dodge") +
-  ggtitle("Week") +
-  ylab("Net Sentiment") +
+  spread(
+    sentiment, percent
+  ) %>%
+  mutate(
+    net = positive - negative
+  ) %>%
+  gather(
+    sentiment, percent, -c(1:2)
+  ) %>%
+  filter(
+    sentiment == "net"
+  ) %>%
+  ggplot(
+    aes(x = week, y = percent, fill = region)
+  ) +
+  geom_bar(
+    stat = "identity", position = "dodge"
+  ) +
+  ggtitle(
+    "Week"
+  ) +
+  ylab(
+    "Net Sentiment"
+  ) +
   xlab("") +
-  scale_fill_manual(values = c("#0072B2", "#D55E00")) +
+  scale_fill_manual(
+    values = c("#0072B2", "#D55E00")
+  ) +
   my_theme
 
 # search terms
 search_term_percentages %>%
-  spread(sentiment, percent) %>%
-  mutate(net = positive - negative) %>%
-  gather(sentiment, percent, -c(1:2)) %>%
-  filter(sentiment == "net") %>%
-  ggplot(aes(x = search, y = percent, fill = region)) +
-  geom_bar(stat = "identity", position = "dodge") +
-  ggtitle("Search Term") +
-  ylab("% of Total Words") +
+  spread(
+    sentiment, percent
+  ) %>%
+  mutate(
+    net = positive - negative
+  ) %>%
+  gather(
+    sentiment, percent, -c(1:2)
+  ) %>%
+  filter(
+    sentiment == "net"
+  ) %>%
+  ggplot(
+    aes(x = search, y = percent, fill = region)
+  ) +
+  geom_bar(
+    stat = "identity", position = "dodge"
+  ) +
+  ggtitle(
+    "Search Term"
+  ) +
+  ylab(
+    "Net Sentiment"
+  ) +
   xlab("") +
-  scale_fill_manual(values = c("#0072B2", "#D55E00")) +
-  my_theme
+  scale_fill_manual(
+    values = c("#0072B2", "#D55E00")
+  ) +
+  my_theme +
+  scale_x_discrete(
+    guide = guide_axis(n.dodge=2)
+  )
 
 # selected countries 
 country_percentages %>%
-  spread(sentiment, percent) %>%
-  mutate(net = positive - negative,
-         country = factor(country, 
-                          levels=c("Australia", "Canada", "New Zealand", 
-                                   "South Africa", "UK", "US", 
-                                   "China",  "Hong Kong", "Singapore", 
-                                   "South Korea", "Taiwan", "Vietnam"))) %>%
-  gather(sentiment, percent, -c(1:3)) %>%
-  filter(sentiment == "net") %>%
-  ggplot(aes(x = country, y = percent, fill = region)) +
-  geom_bar(stat = "identity", position = "dodge") +
-  ggtitle("Country") +
-  ylab("Net Sentiment") +
+  spread(
+    sentiment, percent
+  ) %>%
+  mutate(
+    net = positive - negative,
+    country = factor(country, 
+                     levels=c("Australia", "Canada", "New Zealand", 
+                              "South Africa", "UK", "US", 
+                              "China",  "Hong Kong", "Singapore", 
+                              "South Korea", "Taiwan", "Vietnam"))
+  ) %>%
+  gather(
+    sentiment, percent, -c(1:3)
+  ) %>%
+  filter(
+    sentiment == "net"
+  ) %>%
+  ggplot(
+    aes(x = country, y = percent, fill = region)
+  ) +
+  geom_bar(
+    stat = "identity", position = "dodge"
+  ) +
+  ggtitle(
+    "Country"
+  ) +
+  ylab(
+    "Net Sentiment"
+  ) +
   xlab("") +
-  ylim(-6.5, 0) +
-  scale_fill_manual(values = c("#0072B2", "#D55E00")) +
+  scale_fill_manual(
+    values = c("#0072B2", "#D55E00")
+  ) +
   my_theme +
-  scale_x_discrete(guide = guide_axis(n.dodge=2))
+  scale_x_discrete(
+    guide = guide_axis(n.dodge=2)
+  )
+
 
 
