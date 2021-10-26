@@ -5,15 +5,15 @@ Jack Carter
 
 ## **Summary**
 
-This project analyzes a corpus of over 900,000 tweets containing, or in
-response to those containing, a range of anti-authority words. It aims
-to test whether there are systematic differences in anti-authority
+This project analyzes a corpus of over 900,000 tweets containing a range
+of different anti-authority words, including retweets and replies. It
+aims to test whether there are systematic differences in anti-authority
 sentiment between Anglosphere and Sinosphere Twitter users. It finds
 that negative sentiment is significantly higher among Sinosphere users,
 potentially indicating a deep rooted cultural difference in attitudes to
 authority. These findings could also be a result of other factors
 though, including a negative reaction Myanmar’s 2021 military coup and
-China’s growing regional assertiveness.
+dissatisfaction at China’s growing regional assertiveness.
 
  
 
