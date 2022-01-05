@@ -175,7 +175,9 @@ dataframes <- c("11-05-2021", "18-05-2021", "25-05-2021",
                 "24-08-2021", "31-08-2021", "07-09-2021", 
                 "14-09-2021", "21-09-2021", "28-09-2021", 
                 "05-10-2021", "12-10-2021", "19-10-2021",
-                "26-10-2021")
+                "26-10-2021", "02-11-2021", "09-11-2021",
+                "16-11-2021", "23-11-2021", "30-11-2021",
+                "07-12-2021", "14-12-2021", "22-12-2021")
 
 # a combined list of raw data. 
 raw_data <- read_all_data(
@@ -264,7 +266,7 @@ my_theme <- theme_economist_white(gray_bg = FALSE) +
 
 ## **Summary**
 
-This project analyzes a corpus of over 900,000 tweets containing a range of different anti-authority words, including retweets and replies. It aims to test whether there are systematic differences in anti-authority sentiment between Anglosphere and Sinosphere Twitter users. It finds that negative sentiment is significantly higher among Sinosphere users, potentially indicating a deep rooted cultural difference in attitudes to authority. These findings could also be a result of other factors though, including a negative reaction Myanmar's 2021 military coup and dissatisfaction at China's growing regional assertiveness.  
+This project analyzes a corpus of over 1 million tweets containing or in response to Tweets containing a range of anti-authority words between Anglosphere and Sinosphere Twitter users. It finds negative sentiment is significantly higher among Sinosphere users, potentially indicating a deep rooted cultural difference in attitudes to authority. 
 
 &nbsp;
 
@@ -278,13 +280,13 @@ The anti-authority terms searched for include defy, disobey, dissent, oppose, pr
 
 **2) Data Collection:**
 
-The tweets are collected using Twitter location data from within a 50 mile range of the respective country capitals every week from the 11th of May to present. They are then cleaned to exclude duplicates, eliminate stopwords (common words with little sentiment value) and remove punctuation.
+The tweets are collected using Twitter location data from within a 50 mile range of the respective country capitals every week from the May 11 to December 22, 2021. Following this, the Tweets are cleaned to exclude duplicates, eliminate stopwords (common words with little sentiment value) and remove punctuation.
 
 <br/>
  
-**3) Net Sentiment:**
+**3) Sentiment Calculation:**
 
-Net sentiment is calculated as the total share of positive minus negative words. It is expressed as a percentage of all words according to the relevant faceting variables (region, country etc.). This takes into account differences in the number of tweets. 
+Net sentiment is calculated as the total ratio of positive minus negative words. It is expressed as a percentage of all words according to the relevant facets (region, country etc.), taking into account differences in the total number of tweets. 
 
 &nbsp;
 
@@ -328,11 +330,11 @@ regional_percentages %>%
 
 ```
 
-**Region Tweets (000s)**
-
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
-knitr::kable(t(round(table(raw_data[index,]$region) / 10^3, 0)))
+# **Region Tweets (000s)**
+
+# knitr::kable(t(round(table(raw_data[index,]$region) / 10^3, 0)))
 
 ```
 
@@ -384,11 +386,11 @@ country_percentages %>%
 
 ```
 
-**Country Tweets (000s)**
-
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
-knitr::kable(t(round(table(raw_data[index,]$country) / 10^3, 0)))
+# **Country Tweets (000s)**
+
+# knitr::kable(t(round(table(raw_data[index,]$country) / 10^3, 0)))
 
 ```
 
@@ -435,11 +437,11 @@ search_term_percentages %>%
 
 ```
 
-**Search Term Tweets (000s)**
-
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
-knitr::kable(t(round(table(raw_data[index,]$search) / 10^3, 0)))
+# **Search Term Tweets (000s)**
+
+#knitr::kable(t(round(table(raw_data[index,]$search) / 10^3, 0)))
 
 ```
 
@@ -483,11 +485,11 @@ week_percentages %>%
 
 ```
 
-**Week Collected Tweets (000s)**
-
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
-knitr::kable(t(round(table(raw_data[index,]$week) / 10^3, 0)))
+# **Week Collected Tweets (000s)**
+
+#knitr::kable(t(round(table(raw_data[index,]$week) / 10^3, 0)))
 
 ```
 
