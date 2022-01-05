@@ -1,6 +1,6 @@
 # Rebel Without a Cause
 
-This project analyzes anti-authority sentiment between Anglosphere and Sinosphere countries on a corpus of over 900,000 tweets.
+This project analyzes anti-authority sentiment between Anglosphere and Sinosphere countries on a corpus of over 1 million tweets.
 
 The report can be found [here.](Rebel-Without-a-Cause.md)
 
