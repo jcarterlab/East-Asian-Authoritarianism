@@ -3,6 +3,7 @@
 Analyzes anti-authority sentiment between Anglosphere and Sinosphere countries on a corpus of over 1 million tweets.
 
 The report can be found [here.](Rebel-Without-a-Cause.md)
+
 The code can be found [here.](Rebel-Without-a-Cause.Rmd)
 
 <br/>
