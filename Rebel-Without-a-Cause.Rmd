@@ -192,10 +192,11 @@ raw_data[raw_data=="Anglo"] <- "Anglo"
 index <- which(
   !duplicated(raw_data[,1])
 )
+data <- raw_data[index,]
 
 # counts the frequency of different NRC sentiments.  
 words <- join_words_with_sentiment(
-  raw_data[index,]
+  data
 ) %>%
   spread(
     sentiment, words
@@ -266,27 +267,7 @@ my_theme <- theme_economist_white(gray_bg = FALSE) +
 
 ## **Summary**
 
-This project analyzes a corpus of over 1 million tweets containing or in response to Tweets containing a range of anti-authority words between Anglosphere and Sinosphere Twitter users. It finds negative sentiment is significantly higher among Sinosphere users, potentially indicating a deep rooted cultural difference in attitudes to authority. 
-
-&nbsp;
-
-## **Method**
-
-**1) Search Parameters:**
-
-The anti-authority terms searched for include defy, disobey, dissent, oppose, protest, rebel, resist, revolt and riot, while the countries targeted include Australia, Canada, New Zealand, South Africa, the UK, the US, China, Hong Kong, Singapore, South Korea, Taiwan and Vietnam. 
-
-<br/>
-
-**2) Data Collection:**
-
-The tweets are collected using Twitter location data from within a 50 mile range of the respective country capitals every week from the May 11 to December 22, 2021. Following this, the Tweets are cleaned to exclude duplicates, eliminate stopwords (common words with little sentiment value) and remove punctuation.
-
-<br/>
- 
-**3) Sentiment Calculation:**
-
-Net sentiment is calculated as the total ratio of positive minus negative words. It is expressed as a percentage of all words according to the relevant facets (region, country etc.), taking into account differences in the total number of tweets. 
+This project analyzes a corpus of `r round(length(index)/10^6, 2)` million tweets containing nine anti-authority words between Sinosphere and Anglosphere Twitter users. It finds that negative sentiment is significantly higher among Sinosphere users, potentially indicating a deep rooted cultural difference in attitudes towards authority.   
 
 &nbsp;
 
@@ -330,17 +311,52 @@ regional_percentages %>%
 
 ```
 
+<br/>
+
+### **2) Search Term:**
+
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
-# **Region Tweets (000s)**
-
-# knitr::kable(t(round(table(raw_data[index,]$region) / 10^3, 0)))
+# search terms
+search_term_percentages %>%
+  spread(
+    sentiment, percent
+    ) %>%
+  mutate(
+    net = positive - negative
+    ) %>%
+  gather(
+    sentiment, percent, -c(1:2)
+    ) %>%
+  filter(
+    sentiment == "net"
+    ) %>%
+  ggplot(
+    aes(x = search, y = percent, fill = region)
+    ) +
+  geom_bar(
+    stat = "identity", position = "dodge"
+    ) +
+  ggtitle(
+    ""
+    ) +
+  ylab(
+    "Net Sentiment (%)"
+    ) +
+  xlab("") +
+  scale_fill_manual(
+    values = c("#0072B2", "#D55E00")
+    ) +
+  my_theme +
+  scale_x_discrete(
+    guide = guide_axis(n.dodge=2)
+    )
 
 ```
 
 <br/>
 
-### **2) Country:**
+### **3) Country:**
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
@@ -386,114 +402,101 @@ country_percentages %>%
 
 ```
 
-```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
+&nbsp;
 
-# **Country Tweets (000s)**
+## **Method**
 
-# knitr::kable(t(round(table(raw_data[index,]$country) / 10^3, 0)))
+**1) Search Terms:**
 
-```
+The nine anti-authority search terms and their tweet frequencies in thousands:
 
-<br/>
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
 
-### **3) Search Term:**
-
-```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
-
-# search terms
-search_term_percentages %>%
-  spread(
-    sentiment, percent
-    ) %>%
-  mutate(
-    net = positive - negative
-    ) %>%
-  gather(
-    sentiment, percent, -c(1:2)
-    ) %>%
-  filter(
-    sentiment == "net"
-    ) %>%
-  ggplot(
-    aes(x = search, y = percent, fill = region)
-    ) +
-  geom_bar(
-    stat = "identity", position = "dodge"
-    ) +
-  ggtitle(
-    ""
-    ) +
-  ylab(
-    "Net Sentiment (%)"
-    ) +
-  xlab("") +
-  scale_fill_manual(
-    values = c("#0072B2", "#D55E00")
-    ) +
-  my_theme +
-  scale_x_discrete(
-    guide = guide_axis(n.dodge=2)
-    )
+kable(spread(data.frame(round(table(data$search)/10^3, 0)), 1, 2))
 
 ```
 
-```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
+&nbsp;
 
-# **Search Term Tweets (000s)**
+**2) Countries:**
 
-#knitr::kable(t(round(table(raw_data[index,]$search) / 10^3, 0)))
+The twelve countries and their tweet frequencies in thousands:
 
-```
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
 
-<br/>
-
-### **4) Week Collected:**
-
-```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
-
-# week
-week_percentages %>%
-  spread(
-    sentiment, percent
-    ) %>%
-  mutate(
-    net = positive - negative
-    ) %>%
-  gather(
-    sentiment, percent, -c(1:2)
-    ) %>%
-  filter(
-    sentiment == "net"
-    ) %>%
-  ggplot(
-    aes(x = week, y = percent, fill = region)
-    ) +
-  geom_bar(
-    stat = "identity", position = "dodge"
-    ) +
-  ggtitle(
-    ""
-    ) +
-  ylab(
-    "Net Sentiment (%)"
-    ) +
-  xlab("") +
-  scale_fill_manual(
-    values = c("#0072B2", "#D55E00")
-    ) +
-  my_theme
+kable(spread(data.frame(round(table(data$country)/10^3, 0)), 1, 2))
 
 ```
 
-```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
+&nbsp;
 
-# **Week Collected Tweets (000s)**
+**3) Data Collection:**
 
-#knitr::kable(t(round(table(raw_data[index,]$week) / 10^3, 0)))
+The tweets are collected using Twitter location data from within a 50 mile range of the respective country capitals every week from May 11 to December 22, 2021.
+
+---EXAMPLE CODE SNIPET---
+
+```{r, echo = TRUE, message = FALSE, warning = FALSE}
+
+# collects tweets for each search term and binds the 
+# results together into a tibble data frame. 
+process_country <- function(country, region, coordinates) {
+  searches <- list() 
+  for(i in 1:length(search_term)){
+    searches[[i+1]] <- process_data(search_term[i], coordinates, country, 
+                                    region, date_collected, label[i])
+  }
+  result <- tibble(rbind_pages(searches))
+  return(result)
+} 
+
 
 ```
 
-<br/>
+
+&nbsp;
+
+**4) Data Cleaning:**
+
+The text is cleaned to remove links.  
+
+---EXAMPLE CODE SNIPET---
+
+```{r, echo = TRUE, message = FALSE, warning = FALSE}
+
+# cleans links from the text. 
+process_raw_tweet_data <- function(country) {
+  pattern <- "https://t.co/[A-Za-z\\d]+|&amp;"
+  text <- country %>%
+    mutate(text = str_to_lower(str_replace_all(text, pattern, "")))
+  return(text)
+}
+
+```
+
+&nbsp;
+ 
+**5) Sentiment Analysis:**
+
+A sentiment analysis is conducted by breaking down each tweet into individual words (tokens), removing stopwords (common words with little sentiment value) and calculating the net percentage of positive verses negative words. 
+
+---EXAMPLE CODE SNIPET---
+
+```{r, echo = TRUE, message = FALSE, warning = FALSE}
+
+# calculates sentiment values faceted by region, search term and sentiment type. 
+calculate_search_term_percentages <- function(words) {
+  final_value <- words %>%
+    group_by(region, search) %>%
+    mutate(total_words = sum(words),
+           percent = (words / total_words)*100) %>%
+    select(region, search, sentiment, percent) %>%
+    group_by(region, search, sentiment) %>%
+    summarise(percent = sum(percent))
+  return(final_value)
+}
+
+```
 
 &nbsp;
 
