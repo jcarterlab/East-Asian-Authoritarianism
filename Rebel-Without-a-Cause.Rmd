@@ -432,7 +432,7 @@ kable(spread(data.frame(round(table(data$country)/10^3, 0)), 1, 2))
 
 ### **3) Data Collection:**
 
-The tweets are collected using Twitter location data from within a 50 mile range of the respective country capitals every week from May 11 to December 22, 2021.
+The tweets were collected using Twitter location data from within a 50 mile range of the respective country capitals every week from May 11 to December 22, 2021.
 
 ---EXAMPLE CODE SNIPET---
 
