@@ -35,7 +35,7 @@ difference in attitudes towards authority.
 
 ## **Method**
 
-**1) Search Terms:**
+### **1) Search Terms:**
 
 The nine anti-authority search terms and their tweet frequencies in
 thousands:
@@ -170,7 +170,7 @@ Riot
 
  
 
-**2) Countries:**
+### **2) Countries:**
 
 The twelve countries and their tweet frequencies in thousands:
 
@@ -340,7 +340,7 @@ Vietnam
 
  
 
-**3) Data Collection:**
+### **3) Data Collection:**
 
 The tweets are collected using Twitter location data from within a 50
 mile range of the respective country capitals every week from May 11 to
@@ -364,7 +364,7 @@ process_country <- function(country, region, coordinates) {
 
  
 
-**4) Data Cleaning:**
+### **4) Data Cleaning:**
 
 The text is cleaned to remove links.
 
@@ -382,7 +382,7 @@ process_raw_tweet_data <- function(country) {
 
  
 
-**5) Sentiment Analysis:**
+### **5) Sentiment Analysis:**
 
 A sentiment analysis is conducted by breaking down each tweet into
 individual words (tokens), removing stopwords (common words with little

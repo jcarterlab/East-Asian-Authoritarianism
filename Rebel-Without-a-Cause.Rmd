@@ -406,7 +406,7 @@ country_percentages %>%
 
 ## **Method**
 
-**1) Search Terms:**
+### **1) Search Terms:**
 
 The nine anti-authority search terms and their tweet frequencies in thousands:
 
@@ -418,7 +418,7 @@ kable(spread(data.frame(round(table(data$search)/10^3, 0)), 1, 2))
 
 &nbsp;
 
-**2) Countries:**
+### **2) Countries:**
 
 The twelve countries and their tweet frequencies in thousands:
 
@@ -430,7 +430,7 @@ kable(spread(data.frame(round(table(data$country)/10^3, 0)), 1, 2))
 
 &nbsp;
 
-**3) Data Collection:**
+### **3) Data Collection:**
 
 The tweets are collected using Twitter location data from within a 50 mile range of the respective country capitals every week from May 11 to December 22, 2021.
 
@@ -456,7 +456,7 @@ process_country <- function(country, region, coordinates) {
 
 &nbsp;
 
-**4) Data Cleaning:**
+### **4) Data Cleaning:**
 
 The text is cleaned to remove links.  
 
@@ -476,7 +476,7 @@ process_raw_tweet_data <- function(country) {
 
 &nbsp;
  
-**5) Sentiment Analysis:**
+### **5) Sentiment Analysis:**
 
 A sentiment analysis is conducted by breaking down each tweet into individual words (tokens), removing stopwords (common words with little sentiment value) and calculating the net percentage of positive verses negative words. 
 
