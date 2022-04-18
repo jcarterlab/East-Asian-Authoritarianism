@@ -342,7 +342,7 @@ Vietnam
 
 ### **3) Data Collection:**
 
-The tweets are collected using Twitter location data from within a 50
+The tweets were collected using Twitter location data from within a 50
 mile range of the respective country capitals every week from May 11 to
 December 22, 2021.
 
