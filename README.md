@@ -1,6 +1,6 @@
 # Rebel Without a Cause
 
-This project uses sentiment analysis to analyze 1.06 million tweets
+This project uses sentiment analysis to examine 1.06 million tweets
 containing, or in response to those containing, one of nine
 anti-authority words between Anglosphere and Sinosphere Twitter users.
 Like James Dean’s character in Rebel Without a Cause, Anglosphere users
