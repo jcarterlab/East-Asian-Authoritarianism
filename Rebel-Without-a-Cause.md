@@ -5,11 +5,11 @@ Jack Carter
 
 ## **Summary**
 
-This project analyzes a corpus of 1.06 million tweets containing nine
-anti-authority words between Sinosphere and Anglosphere Twitter users.
-It finds that negative sentiment is significantly higher among
-Sinosphere users, potentially indicating a deep rooted cultural
-difference in attitudes towards authority.
+This project uses sentiment analysis to analyze 1.06 million tweets
+containing, or in response to those containing, one of nine
+anti-authority words between Anglosphere and Sinosphere Twitter users.
+Like James Dean’s character in Rebel Without a Cause, Anglosphere users
+appear to value rebellious rhetoric more highly than others.
 
  
 
@@ -17,17 +17,25 @@ difference in attitudes towards authority.
 
 ### **1) Region:**
 
+There is a significantly lower net sentiment value among Sinosphere
+users overall.
+
 ![](Rebel-Without-a-Cause_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
-<br/>
+ 
 
 ### **2) Search Term:**
 
+There is a significantly lower net sentiment value for Sinosphere users
+for each anti-authority term.
+
 ![](Rebel-Without-a-Cause_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
-<br/>
+ 
 
 ### **3) Country:**
+
+There is a lower net sentiment value for most Sinosphere countries.
 
 ![](Rebel-Without-a-Cause_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
@@ -35,10 +43,11 @@ difference in attitudes towards authority.
 
 ## **Method**
 
-### **1) Search Terms:**
+### **1) Choose Terms:**
 
-The nine anti-authority search terms and their tweet frequencies in
-thousands:
+The terms were chosen by searching online for synonyms for protest.
+
+**Tweets (000s)**
 
 <table>
 
@@ -172,7 +181,11 @@ Riot
 
 ### **2) Countries:**
 
-The twelve countries and their tweet frequencies in thousands:
+Anglosphere and Sinosphere countries were selected because these
+cultures were thought to be the most different in terms of attitudes
+towards authority.
+
+**Tweets (000s)**
 
 <table>
 
@@ -343,30 +356,32 @@ Vietnam
 ### **3) Data Collection:**
 
 The tweets were collected using Twitter location data from within a 50
-mile range of the respective country capitals every week from May 11 to
-December 22, 2021.
+mile range of the respective country capitals each week from 11 May to
+22 December 2021.
 
 —EXAMPLE CODE SNIPET—
 
 ``` r
-# collects tweets for each search term and binds the 
-# results together into a tibble data frame. 
-process_country <- function(country, region, coordinates) {
-  searches <- list() 
-  for(i in 1:length(search_term)){
-    searches[[i+1]] <- process_data(search_term[i], coordinates, country, 
-                                    region, date_collected, label[i])
-  }
-  result <- tibble(rbind_pages(searches))
-  return(result)
-} 
+# searches for tweets with a given search term in a given 
+# location using the rtweet search_tweets function. 
+get_tweets <- function(search_term, coordinates) {
+  search_tweets(
+    q = search_term,
+    n = 100000,
+    include_rts = FALSE,
+    retryonratelimit = TRUE,
+    lang = "en",
+    geocode = coordinates
+  )
+}
 ```
 
  
 
 ### **4) Data Cleaning:**
 
-The text is cleaned to remove links.
+The text is cleaned by removing links and converting all characters to
+lowercase.
 
 —EXAMPLE CODE SNIPET—
 
@@ -384,10 +399,9 @@ process_raw_tweet_data <- function(country) {
 
 ### **5) Sentiment Analysis:**
 
-A sentiment analysis is conducted by breaking down each tweet into
-individual words (tokens), removing stopwords (common words with little
-sentiment value) and calculating the net percentage of positive verses
-negative words.
+The sentiment analysis breaks down each tweet into words tokens,
+removing stopwords (common words with little sentiment value) and
+calculates the percentage of positive minus negative words.
 
 —EXAMPLE CODE SNIPET—
 
@@ -408,6 +422,9 @@ calculate_search_term_percentages <- function(words) {
  
 
 ## **Sources**
+
+  - Clearly Cultural (2022)
+    <https://clearlycultural.com/geert-hofstede-cultural-dimensions/power-distance-index/>
 
   - Mohammad (2021)
     <https://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm>
