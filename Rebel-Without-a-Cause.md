@@ -9,7 +9,7 @@ This project uses sentiment analysis to analyze 1.06 million tweets
 containing, or in response to those containing, one of nine
 anti-authority words between Anglosphere and Sinosphere Twitter users.
 Like James Dean’s character in Rebel Without a Cause, Anglosphere users
-appear to view rebellious acts less negatively than others.
+appear to view rebellious acts less badly than their peers.
 
  
 
@@ -355,7 +355,7 @@ Vietnam
 
 ### **3) Data Collection:**
 
-The tweets were collected using Twitter location data from a 50 mile range of the each country capital every week from 11 May to 22 December 2021.
+The tweets were collected from a 50 mile range of the each country capital every week from 11 May to 22 December 2021.
 
 —EXAMPLE CODE SNIPET—
 
