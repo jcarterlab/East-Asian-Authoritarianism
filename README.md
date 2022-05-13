@@ -16,6 +16,8 @@ The code can be found [here.](Rebel-Without-a-Cause.Rmd)
 
 **Sources:**
 
+Clearly Cultural (2022) https://clearlycultural.com/geert-hofstede-cultural-dimensions/power-distance-index/
+
 Mohammad (2021) https://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm
 
 Twitter (2021) https://developer.twitter.com/en/apply-for-access
