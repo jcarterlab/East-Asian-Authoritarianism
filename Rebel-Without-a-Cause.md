@@ -17,8 +17,8 @@ appear to view rebellious acts less negatively than others.
 
 ### **1) Region:**
 
-There is a significantly lower net sentiment value among Sinosphere
-users overall.
+There is significantly lower net sentiment for Sinosphere
+users.
 
 ![](Rebel-Without-a-Cause_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
@@ -26,7 +26,7 @@ users overall.
 
 ### **2) Search Term:**
 
-There is a significantly lower net sentiment value for Sinosphere users
+There is significantly lower net sentiment among Sinosphere users
 for each anti-authority term.
 
 ![](Rebel-Without-a-Cause_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
@@ -35,7 +35,7 @@ for each anti-authority term.
 
 ### **3) Country:**
 
-There is a lower net sentiment value for most Sinosphere countries.
+There is lower net sentiment for most Sinosphere countries. It should be noted that although China and Taiwan may show higher net sentmiment, this was based on a comparartively low number of tweets. 
 
 ![](Rebel-Without-a-Cause_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
@@ -45,7 +45,7 @@ There is a lower net sentiment value for most Sinosphere countries.
 
 ### **1) Choose Terms:**
 
-The terms were chosen by searching online for synonyms for protest.
+The terms were chosen by searching for synonyms of protest.
 
 **Tweets (000s)**
 
@@ -181,9 +181,9 @@ Riot
 
 ### **2) Countries:**
 
-Anglosphere and Sinosphere countries were selected because these
-cultures were thought to be the most different in terms of attitudes
-towards authority.
+The countries were selected because Anglosphere and Sinosphere
+based cultures were thought to be the most different in terms of attitudes
+towards authority based on Hoefstede's research into power distance. 
 
 **Tweets (000s)**
 
@@ -399,9 +399,7 @@ process_raw_tweet_data <- function(country) {
 
 ### **5) Sentiment Analysis:**
 
-The sentiment analysis breaks down each tweet into words tokens,
-removing stopwords (common words with little sentiment value) and
-calculates the percentage of positive minus negative words.
+A sentiment analysis is calculated by breaking down each tweet into individual words, removing stopwords (common words with little sentiment value) and calculating the percentage of positive minus negative words. 
 
 —EXAMPLE CODE SNIPET—
 
