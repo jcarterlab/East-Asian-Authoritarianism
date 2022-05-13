@@ -6,13 +6,13 @@ anti-authority words between Anglosphere and Sinosphere Twitter users.
 Like James Dean’s character in Rebel Without a Cause, Anglosphere users
 appear to view rebellious acts less negatively than others.
 
-&nbsp;
+<br/>
 
 The report can be found [here.](Rebel-Without-a-Cause.md)
 
 The code can be found [here.](Rebel-Without-a-Cause.Rmd)
 
-&nbsp;
+<br/>
 
 **Sources:**
 
