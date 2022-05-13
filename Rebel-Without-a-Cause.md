@@ -355,9 +355,7 @@ Vietnam
 
 ### **3) Data Collection:**
 
-The tweets were collected using Twitter location data from within a 50
-mile range of the respective country capitals each week from 11 May to
-22 December 2021.
+The tweets were collected using Twitter location data from a 50 mile range of the each country capital every week from 11 May to 22 December 2021.
 
 —EXAMPLE CODE SNIPET—
 
