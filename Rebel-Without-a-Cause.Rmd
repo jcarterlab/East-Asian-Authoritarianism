@@ -202,7 +202,7 @@ This project uses sentiment analysis to examine 1.06 million tweets containing, 
 
 ### **1) Region:**
 
-There is significantly lower net sentiment for Sinosphere users.
+There is significantly lower net sentiment among Sinosphere users for the anti-authority terms overall.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
@@ -252,7 +252,7 @@ search_term_percentages %>%
 
 ### **3) Country:**
 
-There is lower net sentiment for most Sinosphere countries. It should be noted that although China and Taiwan may show higher net sentmiment, this was based on a comparartively low number of tweets.
+There is lower net sentiment among most Sinosphere countries. It should be noted that although China and Taiwan may show a higher net sentmiment value, this was based on a comparartively low number of tweets.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
@@ -282,7 +282,7 @@ country_percentages %>%
 
 ## **Disclaimer**
 
-The data above show only the overall sentiment of tweets containing, or in response to those containing, anti-authority terms. They do not tell us anything about the context in which the terms were used. Athough the high number of tweets would suggest a more positive disposition to such terms among Anglosphere users, a more targeted study on individual protest events would be needed to confirm this. 
+The data above show only the overall sentiment of tweets containing, or in response to those containing, anti-authority terms. They do not tell us anything about the context in which the terms were used. Athough the high number of tweets would suggest a more positive disposition to such terms among Anglosphere users, a more targeted study on individual protest events would be needed to confirm this.
 
 &nbsp;
 
@@ -304,7 +304,7 @@ kable(spread(data.frame(round(table(data$search)/10^3, 0)), 1, 2))
 
 ### **2) Countries:**
 
-The countries were selected because Anglosphere and Sinosphere based cultures were thought to be the most different in terms of attitudes towards authority based on Hoefstede's research into power distance.
+The countries were selected because Anglosphere (Western) and Sinosphere (Confucian) cultures were thought to be the most different in terms of attitudes towards authority according to Hoefstede’s research on power distance.
 
 **Tweets (000s)**
 
