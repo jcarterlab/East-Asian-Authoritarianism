@@ -17,7 +17,7 @@ appear to view rebellious acts less badly than others.
 
 ### **1) Region:**
 
-There is significantly lower net sentiment for Sinosphere users.
+There is significantly lower net sentiment among Sinosphere users for the anti-authority terms overall.
 
 ![](Rebel-Without-a-Cause_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
@@ -34,8 +34,8 @@ each anti-authority term.
 
 ### **3) Country:**
 
-There is lower net sentiment for most Sinosphere countries. It should be
-noted that although China and Taiwan may show higher net sentmiment,
+There is lower net sentiment among most Sinosphere countries. It should be
+noted that although China and Taiwan may show a higher net sentmiment value,
 this was based on a comparartively low number of tweets.
 
 ![](Rebel-Without-a-Cause_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
@@ -57,7 +57,7 @@ protest events would be needed to confirm this.
 
 ### **1) Choose Terms:**
 
-The terms were chosen by searching for synonyms of protest.
+The terms were chosen by searching for protest synonyms.
 
 **Tweets (000s)**
 
@@ -193,9 +193,9 @@ Riot
 
 ### **2) Countries:**
 
-The countries were selected because Anglosphere and Sinosphere based
+The countries were selected because Anglosphere (Western) and Sinosphere (Confucian)
 cultures were thought to be the most different in terms of attitudes
-towards authority based on Hoefstede’s research into power distance.
+towards authority according to Hoefstede’s research on power distance.
 
 **Tweets (000s)**
 
