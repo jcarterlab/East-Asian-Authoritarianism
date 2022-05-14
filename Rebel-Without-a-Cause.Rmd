@@ -280,6 +280,12 @@ country_percentages %>%
 
 &nbsp;
 
+## **Disclaimer**
+
+The data above show only the overall sentiment of tweets containing, or in response to those containing, anti-authority terms. They do not tell us anything about the context in which the terms were used. Athough the high number of tweets would suggest a more positive disposition to such terms among Anglosphere users, a more targeted study on individual protest events would be needed to confirm this. 
+
+&nbsp;
+
 ## **Method**
 
 ### **1) Choose Terms:**

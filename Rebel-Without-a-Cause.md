@@ -17,8 +17,7 @@ appear to view rebellious acts less badly than others.
 
 ### **1) Region:**
 
-There is significantly lower net sentiment for Sinosphere
-users.
+There is significantly lower net sentiment for Sinosphere users.
 
 ![](Rebel-Without-a-Cause_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
@@ -26,8 +25,8 @@ users.
 
 ### **2) Search Term:**
 
-There is significantly lower net sentiment among Sinosphere users
-for each anti-authority term.
+There is significantly lower net sentiment among Sinosphere users for
+each anti-authority term.
 
 ![](Rebel-Without-a-Cause_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
@@ -35,9 +34,22 @@ for each anti-authority term.
 
 ### **3) Country:**
 
-There is lower net sentiment for most Sinosphere countries. It should be noted that although China and Taiwan may show higher net sentmiment, this was based on a comparartively low number of tweets. 
+There is lower net sentiment for most Sinosphere countries. It should be
+noted that although China and Taiwan may show higher net sentmiment,
+this was based on a comparartively low number of tweets.
 
 ![](Rebel-Without-a-Cause_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+
+ 
+
+## **Disclaimer**
+
+The data above show only the overall sentiment of tweets containing, or
+in response to those containing, anti-authority terms. They do not tell
+us anything about the context in which the terms were used. Athough the
+high number of tweets would suggest a more positive disposition to such
+terms among Anglosphere users, a more targeted study on individual
+protest events would be needed to confirm this.
 
  
 
@@ -181,9 +193,9 @@ Riot
 
 ### **2) Countries:**
 
-The countries were selected because Anglosphere and Sinosphere
-based cultures were thought to be the most different in terms of attitudes
-towards authority based on Hoefstede's research into power distance. 
+The countries were selected because Anglosphere and Sinosphere based
+cultures were thought to be the most different in terms of attitudes
+towards authority based on Hoefstede’s research into power distance.
 
 **Tweets (000s)**
 
@@ -355,7 +367,8 @@ Vietnam
 
 ### **3) Data Collection:**
 
-The tweets were collected from a 50 mile range of the each country capital every week from 11 May to 22 December 2021.
+The tweets were collected from a 50 mile range of the each country
+capital every week from 11 May to 22 December 2021.
 
 —EXAMPLE CODE SNIPET—
 
@@ -397,7 +410,9 @@ process_raw_tweet_data <- function(country) {
 
 ### **5) Sentiment Analysis:**
 
-A sentiment analysis is calculated by breaking down each tweet into individual words, removing stopwords (common words with little sentiment value) and calculating the percentage of positive minus negative words. 
+A sentiment analysis is calculated by breaking down each tweet into
+individual words, removing stopwords (common words with little sentiment
+value) and calculating the percentage of positive minus negative words.
 
 —EXAMPLE CODE SNIPET—
 
