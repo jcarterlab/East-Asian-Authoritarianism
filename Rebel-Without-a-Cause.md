@@ -9,7 +9,7 @@ This project uses sentiment analysis to examine 1.06 million tweets
 containing, or in response to those containing, one of nine
 anti-authority words between Anglosphere and Sinosphere Twitter users.
 Like James Dean’s character in Rebel Without a Cause, Anglosphere users
-appear to view rebellious acts less badly than others.
+appear to view rebellious acts more positively than others.
 
  
 
@@ -17,7 +17,8 @@ appear to view rebellious acts less badly than others.
 
 ### **1) Region:**
 
-There is significantly lower net sentiment among Sinosphere users for the anti-authority terms overall.
+There is significantly lower net sentiment among Sinosphere users for
+the anti-authority terms overall.
 
 ![](Rebel-Without-a-Cause_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
@@ -25,8 +26,8 @@ There is significantly lower net sentiment among Sinosphere users for the anti-a
 
 ### **2) Search Term:**
 
-There is significantly lower net sentiment among Sinosphere users for
-each anti-authority term.
+There is also significantly lower net sentiment among Sinosphere users
+for each anti-authority term.
 
 ![](Rebel-Without-a-Cause_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
@@ -34,9 +35,8 @@ each anti-authority term.
 
 ### **3) Country:**
 
-There is lower net sentiment among most Sinosphere countries. It should be
-noted that although China and Taiwan may show a higher net sentmiment value,
-this was based on a comparartively low number of tweets.
+There is also lower net sentiment among the majority of Sinosphere
+countries.
 
 ![](Rebel-Without-a-Cause_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
@@ -44,12 +44,11 @@ this was based on a comparartively low number of tweets.
 
 ## **Disclaimer**
 
-The data above show only the overall sentiment of tweets containing, or
-in response to those containing, anti-authority terms. They do not tell
-us anything about the context in which the terms were used. Athough the
-high number of tweets would suggest a more positive disposition to such
-terms among Anglosphere users, a more targeted study on individual
-protest events would be needed to confirm this.
+The data above does not take into account the context of these tweets.
+Although the high number (over 1 million) of tweets may suggest a
+statistically significant relationship between higher anti-authority
+sentiment and Anglosphere users, a more targeted study on individual
+protest events would help to confirm this.
 
  
 
@@ -57,7 +56,7 @@ protest events would be needed to confirm this.
 
 ### **1) Choose Terms:**
 
-The terms were chosen by searching for protest synonyms.
+The terms were chosen by searching for synonyms of protest.
 
 **Tweets (000s)**
 
@@ -193,9 +192,10 @@ Riot
 
 ### **2) Countries:**
 
-The countries were selected because Anglosphere (Western) and Sinosphere (Confucian)
-cultures were thought to be the most different in terms of attitudes
-towards authority according to Hoefstede’s research on power distance.
+The countries were selected because Anglosphere (Western) and Sinosphere
+(Confucian) cultures were thought to be the most different in terms of
+attitudes towards authority according to Hoefstede’s research on power
+distance.
 
 **Tweets (000s)**
 

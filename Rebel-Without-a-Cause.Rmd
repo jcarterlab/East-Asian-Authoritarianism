@@ -194,7 +194,7 @@ my_theme <- theme_economist_white(gray_bg = FALSE) +
 
 ## **Summary**
 
-This project uses sentiment analysis to examine 1.06 million tweets containing, or in response to those containing, one of nine anti-authority words between Anglosphere and Sinosphere Twitter users. Like James Dean’s character in Rebel Without a Cause, Anglosphere users appear to view rebellious acts less badly than others.
+This project uses sentiment analysis to examine 1.06 million tweets containing, or in response to those containing, one of nine anti-authority words between Anglosphere and Sinosphere Twitter users. Like James Dean’s character in Rebel Without a Cause, Anglosphere users appear to view rebellious acts more positively than others.
 
 &nbsp;
 
@@ -219,7 +219,9 @@ regional_percentages %>%
   xlab("") +
   scale_fill_manual(values = c("#0072B2", "#D55E00")) +
   my_theme +
-  theme(legend.position = "none")
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
 
 ```
 
@@ -227,7 +229,7 @@ regional_percentages %>%
 
 ### **2) Search Term:**
 
-There is significantly lower net sentiment among Sinosphere users for each anti-authority term.
+There is also significantly lower net sentiment among Sinosphere users for each anti-authority term.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
@@ -252,7 +254,7 @@ search_term_percentages %>%
 
 ### **3) Country:**
 
-There is lower net sentiment among most Sinosphere countries. It should be noted that although China and Taiwan may show a higher net sentmiment value, this was based on a comparartively low number of tweets.
+There is also lower net sentiment among the majority of Sinosphere countries.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
@@ -282,7 +284,7 @@ country_percentages %>%
 
 ## **Disclaimer**
 
-The data above show only the overall sentiment of tweets containing, or in response to those containing, anti-authority terms. They do not tell us anything about the context in which the terms were used. Athough the high number of tweets would suggest a more positive disposition to such terms among Anglosphere users, a more targeted study on individual protest events would be needed to confirm this.
+The data above does not take into account the context of these tweets. Although the high number (over 1 million) of tweets may suggest a statistically significant relationship between higher anti-authority sentiment and Anglosphere users, a more targeted study on individual protest events would help to confirm this.
 
 &nbsp;
 
