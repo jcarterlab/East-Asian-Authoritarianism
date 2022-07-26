@@ -1,6 +1,6 @@
 # Rebel Without a Cause
 
-This project uses sentiment analysis to examine 1.06 million tweets containing, or in response to those containing, one of nine anti-authority words between Anglosphere and Sinosphere Twitter users. Like James Dean’s character in Rebel Without a Cause, Anglosphere users appear to view rebellious acts less badly than others.
+This project uses sentiment analysis to examine 1.06 million tweets containing, or in response to those containing, one of nine anti-authority words between Anglosphere and Sinosphere Twitter users. Like James Dean’s character in Rebel Without a Cause, Anglosphere users appear to view rebellious acts more positively than others.
 
 <br/>
 
